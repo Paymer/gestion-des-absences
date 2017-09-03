@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dev</groupId>
+	<artifactId>parent</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.3.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<modules>
+		<module>back</module>
+	</modules>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<junit.version>4.12</junit.version>
+		<bootstrap.version>3.3.7</bootstrap.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap</artifactId>
+				<version>${bootstrap.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+
+	<profiles>
+		<profile>
+			<id>dev-h2</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<jdbc.driver>org.h2.Driver</jdbc.driver>
+				<jdbc.url>jdbc:h2:mem:test</jdbc.url>
+				<jdbc.user>pizzeriadb</jdbc.user>
+				<jdbc.pass>pizzeriadb</jdbc.pass>
+				<jpa.hibernate.ddl>create-drop</jpa.hibernate.ddl>
+				<jdbc.dialect>org.hibernate.dialect.H2Dialect</jdbc.dialect>
+				<jdbc.connections.max.active>5</jdbc.connections.max.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev-mysql</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.url>jdbc:mysql://localhost:3306/sirh-db</jdbc.url>
+				<jdbc.user>sirh-db</jdbc.user>
+				<jdbc.pass>sirh-db</jdbc.pass>
+				<jpa.hibernate.ddl>create-drop</jpa.hibernate.ddl>
+				<jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
+				<jdbc.connections.max.active>5</jdbc.connections.max.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.url>jdbc:mysql://${env.MYSQL_ADDON_HOST}:${env.MYSQL_ADDON_PORT}/${env.MYSQL_ADDON_DB}</jdbc.url>
+				<jdbc.user>${env.MYSQL_ADDON_USER}</jdbc.user>
+				<jdbc.pass>${env.MYSQL_ADDON_PASSWORD}</jdbc.pass>
+				<jpa.hibernate.ddl>${env.HIBERNATE_DDL}</jpa.hibernate.ddl>
+				<jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
+				<jdbc.connections.max.active>2</jdbc.connections.max.active>
+			</properties>
+		</profile>
+
+	</profiles>
+
+</project>

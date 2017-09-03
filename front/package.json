@@ -1,0 +1,38 @@
+{
+  "name": "front-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all --parallel dev:*",
+    "dev:server": "webpack-dev-server --open",
+    "dev:api": "json-server db.json -w",
+    "std": "standard \"app/*.js\"",
+    "build": "cross-env NODE_ENV=production webpack -p"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.1",
+    "file-loader": "^0.11.1",
+    "json-server": "^0.10.0",
+    "npm-run-all": "^4.0.2",
+    "raw-loader": "^0.5.1",
+    "standard": "^10.0.2",
+    "style-loader": "^0.17.0",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "bootstrap": "^3.3.7",
+    "lodash": "^4.17.4",
+    "uuid": "^3.0.1"
+  }
+}
