@@ -1,9 +1,0 @@
-{
-  "build": {
-    "type": "maven",
-    "goal": "clean package -Pprod"
-  },
-  "deploy": {
-    "jarName": "back/target/back.war"
-  }
-}
