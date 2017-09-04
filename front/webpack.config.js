@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const API_URL = process.env.NODE_ENV === 'production' ? 'https://TODO_API' : 'http://localhost:8080';
-const publicPath = process.env.NODE_ENV === 'production' ? '' : '/TODO_CONTEXT/';
+const publicPath = process.env.NODE_ENV === 'production' ? '' : '/gda/';
 
 const output = 'public';
 

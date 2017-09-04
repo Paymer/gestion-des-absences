@@ -51,8 +51,8 @@
 			<properties>
 				<jdbc.driver>org.h2.Driver</jdbc.driver>
 				<jdbc.url>jdbc:h2:mem:test</jdbc.url>
-				<jdbc.user>pizzeriadb</jdbc.user>
-				<jdbc.pass>pizzeriadb</jdbc.pass>
+				<jdbc.user>root</jdbc.user>
+				<jdbc.pass>root</jdbc.pass>
 				<jpa.hibernate.ddl>create-drop</jpa.hibernate.ddl>
 				<jdbc.dialect>org.hibernate.dialect.H2Dialect</jdbc.dialect>
 				<jdbc.connections.max.active>5</jdbc.connections.max.active>
@@ -65,9 +65,9 @@
 			</activation>
 			<properties>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-				<jdbc.url>jdbc:mysql://localhost:3306/sirh-db</jdbc.url>
-				<jdbc.user>sirh-db</jdbc.user>
-				<jdbc.pass>sirh-db</jdbc.pass>
+				<jdbc.url>jdbc:mysql://localhost:3306/gda</jdbc.url>
+				<jdbc.user>gda</jdbc.user>
+				<jdbc.pass>gda</jdbc.pass>
 				<jpa.hibernate.ddl>create-drop</jpa.hibernate.ddl>
 				<jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
 				<jdbc.connections.max.active>5</jdbc.connections.max.active>

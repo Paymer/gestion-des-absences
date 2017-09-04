@@ -23,6 +23,7 @@
 
 
 	<dependencies>
+		<!-- Core -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -48,12 +49,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
@@ -74,21 +69,28 @@
 			<artifactId>bootstrap</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Tests -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
-  <profiles>
+	<profiles>
 		<profile>
 			<id>dev-h2</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-      <dependencies>
-					<dependency>
-			      <groupId>com.h2database</groupId>
-			      <artifactId>h2</artifactId>
-			      <scope>runtime</scope>
-		      </dependency>
-      </dependencies>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>
 
