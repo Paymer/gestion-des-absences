@@ -13,6 +13,7 @@
 	<artifactId>back</artifactId>
 
 	<build>
+		<finalName>back</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -5,3 +5,5 @@ public/fonts
 .settings
 .classpath
 target/
+*.iml
+.idea
