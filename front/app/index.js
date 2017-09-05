@@ -5,9 +5,6 @@ import RouteModule from 'angular-route';
 import 'bootstrap/dist/css/bootstrap.css';
 import { route } from './app.route';
 
-// Module
-import menuEmployeModule from './menuEmploye/menuEmploye.module';
-
 // Component
 import { AccueilComponent } from './accueil/accueil.component';
 import visualisationAbsenceComponent from "./absence/visualisation/visualisationAbsence.component"
