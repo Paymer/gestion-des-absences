@@ -1,12 +1,12 @@
-export default class MenuAdminCtrl{
+export default class MenuManagerCtrl{
     constructor(logService){
         this.logService = logService
         this.logo = {title: "Logo", url: "#"}
     }
     
     getConnectionStatus(){
-        return this.logService.isConnected()
+        return this.logService.isConnecte()
     }
 }
 
-MenuAdminCtrl.$inject = ['connexionService']
+MenuManagerCtrl.$inject = ['connexionService']
