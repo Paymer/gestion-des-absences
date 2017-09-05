@@ -1,17 +1,37 @@
 package dev.controller;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import dev.entite.Absence;
+import dev.repository.RepositoryAbsence;
+
+
+@RestController
 @RequestMapping("/absence")
 public class ControllerAbsence {
 
+	@Autowired
+	private RepositoryAbsence repoAbsence;
+
+	@GetMapping()
+	public List<Absence> listerAbsences() {
+		return this.repoAbsence.findAll();
+	}
+	
+	@GetMapping("/{idEmploye}")
+	public List<Absence> findAbsenceParId(@PathVariable Integer idEmploye) {
+		return this.repoAbsence.findByIdEmploye(idEmploye);
+	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande")
 	public String ajoutAbsence() {
-		
 
 		return "redirect:accuiel";
 	}
