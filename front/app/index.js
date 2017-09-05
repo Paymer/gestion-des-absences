@@ -25,7 +25,7 @@ import menuManagerModule from './menuManager/menuManager.module';
 angular.module('app', [RouteModule, "ngResource", menuEmployeModule.name, menuAdminModule.name, menuManagerModule.name])
 
     .value('apiUrl', API_URL)
-    .value("apiUrls", apiUrls)
+    .constant("apiUrls", apiUrls)
 	.service('connexionService', connexionService)
     .service("visualisationAbsenceService", visualisationAbsenceService)
 	

@@ -1,5 +1,5 @@
 const apiUrls = {
-    absence : API_URL + "/absence",
+    absence : API_URL + '/absence',
 	connexion: API_URL + '/connexion'
 }
 
