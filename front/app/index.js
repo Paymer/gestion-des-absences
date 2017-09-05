@@ -5,12 +5,14 @@ import RouteModule from 'angular-route';
 import 'bootstrap/dist/css/bootstrap.css';
 import { route } from './app.route';
 import ngResource from "angular-resource";
+import connexionService from './connexion/connexion.service';
 
-// Component
+// Components
 import { AccueilComponent } from './accueil/accueil.component';
-import visualisationAbsenceComponent from "./absence/visualisation/visualisationAbsence.component"
+import ConnexionComponent from './connexion/connexion.component';
+import visualisationAbsenceComponent from "./absence/visualisation/visualisationAbsence.component";
 
-// Service
+// Services
 import visualisationAbsenceService from "./absence/visualisation/visualisationAbsence.service"
 import apiUrls from "./utils/apiUrls.service";
 
@@ -21,10 +23,15 @@ import menuManagerModule from './menuManager/menuManager.module';
 
 
 angular.module('app', [RouteModule, "ngResource", menuEmployeModule.name, menuAdminModule.name, menuManagerModule.name])
+
     .value('apiUrl', API_URL)
-    .component('accueil', AccueilComponent)
-    .component("visualisationAbsenceComponent", visualisationAbsenceComponent)
     .constant("apiUrls", apiUrls)
+	.service('connexionService', connexionService)
     .service("visualisationAbsenceService", visualisationAbsenceService)
+	
+    .component('accueil', AccueilComponent)
+	.component('connexionComponent', ConnexionComponent)
+    .component("visualisationAbsenceComponent", visualisationAbsenceComponent)
+
     .config(route);
 

@@ -33,6 +33,7 @@
     "angular-resource": "^1.6.6",
     "angular-route": "^1.6.4",
     "bootstrap": "^3.3.7",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "angular-ui-bootstrap": "^2.5.0"
   }
 }
