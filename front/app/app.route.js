@@ -6,6 +6,7 @@ export function route ($routeProvider, $locationProvider) {
     .when('/', {
        // template: '<menu-employe-component></menu-employe-component>' + '<accueil></accueil>'
        template: '<menu-admin-component></menu-admin-component>' + '<accueil></accueil>'
+       // template: '<menu-manager-component></menu-manager-component>' + '<accueil></accueil>'
     })
     .otherwise({
         redirectTo: '/'
