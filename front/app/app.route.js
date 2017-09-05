@@ -4,7 +4,10 @@ export function route ($routeProvider, $locationProvider) {
 
     $routeProvider
     .when('/', {
-        template: '<menu-employe-component></menu-employe-component>' + '<accueil></accueil>'
+        template: '<accueil></accueil>'
+    })
+    .when('/absence', {
+        template: '<visualisation-absence-component></visualisation-absence-component>'
     })
     .otherwise({
         redirectTo: '/'
