@@ -14,11 +14,11 @@ import javax.persistence.Id;
 public class Absence {
 	
 	public enum TypeAbsence {
-		TEST, TESTOU, PLOUFEUH; // TODO à changer
+		CONGE_PAYE, RTT, CONGE_SANS_SOLDE;
 	}
 	
 	public enum Statut {
-		INITIAL, PWET, PWETOU, PLOUF; // TODO à changer
+		INITIALE, EN_ATTENTE_VALIDATION, VALIDEE, REJETEE;
 	}
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,97 @@ public class Absence {
 	private LocalDate dateFin;
 	@Enumerated(EnumType.STRING)
 	private TypeAbsence type;
-	
+	@Column(name = "id_employe")
 	private Integer idEmploye;
 	private String motif;
+	@Enumerated(EnumType.STRING)
 	private Statut statut;
+	
+	
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	/**
+	 * @return the dateDebut
+	 */
+	public LocalDate getDateDebut() {
+		return dateDebut;
+	}
+	/**
+	 * @param dateDebut the dateDebut to set
+	 */
+	public void setDateDebut(LocalDate dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+	/**
+	 * @return the dateFin
+	 */
+	public LocalDate getDateFin() {
+		return dateFin;
+	}
+	/**
+	 * @param dateFin the dateFin to set
+	 */
+	public void setDateFin(LocalDate dateFin) {
+		this.dateFin = dateFin;
+	}
+	/**
+	 * @return the type
+	 */
+	public TypeAbsence getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(TypeAbsence type) {
+		this.type = type;
+	}
+	/**
+	 * @return the idEmploye
+	 */
+	public Integer getIdEmploye() {
+		return idEmploye;
+	}
+	/**
+	 * @param idEmploye the idEmploye to set
+	 */
+	public void setIdEmploye(Integer idEmploye) {
+		this.idEmploye = idEmploye;
+	}
+	/**
+	 * @return the motif
+	 */
+	public String getMotif() {
+		return motif;
+	}
+	/**
+	 * @param motif the motif to set
+	 */
+	public void setMotif(String motif) {
+		this.motif = motif;
+	}
+	/**
+	 * @return the statut
+	 */
+	public Statut getStatut() {
+		return statut;
+	}
+	/**
+	 * @param statut the statut to set
+	 */
+	public void setStatut(Statut statut) {
+		this.statut = statut;
+	}
 	
 	
 	
