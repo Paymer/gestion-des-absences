@@ -24,7 +24,7 @@ angular.module('app', [RouteModule, "ngResource", menuEmployeModule.name, menuAd
     .value('apiUrl', API_URL)
     .component('accueil', AccueilComponent)
     .component("visualisationAbsenceComponent", visualisationAbsenceComponent)
-    .service("apiUrls", apiUrls)
+    .constant("apiUrls", apiUrls)
     .service("visualisationAbsenceService", visualisationAbsenceService)
     .config(route);
 
