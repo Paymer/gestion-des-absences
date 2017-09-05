@@ -9,6 +9,9 @@ export function route ($routeProvider, $locationProvider) {
     //    template: '<menu-admin-component></menu-admin-component>' + '<accueil></accueil>'
        // template: '<menu-manager-component></menu-manager-component>' + '<accueil></accueil>'
     })
+    .when('/absence', {
+        template: '<visualisation-absence-component></<visualisation-absence-component>>'
+     })
     .otherwise({
         redirectTo: '/'
     });

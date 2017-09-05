@@ -1,3 +1,25 @@
 
-<h1>Gestion des absences</h1>
+<h1 class="text-center">Gestion des absences</h1>
 
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <body>
+            <tr ng-repeat="absence in $ctrl.absences">
+                <td>{{absence.dateDebut}}</td>
+                <td>{{absence.dateFin}}</td>
+                <td>{{absence.type}}</td>
+                <!-- <td>{{absence.actions}}</td> A changer peut-être -->
+            </tr>
+        </body>
+    </table>
+
+</div>

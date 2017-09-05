@@ -1,6 +1,10 @@
 
 export default class VisualisationAbsenceController {
-    constructor() {
-        
+    constructor(visualisationAbsenceService) {
+        this.visualisationAbsenceService = visualisationAbsenceService;
+    }
+
+    $onInit() {
+        this.absences = this.visualisationAbsenceService.findAll();
     }
 }
