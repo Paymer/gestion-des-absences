@@ -23,9 +23,9 @@ public class Absence {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "date-debut")
+	@Column(name = "date_debut")
 	private LocalDate dateDebut;
-	@Column(name = "date-fin")
+	@Column(name = "date_fin")
 	private LocalDate dateFin;
 	@Enumerated(EnumType.STRING)
 	private TypeAbsence type;

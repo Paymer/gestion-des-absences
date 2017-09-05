@@ -3,7 +3,7 @@ import template from './accueil.component.html';
 
 class controller {
     constructor () {
-        this.titre = 'Accueil';
+        this.titre = "Bienvenue sur l'application GDA - Gestion Des Absences";
     }
 }
 
