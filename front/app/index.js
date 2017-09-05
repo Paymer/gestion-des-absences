@@ -9,7 +9,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import menuEmployeModule from './menuEmploye/menuEmploye.module';
 
 
-angular.module('app', [RouteModule])
+angular.module('app', [RouteModule, menuEmployeModule.name])
     .value('apiUrl', API_URL)
     .component('accueil', AccueilComponent)
     .config(route);
