@@ -1,11 +1,11 @@
-package service;
+package dev.service;
 
 import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
-import entite.Collaborateur;
+import dev.entite.Collaborateur;
 
 @Configuration
 @Service

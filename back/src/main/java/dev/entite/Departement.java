@@ -1,4 +1,4 @@
-package entite;
+package dev.entite;
 
 public class Departement {
 	
