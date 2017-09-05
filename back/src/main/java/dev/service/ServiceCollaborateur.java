@@ -41,12 +41,9 @@ public class ServiceCollaborateur {
 
 		try {
 			JSONArray objects = new JSONArray(result);
-			
 			this.createCollaborateurs(objects);
 			this.addManagers(objects);
 			this.setGrades();
-			
-			this.listeCollaborateurs.toString();
 		} catch (JSONException e) {
 			LOG.error("Could not get collaborateurs list : ", e.getMessage());
 		}

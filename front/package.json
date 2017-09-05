@@ -33,6 +33,6 @@
     "angular-route": "^1.6.4",
     "bootstrap": "^3.3.7",
     "lodash": "^4.17.4",
-    "uuid": "^3.0.1"
+    "angular-ui-bootstrap": "^2.5.0"
   }
 }
