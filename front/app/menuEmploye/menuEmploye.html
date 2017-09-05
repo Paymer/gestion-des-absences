@@ -2,25 +2,25 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="glyphicon glyphicon-home"></span>
-        <span class="glyphicon glyphicon-book"></span>
-        <span class="glyphicon glyphicon-calendar"></span>
-        <span class="glyphicon glyphicon-info-sign"></span>
-        <span class = "glyphicon glyphicon-off" style = "color:red"></span>
-      </button>
-        
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="sr-only">Toggle</span>
+        <a href="/gestion-des-absences/"><span class = "glyphicon glyphicon-home" style = "color:black"></span></a>
+        <a href="/gestion-des-absences/absence"><span class = "glyphicon glyphicon-book" style = "color:black"></span></a>
+        <a href="/gestion-des-absences/absence/planning"><span class = "glyphicon glyphicon-calendar" style = "color:black"></span></a>
+        <a href="/gestion-des-absences/absence/ferie"><span class = "glyphicon glyphicon-info-sign" style = "color:black"></span></a>
+        <a ng-click="$ctrl.logService.disconnect()" ><span class = "glyphicon glyphicon-off" style = "color:red"></span></a>
+       </button>
     </div>
    
+  
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/gda/"><span class = "glyphicon glyphicon-home"></span> Accueil</a></li>
-        <li><a href="/gda/absence"><span class = "glyphicon glyphicon-book"></span> Gestion des absences</a></li>
-        <li><a href="/gda/absence/planning"><span class = "glyphicon glyphicon-calendar"></span> Planning des absences</a></li>
-        <li><a href="/gda/absence/ferie"><span class = "glyphicon glyphicon-info-sign"></span> Jours feriés</a></li>
+        <li><a href="/gestion-des-absences/"><span class = "glyphicon glyphicon-home"></span> Accueil</a></li>
+        <li><a href="/gestion-des-absences/absence"><span class = "glyphicon glyphicon-book"></span> Gestion des absences</a></li>
+        <li><a href="/gestion-des-absences/absence/planning"><span class = "glyphicon glyphicon-calendar"></span> Planning des absences</a></li>
+        <li><a href="/gestion-des-absences/absence/ferie"><span class = "glyphicon glyphicon-info-sign"></span> Jours feriés</a></li>
         <li><a ng-click="$ctrl.logService.disconnect()" style = "color:red"><span class = "glyphicon glyphicon-off"></span> Se déconnecter</a></li>
       </ul>
       
