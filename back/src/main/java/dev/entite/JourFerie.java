@@ -1,4 +1,4 @@
-package entite;
+package dev.entite;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "jour-ferie")
+@Entity(name = "jour_ferie")
 public class JourFerie {
 	
 	public enum TypeJourFerie {
