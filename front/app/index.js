@@ -4,8 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { route } from './app.route';
 import { AccueilComponent } from './accueil/accueil.component';
 
-test=2
-
 angular.module('app', [RouteModule])
 .value( 'apiUrl', API_URL)
 .component('accueil', AccueilComponent)
