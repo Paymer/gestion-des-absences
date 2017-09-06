@@ -42,12 +42,12 @@ public class ServiceCollaborateurTest {
 	
 	@Test
 	public void checkAuthInvalid(){
-		assertThat(sc.checkAuth("invalid", "password").isPresent()).isFalse();
+		assertThat(sc.checkAuth("invalid", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8").isPresent()).isFalse();
 	}
 	
 	@Test
 	public void checkAuth(){
-		assertThat(sc.checkAuth("robertsross@sultraxin.com", "password").isPresent()).isTrue();
+		assertThat(sc.checkAuth("robertsross@sultraxin.com", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8").isPresent()).isTrue();
 	}
 	
 }
