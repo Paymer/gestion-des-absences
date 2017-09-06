@@ -1,4 +1,4 @@
-<form class="form-horizontal">
+<form class="form-horizontal" ng-submit="$ctrl.addAbsence()">
     <fieldset>
     
     <!-- Form Name -->
@@ -8,7 +8,7 @@
         <label class="col-md-4 control-label" for="selectbasic">Date de debut</label>
       <div class="col-md-4">
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="dt" is-open="$ctrl.popup1.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtDebut" is-open="$ctrl.popup1.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="$ctrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -20,7 +20,7 @@
         <label class="col-md-4 control-label" for="selectbasic">Date de fin</label>
       <div class="col-md-4">
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="dt1" is-open="$ctrl.popup2.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtFin" is-open="$ctrl.popup2.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="$ctrl.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -29,9 +29,9 @@
     </div>
     <!-- Select Basic -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="selectbasic">Type congé</label>
+      <label class="col-md-4 control-label"  for="selectbasic">Type congé</label>
       <div class="col-md-4">
-        <select id="selectbasic" name="selectbasic" class="form-control">
+        <select ng-model="$ctrl.type" id="selectbasic" ng name="selectbasic" class="form-control">
           <option value="CONGE_PAYE">Congé paye</option>
           <option value="RTT">RTT</option>
           <option value="CONGE_SANS_SOLDE">Congé sans solde</option>
@@ -41,9 +41,9 @@
     
     <!-- Textarea -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textarea">Motif</label>
+      <label class="col-md-4 control-label"  for="textarea">Motif</label>
       <div class="col-md-4">                     
-        <textarea class="form-control" id="textarea" name="textarea"></textarea>
+        <textarea class="form-control" ng-model='$ctrl.motif' id="textarea" name="textarea"></textarea>
       </div>
     </div>
     
@@ -51,8 +51,8 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="button1id">Double Button</label>
       <div class="col-md-8">
-        <button id="button1id" name="button1id" class="btn btn-success">Valider</button>
-        <button id="button2id" name="button2id" class="btn btn-danger">Annuler</button>
+        <button id="button1id" name="button1id" ng-click="" class="btn btn-success">Valider</button>
+        <button id="button2id" name="button2id" ng-click="" class="btn btn-danger">Annuler</button>
       </div>
     </div>
     

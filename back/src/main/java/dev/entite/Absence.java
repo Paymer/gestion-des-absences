@@ -122,5 +122,6 @@ public class Absence {
 		this.statut = statut;
 	}
 	
-
+	
+	
 }

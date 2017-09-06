@@ -1,4 +1,4 @@
-export default class MenuEmployeCtrl{
+export default class MenuManagerCtrl{
     constructor(logService){
         this.logService = logService
         this.logo = {title: "Logo", url: "#"}
@@ -9,4 +9,4 @@ export default class MenuEmployeCtrl{
     }
 }
 
-MenuEmployeCtrl.$inject = ['connexionService']
+MenuManagerCtrl.$inject = ['connexionService']
