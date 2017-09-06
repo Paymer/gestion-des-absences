@@ -1,0 +1,61 @@
+<form class="form-horizontal" ng-submit="$ctrl.addAbsence()">
+    <fieldset>
+    
+    <!-- Form Name -->
+    <legend>Demande d'absence</legend>
+    
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="selectbasic">Date de debut</label>
+      <div class="col-md-4">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtDebut" is-open="$ctrl.popup1.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+ 
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="selectbasic">Date de fin</label>
+      <div class="col-md-4">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtFin" is-open="$ctrl.popup2.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label"  for="selectbasic">Type congé</label>
+      <div class="col-md-4">
+        <select ng-model="$ctrl.type" id="selectbasic" ng name="selectbasic" class="form-control">
+          <option value="CONGES_PAYE">Congés payes</option>
+          <option value="RTT">RTT</option>
+          <option value="CONGES_SANS_SOLDE">Congés sans solde</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="col-md-4 control-label"  for="textarea">Motif</label>
+      <div class="col-md-4">                     
+        <textarea class="form-control" ng-model='$ctrl.motif' id="textarea" name="textarea"></textarea>
+      </div>
+    </div>
+    
+    <!-- Button (Double) -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="button1id">Double Button</label>
+      <div class="col-md-8">
+        <button id="button1id" name="button1id" ng-click="" class="btn btn-success">Valider</button>
+        <button id="button2id" name="button2id" ng-click="" class="btn btn-danger">Annuler</button>
+      </div>
+    </div>
+    
+    </fieldset>
+    </form>
+    

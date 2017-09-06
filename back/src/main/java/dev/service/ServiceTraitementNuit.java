@@ -7,9 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import dev.entite.Absence;
+import dev.entite.Absence.Statut;
 import dev.entite.Collaborateur;
 import dev.entite.MessageErreur;
-import dev.entite.Absence.Statut;
 import dev.repository.RepositoryAbsence;
 import dev.repository.RepositoryMessageErreur;
 
