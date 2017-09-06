@@ -70,7 +70,7 @@ public class ServiceTraitementNuitTest {
 		a.setDateFin(LocalDate.now().plusDays(1));
 		a.setMatriculeEmploye(c.getMatricule());
 		a.setMotif("un Motif");
-		a.setType(TypeAbsence.CONGE_PAYE);
+		a.setType(TypeAbsence.CONGES_PAYES);
 		a.setStatut(Statut.INITIALE);
 		ra.save(a);
 		
@@ -91,7 +91,7 @@ public class ServiceTraitementNuitTest {
 		a.setDateFin(LocalDate.now().plusDays(1));
 		a.setMatriculeEmploye(c.getMatricule());
 		a.setMotif("un Motif");
-		a.setType(TypeAbsence.CONGE_PAYE);
+		a.setType(TypeAbsence.CONGES_PAYES);
 		a.setStatut(Statut.INITIALE);
 		ra.save(a);
 		

@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.entite.Absence;
+import dev.entite.Absence.Statut;
 import dev.entite.Collaborateur;
 import dev.entite.MessageErreur;
-import dev.entite.Absence.Statut;
 import dev.repository.RepositoryAbsence;
 import dev.repository.RepositoryMessageErreur;
 
@@ -42,7 +42,7 @@ public class ServiceTraitementNuit {
 					absence.getDateFin()));
 
 			switch (absence.getType()) {
-			case CONGE_PAYE:
+			case CONGES_PAYES:
 				if (collaborateurCourant.getCongesPayes() < nbJours) {
 					statut = Statut.REJETEE;
 				} else {
