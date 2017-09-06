@@ -121,6 +121,12 @@ public class Absence {
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
+
+	@Override
+	public String toString() {
+		return "Absence [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", type=" + type
+				+ ", idEmploye=" + idEmploye + ", motif=" + motif + ", statut=" + statut + "]";
+	}
 	
 	
 	
