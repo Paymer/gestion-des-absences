@@ -1,17 +1,18 @@
 
 export default class VisualisationAbsenceController {
-    constructor(visualisationAbsenceService) {
+    constructor(visualisationAbsenceService, connexionService) {
         this.visualisationAbsenceService = visualisationAbsenceService;
+        this.connexionService = connexionService;
     }
 
     $onInit() {
         this.absences = this.visualisationAbsenceService.findAll();
-        this.order = "dateDebut"
+        this.order = "dateDebut";
+        this.triInverse = false;
     }
 
-    updateOrder(order) {
-        // TODO : rajouter le "reverse order"
-        console.log(order);
+    updateOrderEtTri(order) {
         this.order = order;
+        this.triInverse = !this.triInverse;
     }
 }
