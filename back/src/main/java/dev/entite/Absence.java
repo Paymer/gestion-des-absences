@@ -29,8 +29,8 @@ public class Absence {
 	private LocalDate dateFin;
 	@Enumerated(EnumType.STRING)
 	private TypeAbsence type;
-	@Column(name = "id_employe")
-	private Integer idEmploye;
+	@Column(name = "matricule_employe")
+	private String matriculeEmploye;
 	private String motif;
 	@Enumerated(EnumType.STRING)
 	private Statut statut;
@@ -87,14 +87,14 @@ public class Absence {
 	/**
 	 * @return the idEmploye
 	 */
-	public Integer getIdEmploye() {
-		return idEmploye;
+	public String getMatriculeEmploye() {
+		return matriculeEmploye;
 	}
 	/**
 	 * @param idEmploye the idEmploye to set
 	 */
-	public void setIdEmploye(Integer idEmploye) {
-		this.idEmploye = idEmploye;
+	public void setMatriculeEmploye(String matriculeEmploye) {
+		this.matriculeEmploye = matriculeEmploye;
 	}
 	/**
 	 * @return the motif

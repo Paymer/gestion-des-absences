@@ -31,9 +31,9 @@ public class ControllerAbsence {
 		return this.repoAbsence.findAll();
 	}
 	
-	@GetMapping("/{idEmploye}")
-	public List<Absence> findAbsenceParId(@PathVariable Integer idEmploye) {
-		return this.repoAbsence.findByIdEmploye(idEmploye);
+	@GetMapping("/{matriculeEmploye}")
+	public List<Absence> findAbsenceParId(@PathVariable String matriculeEmploye) {
+		return this.repoAbsence.findByMatriculeEmploye(matriculeEmploye);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande")
