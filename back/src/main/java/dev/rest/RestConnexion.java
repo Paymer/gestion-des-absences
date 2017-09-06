@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +31,9 @@ public class RestConnexion {
 				.put("matricule", c.getMatricule())
 				.put("grade", c.getGrade().toString())
 				.put("email", c.getEmail())
-				.put("departement", c.getDepartement().getLibelle());
+				.put("departement", c.getDepartement().getLibelle())
+				.put("congesPayes", c.getCongesPayes())
+				.put("rtt", c.getRtt());
 		}
 		return reponse.toString();
 	}

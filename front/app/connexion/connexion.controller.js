@@ -1,20 +1,27 @@
 export default class ConnexionController{
-	constructor($http, $location, connexionService, apiUrls){
+	constructor($http, $location, connexionService, apiUrls, jssha){
 		this.$http = $http;
 		this.$location = $location
 		this.connexion = connexionService;
 		this.apiUrls = apiUrls
+		this.encrypt = jssha
+		
+		this.error = false;
 	}
 	
 	checkConnexion(){
+		
 		if(this.email && this.pwd){
-			let url = this.apiUrls.connexion+'/'+this.email+'/'+this.pwd
-			this.$http.get(url, {})
+			let password = new this.encrypt("SHA-1", "TEXT")
+			password.update(this.pwd)
+			password = password.getHash("HEX")
+			const urlCheckConnexion = this.apiUrls.connexion+'/'+this.email+'/'+password
+			this.$http.get(urlCheckConnexion, {})
 			.then(result => {
 				return result.data
 			}).then(user => {
 					if(user.matricule){
-						this.connexion.connecter(user.matricule, user.nom, user.prenom, user.grade, user.email, user.departement)
+						this.connexion.connecter(user.matricule, user.nom, user.prenom, user.grade, user.email, user.departement, user.congesPayes, user.rtt)
 						this.$location.path('/')
 					}else{
 						this.error = true
@@ -24,4 +31,4 @@ export default class ConnexionController{
 	}
 }
 
-ConnexionController.$inject = ['$http', '$location', 'connexionService', 'apiUrls'];
+ConnexionController.$inject = ['$http', '$location', 'connexionService', 'apiUrls', 'jssha'];
