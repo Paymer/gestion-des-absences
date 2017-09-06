@@ -35,21 +35,24 @@ public class ServiceDepartement {
 		String result = responseEntity.getBody();
 		
 		try {
-			//browse departements and add unknowns
 			JSONArray objects = new JSONArray(result);
 			for(int index = 0; index < objects.length(); index++){
-				if(objects.get(index) instanceof JSONObject){
-					JSONObject current = (JSONObject) objects.get(index);
-					Optional<Departement> od = this.findDepartementParLibelle(current.getString("departement"));
-					if(!od.isPresent()){
-						Departement d = new Departement();
-						d.setLibelle(current.getString("departement"));
-						this.listeDepartements.add(d);
-					}
-				}
+				addDepartementJSON(objects.get(index));
 			}
 		} catch (JSONException e) {
-			LOG.error("Could not get departements list : ", e.getMessage());
+			LOG.error("Error while creating departements list : ", e.getMessage());
+		}
+	}
+
+	private void addDepartementJSON(Object collaborateur) throws JSONException {
+		if(collaborateur instanceof JSONObject){
+			JSONObject collaborateurCourant = (JSONObject) collaborateur;
+			Optional<Departement> od = this.findDepartementParLibelle(collaborateurCourant.getString("departement"));
+			if(!od.isPresent()){
+				Departement d = new Departement();
+				d.setLibelle(collaborateurCourant.getString("departement"));
+				this.listeDepartements.add(d);
+			}
 		}
 	}
 	

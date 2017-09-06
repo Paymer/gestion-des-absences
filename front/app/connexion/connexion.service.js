@@ -1,7 +1,4 @@
 export default class ConnexionService{
-	constructor(){
-		
-	}
 	
 	connecter(matricule, nom, prenom, grade, email, departement){
 		sessionStorage.setItem('session', true)
