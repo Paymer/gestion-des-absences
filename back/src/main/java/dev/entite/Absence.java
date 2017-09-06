@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class Absence {
 	
 	public enum TypeAbsence {
-		CONGE_PAYE, RTT, CONGE_SANS_SOLDE, MISSION, RTT_EMPLOYEUR;
+		CONGES_PAYES, RTT, CONGES_SANS_SOLDE, MISSION, RTT_EMPLOYEUR;
 	}
 	
 	public enum Statut {

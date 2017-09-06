@@ -37,7 +37,7 @@ public class ServiceTraitementNuit {
 					absence.getDateFin()));
 
 			switch (absence.getType()) {
-			case CONGE_PAYE:
+			case CONGES_PAYES:
 				if (collaborateurCourant.getCongesPayes() < nbJours) {
 					statut = Statut.REJETEE;
 				} else {
