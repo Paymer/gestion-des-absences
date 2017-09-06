@@ -18,7 +18,7 @@ import dev.service.ServiceCollaborateur;
 public class RestConnexion {
 	
 	@Autowired
-	ServiceCollaborateur serviceCollaborateurs;
+	private ServiceCollaborateur serviceCollaborateurs;
 	
 	@RequestMapping(value = "/{email}/{password}", method = RequestMethod.GET, produces = "application/json")
 	public String checkAuth(@PathVariable String email, @PathVariable String password) throws JSONException {

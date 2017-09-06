@@ -1,8 +1,8 @@
 export default class ModifAbsenceService{
 
 constructor(apiUrls,$resource){
-    this.url = apiUrls.demandeAbsence;
-    this.demandeAbsenceRessource = $resource(this.url,{
+    this.url = apiUrls.modifAbsence;
+    this.modifAbsenceRessource = $resource(this.url,{
         save: { method: "PUT" }
     })
 }
