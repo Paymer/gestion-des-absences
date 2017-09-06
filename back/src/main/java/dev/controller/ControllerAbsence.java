@@ -36,7 +36,7 @@ public class ControllerAbsence {
 		return this.repoAbsence.findByMatriculeEmploye(matriculeEmploye);
 	}
 
-<<<<<<< HEAD
+
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
 		newAbsence.setStatut(Statut.INITIALE);
@@ -46,14 +46,8 @@ public class ControllerAbsence {
 		}
 
 		return "";
-=======
-	@RequestMapping(method = RequestMethod.POST, path = "/demande")
-	public String ajoutAbsence() {
-		return "redirect:accueil";
->>>>>>> d4d71397093839cbd1884392b06dc2eda2306c69
+
 	}
-	
-	
 	
 	@RequestMapping(method = RequestMethod.PUT, path="/modification/{idAbsence}")
 	public ModelAndView modifyAbsence (@PathVariable Integer idAbsence, @RequestBody Absence newAbsence){

@@ -97,7 +97,7 @@ export default class DemandeAbsenceCtrl{
   addAbsence(){
      
     //console.log(this.dtDebut,this.dtFin,this.type, this.motif)
-    let absence = { dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,idEmploye:this.connexionService.getMatricule()}
+    let absence = { dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
     
     this.demandeAbsenceService.confirmeEnvoiAbsence(absence)
     }
