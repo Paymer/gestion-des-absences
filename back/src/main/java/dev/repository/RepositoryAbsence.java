@@ -8,6 +8,6 @@ import dev.entite.Absence;
 
 public interface RepositoryAbsence extends JpaRepository<Absence, Integer> {
 
-	List<Absence> findByIdEmploye(Integer id);
+	List<Absence> findByMatriculeEmploye(String matricule);
 
 }

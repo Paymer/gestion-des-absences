@@ -1,9 +1,6 @@
 export default class ConnexionService{
-	constructor(){
-		
-	}
 	
-	connecter(matricule, nom, prenom, grade, email, departement){
+	connecter(matricule, nom, prenom, grade, email, departement, congesPayes, rtt){
 		sessionStorage.setItem('session', true)
 		sessionStorage.setItem('matricule', matricule)
 		sessionStorage.setItem('nom', nom)
@@ -11,6 +8,8 @@ export default class ConnexionService{
 		sessionStorage.setItem('grade', grade)
 		sessionStorage.setItem('email', email)
 		sessionStorage.setItem('departement', departement)
+		sessionStorage.setItem('congesPayes', congesPayes)
+		sessionStorage.setItem('rtt', rtt)
 	}
 	
 	deconnecter(){
@@ -44,5 +43,13 @@ export default class ConnexionService{
 	
 	getDepartement(){
 		return sessionStorage.getItem('departement')
+	}
+	
+	getCongesPayes(){
+		return sessionStorage.getItem('congesPayes')
+	}
+	
+	getRtt(){
+		return sessionStorage.getItem('rtt')
 	}
 }
