@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dev.entite.Absence;
 import dev.entite.Collaborateur;
@@ -13,6 +14,7 @@ import dev.entite.Absence.Statut;
 import dev.repository.RepositoryAbsence;
 import dev.repository.RepositoryMessageErreur;
 
+@Service
 public class ServiceTraitementNuit {
 
 	@Autowired
@@ -21,10 +23,13 @@ public class ServiceTraitementNuit {
 	private ServiceCollaborateur servCollaborateurs;
 	@Autowired
 	private RepositoryMessageErreur repoMessageErreur;
+	
+	private String service = "Traitement de Nuit";
 
-	public void passerNuit() {
+	public Boolean passerNuit() {
 		List<Absence> listeAbsences = repoAbsences.findAll();
 		listeAbsences.forEach(this::gererAbsence);
+		return true;
 	}
 
 	private void gererAbsence(Absence absence) {
@@ -53,36 +58,47 @@ public class ServiceTraitementNuit {
 				break;
 			case RTT_EMPLOYEUR:
 				statut = Statut.VALIDEE;
-				List<Collaborateur> collabsErreur = new ArrayList<>();
-				List<Collaborateur> collaborateurs = servCollaborateurs.findAll();
-				for(Collaborateur c : collaborateurs) {
-					if(c.getRtt()>0){
-						c.setRtt(c.getRtt()-1);
-					}else{
-						collabsErreur.add(c);
-					}
-				}
-				if(!collabsErreur.isEmpty()){
-					String service = "Traitement de Nuit";
-					StringBuilder message = new StringBuilder();
-					message.append("Un ou plusieurs employé n'avaient plus de RTT disponible :");
-					for(Collaborateur c : collabsErreur){
-						message.append("\n"+c.getMatricule()+" - "+c.getNom()+" "+c.getPrenom());
-					}
-					MessageErreur msg = new MessageErreur();
-					msg.setServiceOrigine(service);
-					msg.setMessage(message.toString());
-					repoMessageErreur.save(msg);
-				}
+				this.creerRttEmployeur(nbJours);
 				break;
 			default:
 				break;
 			}
 			absence.setStatut(statut);
+			repoAbsences.save(absence);
 
 		} else {
+			String message = "Une absence était invalide : " + absence.getId() + " - Du " + absence.getDateDebut()
+					+ " au " + absence.getDateFin();
+			this.creerMessage(message);
 			repoAbsences.delete(absence);
 		}
+	}
+
+	private void creerRttEmployeur(int nbJours) {
+		List<Collaborateur> collabsErreur = new ArrayList<>();
+		List<Collaborateur> collaborateurs = servCollaborateurs.findAll();
+		for (Collaborateur c : collaborateurs) {
+			if (c.getRtt() > 0) {
+				c.setRtt(c.getRtt() - nbJours);
+			} else {
+				collabsErreur.add(c);
+			}
+		}
+		if (!collabsErreur.isEmpty()) {
+			StringBuilder message = new StringBuilder();
+			message.append("Un ou plusieurs employé n'avaient plus de RTT disponible :");
+			for (Collaborateur c : collabsErreur) {
+				message.append("\n" + c.getMatricule() + " - " + c.getNom() + " " + c.getPrenom());
+			}
+			this.creerMessage(message.toString());
+		}
+	}
+
+	private void creerMessage(String message) {
+		MessageErreur msg = new MessageErreur();
+		msg.setServiceOrigine(service);
+		msg.setMessage(message);
+		repoMessageErreur.save(msg);
 	}
 
 }

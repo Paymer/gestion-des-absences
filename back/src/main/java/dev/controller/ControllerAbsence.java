@@ -117,8 +117,6 @@ public class ControllerAbsence {
 		
 		}
 		
-		
-		
 		return true;
 	}
 		
