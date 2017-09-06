@@ -21,7 +21,7 @@ export default class ConnexionController{
 				return result.data
 			}).then(user => {
 					if(user.matricule){
-						this.connexion.connecter(user.matricule, user.nom, user.prenom, user.grade, user.email, user.departement)
+						this.connexion.connecter(user.matricule, user.nom, user.prenom, user.grade, user.email, user.departement, user.congesPayes, user.rtt)
 						this.$location.path('/')
 					}else{
 						this.error = true

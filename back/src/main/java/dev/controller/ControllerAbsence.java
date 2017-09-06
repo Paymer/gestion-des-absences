@@ -31,14 +31,14 @@ public class ControllerAbsence {
 		return this.repoAbsence.findAll();
 	}
 	
-	@GetMapping("/{idEmploye}")
-	public List<Absence> findAbsenceParId(@PathVariable Integer idEmploye) {
-		return this.repoAbsence.findByIdEmploye(idEmploye);
+	@GetMapping("/{matriculeEmploye}")
+	public List<Absence> findAbsenceParMatriculeEmploye(@PathVariable String matriculeEmploye) {
+		return this.repoAbsence.findByMatriculeEmploye(matriculeEmploye);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande")
 	public String ajoutAbsence() {
-		return "redirect:accuiel";
+		return "redirect:accueil";
 	}
 	
 	
@@ -57,7 +57,7 @@ public class ControllerAbsence {
 
 		//on complete la newAbsence pour tester les conditions
 		newAbsence.setId(idAbsence);
-		newAbsence.setIdEmploye(absence.getIdEmploye());
+		newAbsence.setMatriculeEmploye(absence.getMatriculeEmploye());
 		
 		//check si les conditions se sont correctes pour la modifier
 			if(conditions(newAbsence)){
@@ -103,7 +103,7 @@ public class ControllerAbsence {
 	//check de la condition chevauche
 	private boolean comprovationChevauche (Absence newAbsence){
 		
-		List<Absence> liste = findAbsenceParId(newAbsence.getIdEmploye());
+		List<Absence> liste = findAbsenceParMatriculeEmploye(newAbsence.getMatriculeEmploye());
 		for (Absence a:liste){
 			
 			boolean ch1 = a.getDateFin().isBefore(newAbsence.getDateDebut()); //the period was before

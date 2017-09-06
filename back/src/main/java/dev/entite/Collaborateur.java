@@ -19,6 +19,8 @@ public class Collaborateur {
 	private List<Collaborateur> subalternes = new ArrayList<>();
 	private Departement departement;
 	private Grade grade = Grade.EMPLOYE;
+	private int congesPayes = 28;
+	private int rtt = 11;
 
 	public Collaborateur() {
 		super();
@@ -95,4 +97,21 @@ public class Collaborateur {
 	public void setGrade(Grade grade){
 		this.grade = grade;
 	}
+
+	public int getCongesPayes() {
+		return congesPayes;
+	}
+
+	public void setCongesPayes(int congesPayes) {
+		this.congesPayes = congesPayes;
+	}
+
+	public int getRtt() {
+		return rtt;
+	}
+
+	public void setRtt(int rtt) {
+		this.rtt = rtt;
+	}
+
 }

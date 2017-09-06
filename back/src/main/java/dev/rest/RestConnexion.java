@@ -31,7 +31,9 @@ public class RestConnexion {
 				.put("matricule", c.getMatricule())
 				.put("grade", c.getGrade().toString())
 				.put("email", c.getEmail())
-				.put("departement", c.getDepartement().getLibelle());
+				.put("departement", c.getDepartement().getLibelle())
+				.put("congesPayes", c.getCongesPayes())
+				.put("rtt", c.getRtt());
 		}
 		return reponse.toString();
 	}
