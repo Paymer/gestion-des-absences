@@ -1,6 +1,6 @@
 package dev.controller;
 
-import java.time.LocalDate;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.entite.Absence;
 import dev.entite.Absence.Statut;
-import dev.entite.Absence.TypeAbsence;
 import dev.repository.RepositoryAbsence;
 import dev.service.ServiceAbsence;
 
