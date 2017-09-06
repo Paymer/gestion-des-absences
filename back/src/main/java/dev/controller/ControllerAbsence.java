@@ -95,7 +95,7 @@ public class ControllerAbsence {
 		boolean motif;
 
 
-		if (newAbsence.getType() == TypeAbsence.CONGE_SANS_SOLDE && newAbsence.getMotif() == null){
+		if (newAbsence.getType() == TypeAbsence.CONGES_SANS_SOLDE && newAbsence.getMotif() == null) {
 			motif = false;
 		}else{ motif = true;}
 		

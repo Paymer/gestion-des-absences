@@ -11,7 +11,7 @@ import jssha  from 'jssha';
 import { AccueilComponent } from './accueil/accueil.component';
 import ConnexionComponent from './connexion/connexion.component';
 import visualisationAbsenceComponent from "./absence/visualisation/visualisationAbsence.component";
-import DemandeAbsenceComponent from './absence/demande/absence.component';
+import DemandeAbsenceComponent from './absence/demande/demandeAbsence.component';
 
 // Services
 import apiUrls from "./utils/apiUrls.service";
@@ -25,7 +25,7 @@ import menuModule from './menu/menu.module';
 
 
 
-angular.module('app', [RouteModule, ngResource, menuModule.name])
+angular.module('app', [RouteModule, ngResource, menuModule.name,uiBootstrap])
 
     .value('apiUrl', API_URL)
     .value('jssha', jssha)

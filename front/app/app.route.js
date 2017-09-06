@@ -7,7 +7,7 @@ export function route ($routeProvider, $locationProvider) {
         template: '<menu-component></menu-component>' + '<accueil></accueil>'
     })
     .when('/absence/demande',{
-        template: '<menu-employe-component></menu-employe-component>' + '<demande-absence></demande-absence>'
+        template: '<menu-component></menu-component>' + '<demande-absence></demande-absence>'
     })
     .when('/absence', {
         template: '<menu-component></menu-component>' + '<visualisation-absence-component></<visualisation-absence-component>>'

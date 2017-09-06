@@ -1,4 +1,4 @@
-import demandeAbsence from './absence.html'
+import demandeAbsence from './demandeAbsence.html'
 import demandeAbsenceCtrl from './demandeAbsenceController.js'
 
 
