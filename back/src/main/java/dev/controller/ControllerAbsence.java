@@ -79,13 +79,13 @@ public class ControllerAbsence {
 	
 	
 	/**method qui va a reviser toutes les conditions pour faire le post*/
-	private boolean conditions (Absence newAbsence){
+	public boolean conditions (Absence newAbsence){
 		
 		LocalDate t = LocalDate.now();
-		boolean exists =  (newAbsence != null);
+		
 		boolean notMission = (newAbsence.getType()!= TypeAbsence.MISSION);
 		boolean dates = newAbsence.getDateDebut().isBefore(newAbsence.getDateFin());
-		boolean dateInit = newAbsence.getDateDebut().isBefore(t) &&  !newAbsence.getDateDebut().isEqual(t);
+		boolean dateInit = !newAbsence.getDateDebut().isBefore(t) &&  !newAbsence.getDateDebut().isEqual(t);
 		boolean motif;
 
 
@@ -93,15 +93,15 @@ public class ControllerAbsence {
 			motif = false;
 		}else{ motif = true;}
 		
-		boolean chevauche = comprovationChevauche(newAbsence);
+		boolean chevauche = verificationChevauche(newAbsence);
 		
-		return (exists && notMission && dates && dateInit && motif && chevauche );
+		return (notMission && dates && dateInit && motif && chevauche );
 		
 	}
 	
 	
 	//check de la condition chevauche
-	private boolean comprovationChevauche (Absence newAbsence){
+	public boolean verificationChevauche (Absence newAbsence){
 		
 		List<Absence> liste = findAbsenceParMatriculeEmploye(newAbsence.getMatriculeEmploye());
 		for (Absence a:liste){
@@ -111,7 +111,7 @@ public class ControllerAbsence {
 			boolean ch3 = a.getId().equals(newAbsence.getId()); // is the same absence
 		
 			
-			if ((!ch1 || !ch2) && !ch3){
+			if (!ch1 && !ch2 && !ch3){
 				return false;
 			}
 		
