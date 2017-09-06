@@ -15,17 +15,21 @@ import visualisationAbsenceComponent from "./absence/visualisation/visualisation
 // Services
 import visualisationAbsenceService from "./absence/visualisation/visualisationAbsence.service"
 import apiUrls from "./utils/apiUrls.service";
+import frontUrls from "./utils/frontUrls.service";
 
 //Modules
-import menuEmployeModule from './menuEmploye/menuEmploye.module';
-import menuAdminModule from './menuAdministrateur/menuAdministrateur.module';
-import menuManagerModule from './menuManager/menuManager.module';
+
+import menuModule from './menu/menu.module';
 
 
-angular.module('app', [RouteModule, "ngResource", menuEmployeModule.name, menuAdminModule.name, menuManagerModule.name])
+angular.module('app', [RouteModule, "ngResource", menuModule.name])
 
     .value('apiUrl', API_URL)
     .constant("apiUrls", apiUrls)
+
+    .value('frontUrl')
+    .constant("frontUrls", frontUrls)
+
 	.service('connexionService', connexionService)
     .service("visualisationAbsenceService", visualisationAbsenceService)
 	
