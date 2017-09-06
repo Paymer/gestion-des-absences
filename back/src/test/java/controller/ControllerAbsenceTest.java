@@ -126,7 +126,7 @@ public class ControllerAbsenceTest {
 		String matricule = "M1";
 		absence.setMatriculeEmploye(matricule);
 		
-		absence.setType(TypeAbsence.CONGE_PAYE);
+		absence.setType(TypeAbsence.CONGES_PAYES);
 		//assertThat(absence.getType()!= TypeAbsence.MISSION).isEqualTo(true);
 		//assertThat(!absence.getDateDebut().isBefore(LocalDate.now())).isEqualTo(true);
 		//assertThat(!absence.getDateDebut().isEqual(LocalDate.now())).isEqualTo(true);
@@ -145,7 +145,7 @@ public class ControllerAbsenceTest {
 		result = ca.conditions(absence);
 		assertThat(result).isEqualTo(false);
 		
-		absence.setType(TypeAbsence.CONGE_SANS_SOLDE);
+		absence.setType(TypeAbsence.CONGES_SANS_SOLDE);
 		
 		
 		//test motifNull = false
