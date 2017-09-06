@@ -16,18 +16,25 @@ import DemandeAbsenceComponent from './absence/demande/absence.component';
 // Services
 import apiUrls from "./utils/apiUrls.service";
 import demandeAbsenceService from "./absence/demande/demandeAbsence.service"
+import frontUrls from "./utils/frontUrls.service";
 import connexionService from './connexion/connexion.service';
 import visualisationAbsenceService from "./absence/visualisation/visualisationAbsence.service"
 //Modules
-import menuEmployeModule from './menuEmploye/menuEmploye.module';
-import menuAdminModule from './menuAdministrateur/menuAdministrateur.module';
-import menuManagerModule from './menuManager/menuManager.module';
+
+import menuModule from './menu/menu.module';
 
 
-angular.module('app', [RouteModule, ngResource, menuEmployeModule.name, menuAdminModule.name, menuManagerModule.name,uiBootstrap])
+
+angular.module('app', [RouteModule, ngResource, menuModule.name])
+
     .value('apiUrl', API_URL)
-	.value('jssha', jssha)
-    .constant('apiUrls', apiUrls)
+    .value('jssha', jssha)
+    .constant("apiUrls", apiUrls)
+
+    .value('frontUrl')
+    .constant("frontUrls", frontUrls)
+
+
 	.service('connexionService', connexionService)
     .service("visualisationAbsenceService", visualisationAbsenceService)
 	.service("demandeAbsenceService",demandeAbsenceService)
