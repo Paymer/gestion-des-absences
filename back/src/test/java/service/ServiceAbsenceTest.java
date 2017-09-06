@@ -19,7 +19,7 @@ import dev.service.ServiceAbsence;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes={ App.class})
-public class ControllerAbsenceTest {
+public class ServiceAbsenceTest {
 
 	Absence absence = new Absence();
 	
