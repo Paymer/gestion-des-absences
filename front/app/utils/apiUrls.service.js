@@ -1,8 +1,7 @@
 const apiUrls = {
-    
-	connexion: API_URL + '/connexion',
-    absence : API_URL + '/absence'
-
+    absence : API_URL + '/absence',
+    demandeAbsence : API_URL + '/absence/demande',
+	connexion: API_URL + '/connexion'
 }
 
 export default apiUrls

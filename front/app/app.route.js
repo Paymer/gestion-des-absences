@@ -6,12 +6,15 @@ export function route ($routeProvider, $locationProvider) {
     .when('/', {
         template: '<menu-component></menu-component>' + '<accueil></accueil>'
     })
-	.when('/connexion', {
-		template:'<connexion-component></connexion-component>'
-	})
+    .when('/absence/demande',{
+        template: '<menu-component></menu-component>' + '<demande-absence></demande-absence>'
+    })
     .when('/absence', {
         template: '<menu-component></menu-component>' + '<visualisation-absence-component></<visualisation-absence-component>>'
      })
+    .when('/connexion', {
+		template: '<connexion-component></connexion-component>'
+	})
     .otherwise({
         redirectTo: '/'
     });

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +16,7 @@ import dev.entite.Absence;
 import dev.entite.Absence.Statut;
 import dev.entite.Absence.TypeAbsence;
 import dev.repository.RepositoryAbsence;
+
 
 
 @RestController
@@ -36,12 +36,18 @@ public class ControllerAbsence {
 		return this.repoAbsence.findByMatriculeEmploye(matriculeEmploye);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, path = "/demande")
-	public String ajoutAbsence() {
-		return "redirect:accueil";
+
+	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
+	public String ajoutAbsence(@RequestBody Absence newAbsence) {
+		newAbsence.setStatut(Statut.INITIALE);
+
+		if (conditions(newAbsence)) {
+		repoAbsence.save(newAbsence);
+		}
+
+		return "";
+
 	}
-	
-	
 	
 	@RequestMapping(method = RequestMethod.PUT, path="/modification/{idAbsence}")
 	public ModelAndView modifyAbsence (@PathVariable Integer idAbsence, @RequestBody Absence newAbsence){
@@ -89,7 +95,7 @@ public class ControllerAbsence {
 		boolean motif;
 
 
-		if (newAbsence.getType() == TypeAbsence.CONGE_SANS_SOLDE && newAbsence.getMotif() == null){
+		if (newAbsence.getType() == TypeAbsence.CONGES_SANS_SOLDE && newAbsence.getMotif() == null) {
 			motif = false;
 		}else{ motif = true;}
 		
