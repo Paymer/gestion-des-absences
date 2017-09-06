@@ -16,6 +16,7 @@ import dev.entite.Absence;
 import dev.entite.Absence.Statut;
 import dev.entite.Absence.TypeAbsence;
 import dev.repository.RepositoryAbsence;
+import dev.service.ServiceAbsence;
 
 
 
@@ -25,6 +26,9 @@ public class ControllerAbsence {
 
 	@Autowired
 	private RepositoryAbsence repoAbsence;
+	
+	@Autowired
+	private ServiceAbsence serAbsence;
 
 	@GetMapping()
 	public List<Absence> listerAbsences() {
@@ -41,7 +45,7 @@ public class ControllerAbsence {
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
 		newAbsence.setStatut(Statut.INITIALE);
 
-		if (conditions(newAbsence)) {
+		if (serAbsence.conditions(newAbsence)) {
 		repoAbsence.save(newAbsence);
 		}
 
@@ -66,7 +70,7 @@ public class ControllerAbsence {
 		newAbsence.setMatriculeEmploye(absence.getMatriculeEmploye());
 		
 		//check si les conditions se sont correctes pour la modifier
-			if(conditions(newAbsence)){
+			if(serAbsence.conditions(newAbsence)){
 				//on remet les infos de le formulaire
 				absence.setDateDebut(newAbsence.getDateDebut());
 				absence.setDateFin(newAbsence.getDateFin());
@@ -84,50 +88,7 @@ public class ControllerAbsence {
 }
 	
 	
-	/**method qui va a reviser toutes les conditions pour faire le post*/
-	public boolean conditions (Absence newAbsence){
-		
-		LocalDate t = LocalDate.now();
-		
-		boolean notMission = (newAbsence.getType()!= TypeAbsence.MISSION);
-		boolean dates = newAbsence.getDateDebut().isBefore(newAbsence.getDateFin());
-		boolean dateInit = !newAbsence.getDateDebut().isBefore(t) &&  !newAbsence.getDateDebut().isEqual(t);
-		boolean motif;
-
-
-		if (newAbsence.getType() == TypeAbsence.CONGES_SANS_SOLDE && newAbsence.getMotif() == null) {
-			motif = false;
-		}else{ motif = true;}
-		
-		boolean chevauche = verificationChevauche(newAbsence);
-		
-		return (notMission && dates && dateInit && motif && chevauche );
-		
-	}
 	
-	
-	//check de la condition chevauche
-	public boolean verificationChevauche (Absence newAbsence){
-		
-		List<Absence> liste = findAbsenceParMatriculeEmploye(newAbsence.getMatriculeEmploye());
-		for (Absence a:liste){
-			
-			boolean ch1 = a.getDateFin().isBefore(newAbsence.getDateDebut()); //the period was before
-			boolean ch2 = a.getDateDebut().isAfter(newAbsence.getDateFin()); //the period was after
-			boolean ch3 = a.getId().equals(newAbsence.getId()); // is the same absence
-		
-			
-			if (!ch1 && !ch2 && !ch3){
-				return false;
-			}
-		
-		}
-		
-		
-		
-		return true;
-	}
-		
 		
 		
 	

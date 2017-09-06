@@ -1,4 +1,4 @@
-package controller;
+package service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,10 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import dev.App;
-import dev.controller.ControllerAbsence;
 import dev.entite.Absence;
 import dev.entite.Absence.TypeAbsence;
-import dev.repository.RepositoryAbsence;
+import dev.service.ServiceAbsence;
 
 
 
@@ -24,8 +23,9 @@ public class ControllerAbsenceTest {
 
 	Absence absence = new Absence();
 	
+	
 	@Autowired
-	private ControllerAbsence ca;
+	private ServiceAbsence sa;
 	
 	@Test
 	public void verificationChevaucheTest(){
@@ -42,7 +42,7 @@ public class ControllerAbsenceTest {
 		absence.setDateFin(fin);
 		absence.setMatriculeEmploye(matricule);
 		
-		boolean result = ca.verificationChevauche(absence);
+		boolean result = sa.verificationChevauche(absence);
 		assertThat(result).isEqualTo(false);
 		
 		// chevauche2
@@ -52,7 +52,7 @@ public class ControllerAbsenceTest {
 		absence.setDateDebut(init);
 		absence.setDateFin(fin);
 		
-		result = ca.verificationChevauche(absence);
+		result = sa.verificationChevauche(absence);
 		assertThat(result).isEqualTo(false);
 			
 		// chevauche3	
@@ -61,7 +61,7 @@ public class ControllerAbsenceTest {
 		absence.setDateDebut(init);
 		absence.setDateFin(fin);
 				
-		result = ca.verificationChevauche(absence);
+		result = sa.verificationChevauche(absence);
 		assertThat(result).isEqualTo(false);
 		
 		//partialChevauche1
@@ -70,7 +70,7 @@ public class ControllerAbsenceTest {
 		absence.setDateDebut(init);
 		absence.setDateFin(fin);
 			
-		result = ca.verificationChevauche(absence);
+		result = sa.verificationChevauche(absence);
 		assertThat(result).isEqualTo(false);
 		
 		//partialChevauche2
@@ -79,7 +79,7 @@ public class ControllerAbsenceTest {
 		absence.setDateDebut(init);
 		absence.setDateFin(fin);
 					
-		result = ca.verificationChevauche(absence);
+		result = sa.verificationChevauche(absence);
 		assertThat(result).isEqualTo(false);
 		
 		//pas de chevauche1 after
@@ -88,7 +88,7 @@ public class ControllerAbsenceTest {
 		absence.setDateDebut(init);
 		absence.setDateFin(fin);
 		
-		result = ca.verificationChevauche(absence);
+		result = sa.verificationChevauche(absence);
 		assertThat(result).isEqualTo(true);
 			
 		//pas de chevauche2 before
@@ -97,7 +97,7 @@ public class ControllerAbsenceTest {
 		absence.setDateDebut(init);
 		absence.setDateFin(fin);
 			
-		result = ca.verificationChevauche(absence);
+		result = sa.verificationChevauche(absence);
 		assertThat(result).isEqualTo(true);
 		
 		//is the same absence
@@ -108,7 +108,7 @@ public class ControllerAbsenceTest {
 		absence.setDateDebut(init);
 		absence.setDateFin(fin);
 					
-		result = ca.verificationChevauche(absence);
+		result = sa.verificationChevauche(absence);
 		assertThat(result).isEqualTo(true);
 		
 		
@@ -136,42 +136,42 @@ public class ControllerAbsenceTest {
 		
 		//le motif c'est pas necessaire pour conge paye
 
-		boolean result = ca.conditions(absence);
+		boolean result = sa.conditions(absence);
 		assertThat(result).isEqualTo(true);
 	
 		
 		//test mission il donne faux
 		absence.setType(TypeAbsence.MISSION);
-		result = ca.conditions(absence);
+		result = sa.conditions(absence);
 		assertThat(result).isEqualTo(false);
 		
 		absence.setType(TypeAbsence.CONGES_SANS_SOLDE);
 		
 		
 		//test motifNull = false
-		result = ca.conditions(absence);
+		result = sa.conditions(absence);
 		assertThat(result).isEqualTo(false);
 		
 		
 		//test motifNull = false
 		absence.setMotif("xxx");
-		result = ca.conditions(absence);
+		result = sa.conditions(absence);
 		assertThat(result).isEqualTo(true);
 		
 		// incorrect dates - fin before init
 		absence.setDateDebut(fin);
 		absence.setDateFin(init);
-		result = ca.conditions(absence);
+		result = sa.conditions(absence);
 		assertThat(result).isEqualTo(false);
 		
 		// incorrect dates -start now
 		absence.setDateDebut(LocalDate.now());
-		result = ca.conditions(absence);
+		result = sa.conditions(absence);
 		assertThat(result).isEqualTo(false);
 		
 		// incorrect dates - start in the past
 		absence.setDateDebut(LocalDate.of(2016, 01, 01));
-		result = ca.conditions(absence);
+		result = sa.conditions(absence);
 		assertThat(result).isEqualTo(false);
 		
 	}
