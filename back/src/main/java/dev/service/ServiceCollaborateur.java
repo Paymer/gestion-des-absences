@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,8 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import dev.entite.Collaborateur;
-import dev.entite.Departement;
 import dev.entite.Collaborateur.Grade;
+import dev.entite.Departement;
 
 @Service
 public class ServiceCollaborateur {
@@ -42,10 +41,10 @@ public class ServiceCollaborateur {
 		try {
 			JSONArray objects = new JSONArray(result);
 			this.createCollaborateurs(objects);
-			this.addManagers(objects);
+			this.browseManagers(objects);
 			this.setGrades();
 		} catch (JSONException e) {
-			LOG.error("Could not get collaborateurs list : ", e.getMessage());
+			LOG.error("Error while retrieving collaborateurs list : ", e.getMessage());
 		}
 	}
 
@@ -69,23 +68,28 @@ public class ServiceCollaborateur {
 		}
 	}
 
-	private void addManagers(JSONArray objects) throws JSONException {
+	private void browseManagers(JSONArray objects) throws JSONException {
 		for (int index = 0; index < objects.length(); index++) {
 			if (objects.get(index) instanceof JSONObject) {
 				JSONObject current = (JSONObject) objects.get(index);
-				Optional<Collaborateur> c = this.findCollaborateurParMatricule(current.getString("matricule"));
-				if (c.isPresent()) {
-					JSONArray subalternes = current.getJSONArray("subalternes");
-					for (int indexSubalterne = 0; indexSubalterne < subalternes.length(); indexSubalterne++) {
-						if (subalternes.get(indexSubalterne) instanceof String) {
-							Optional<Collaborateur> subalterne = this
-									.findCollaborateurParMatricule((String) subalternes.get(indexSubalterne));
-							if (subalterne.isPresent()) {
-								subalterne.get().setManager(c.get());
-								c.get().addSubalterne(subalterne.get());
-							}
-						}
-					}
+				Optional<Collaborateur> oc = this.findCollaborateurParMatricule(current.getString("matricule"));
+				if (oc.isPresent()) {
+					Collaborateur c = oc.get();
+					addManager(current, c);
+				}
+			}
+		}
+	}
+
+	private void addManager(JSONObject currentObject, Collaborateur collaborateurCourant) throws JSONException {
+		JSONArray subalternes = currentObject.getJSONArray("subalternes");
+		for (int indexSubalterne = 0; indexSubalterne < subalternes.length(); indexSubalterne++) {
+			if (subalternes.get(indexSubalterne) instanceof String) {
+				Optional<Collaborateur> subalterne = this
+						.findCollaborateurParMatricule((String) subalternes.get(indexSubalterne));
+				if (subalterne.isPresent()) {
+					subalterne.get().setManager(collaborateurCourant);
+					collaborateurCourant.addSubalterne(subalterne.get());
 				}
 			}
 		}
@@ -94,11 +98,11 @@ public class ServiceCollaborateur {
 	private void setGrades() {
 		this.listeCollaborateurs.stream().forEach(c -> {
 			if(c.getSubalternes().isEmpty()){
-				c.setGrade(Grade.Employé);
+				c.setGrade(Grade.EMPLOYE);
 			}else if(c.getManager().isPresent()){
-				c.setGrade(Grade.Manager);
+				c.setGrade(Grade.MANAGER);
 			}else{
-				c.setGrade(Grade.Administrateur);
+				c.setGrade(Grade.ADMINISTRATEUR);
 			}
 		});
 	}
@@ -114,7 +118,7 @@ public class ServiceCollaborateur {
 	public Optional<Collaborateur> checkAuth(String email, String password) {
 		return this.listeCollaborateurs.stream()
 				.filter(c -> c.getEmail().equalsIgnoreCase(email)
-						&& c.getPassword().equals(DigestUtils.shaHex(password)))
+						&& c.getPassword().equals(password))
 				.findAny();
 	}
 

@@ -7,7 +7,7 @@ import java.util.Optional;
 public class Collaborateur {
 	
 	public enum Grade {
-		Employé, Manager, Administrateur;
+		EMPLOYE, MANAGER, ADMINISTRATEUR;
 	}
 
 	private String matricule;
@@ -18,7 +18,7 @@ public class Collaborateur {
 	private Optional<Collaborateur> manager = Optional.ofNullable(null);
 	private List<Collaborateur> subalternes = new ArrayList<>();
 	private Departement departement;
-	private Grade grade = Grade.Employé;
+	private Grade grade = Grade.EMPLOYE;
 
 	public Collaborateur() {
 		super();

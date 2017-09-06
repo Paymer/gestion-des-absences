@@ -32,7 +32,7 @@ public class CollaborateurTest {
 		c.setPrenom("michel");
 		c.setEmail("m.andre@free.org");
 		c.setPassword("pwd");
-		c.setGrade(Grade.Employé);
+		c.setGrade(Grade.EMPLOYE);
 		c.setDepartement(sd.findAll().get(0));
 		c.setMatricule("abc123");
 		c.setManager(null);
@@ -49,7 +49,7 @@ public class CollaborateurTest {
 		assertThat(c.getPrenom()).isEqualTo("michel");
 		assertThat(c.getEmail()).isEqualTo("m.andre@free.org");
 		assertThat(c.getPassword()).isEqualTo("pwd");
-		assertThat(c.getGrade()).isEqualTo(Grade.Employé);
+		assertThat(c.getGrade()).isEqualTo(Grade.EMPLOYE);
 		assertThat(c.getDepartement()).isEqualTo(sd.findAll().get(0));
 		assertThat(c.getMatricule()).isEqualTo("abc123");
 		assertThat(c.getManager().isPresent()).isFalse();
@@ -61,7 +61,7 @@ public class CollaborateurTest {
 		c.setPrenom("michela");
 		c.setEmail("m.andre@free.orga");
 		c.setPassword("pwda");
-		c.setGrade(Grade.Manager);
+		c.setGrade(Grade.MANAGER);
 		c.setDepartement(sd.findAll().get(1));
 		c.setMatricule("abc123a");
 		c.setManager(sc.findAll().get(0));
@@ -69,7 +69,7 @@ public class CollaborateurTest {
 		assertThat(c.getPrenom()).isEqualTo("michela");
 		assertThat(c.getEmail()).isEqualTo("m.andre@free.orga");
 		assertThat(c.getPassword()).isEqualTo("pwda");
-		assertThat(c.getGrade()).isEqualTo(Grade.Manager);
+		assertThat(c.getGrade()).isEqualTo(Grade.MANAGER);
 		assertThat(c.getDepartement()).isEqualTo(sd.findAll().get(1));
 		assertThat(c.getMatricule()).isEqualTo("abc123a");
 		assertThat(c.getManager().isPresent()).isTrue();
