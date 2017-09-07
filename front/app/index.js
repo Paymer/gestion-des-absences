@@ -21,27 +21,24 @@ import demandeAbsenceService from "./absence/demande/demandeAbsence.service"
 import frontUrls from "./utils/frontUrls.service";
 import connexionService from './connexion/connexion.service';
 import visualisationAbsenceService from "./absence/visualisation/visualisationAbsence.service"
+import suppressionAbsenceService from "./absence/visualisation/suppressionAbsence.service"
 import modifAbsenceService from "./absence/modification/modificationAbsence.service"
 
 //Modules
 import menuModule from './menu/menu.module';
 
 
+angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
 
-angular.module('app', [RouteModule, ngResource, menuModule.name,uiBootstrap])
-
-    .value('apiUrl', API_URL)
     .value('jssha', jssha)
     .constant("apiUrls", apiUrls)
-
-    .value('frontUrl')
-    .constant("frontUrls", frontUrls)
 
     //Services
 	.service('connexionService', connexionService)
     .service("visualisationAbsenceService", visualisationAbsenceService)
 	.service("demandeAbsenceService",demandeAbsenceService)
     .service("modifAbsenceService",modifAbsenceService)
+    .service("suppressionAbsenceService", suppressionAbsenceService)
 
     //Components
     .component('accueil', AccueilComponent)
@@ -49,5 +46,18 @@ angular.module('app', [RouteModule, ngResource, menuModule.name,uiBootstrap])
     .component('connexionComponent', ConnexionComponent)
     .component("visualisationAbsenceComponent", visualisationAbsenceComponent)
     .component('modifAbsenceComponent',modifAbsenceComponent)
-    .config(route);
-
+    
+    //manage connections and routes
+    .config(route)
+    .run(['$rootScope', '$location', 'connexionService', function ($rootScope, $location, connexionService) {
+    $rootScope.$on('$routeChangeStart', function (event) {
+        if (!connexionService.isConnecte()) {
+            console.log('DENY');
+            $location.path('/connexion');
+        }
+        else {
+            console.log('ALLOW');
+           
+        }
+    });
+}]);

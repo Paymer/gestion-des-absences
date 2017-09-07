@@ -8,8 +8,8 @@
         <a ng-click="$ctrl.rediger('absence')" ><span class = "glyphicon glyphicon-book" style = "color:black"></span></a>
         <a ng-click="$ctrl.rediger('planningDemande')" ><span class = "glyphicon glyphicon-calendar" style = "color:black"></span></a>
 
-        <a ng-click="$ctrl.rediger('validationDemande')" ng-if="$ctrl.grade"><span class = "glyphicon glyphicon-ok-circle" style = "color:black"></span></a>
-        <a ng-click="$ctrl.rediger('rapport')" ng-if="$ctrl.grade"><span class = "glyphicon glyphicon-paperclip" style = "color:black"></span></a>
+        <a ng-if="$ctrl.grade" ng-click="$ctrl.rediger('validationDemande')" ><span class = "glyphicon glyphicon-ok-circle" style = "color:black"></span></a>
+        <a ng-if="$ctrl.grade" ng-click="$ctrl.rediger('rapport')" ><span class = "glyphicon glyphicon-paperclip" style = "color:black"></span></a>
 
         <a ng-click="$ctrl.rediger('ferie')"><span class = "glyphicon glyphicon-info-sign" style = "color:black"></span></a>
         <a ng-click="$ctrl.deconnecter()"><span class = "glyphicon glyphicon-off" style = "color:red"></span></a>

@@ -1,8 +1,12 @@
 
+import suppressionAbsenceTemplate from "./suppressionAbsence.html"
+import SuppressionAbsenceController from "./suppressionAbsence.controller"
+
 export default class VisualisationAbsenceService {
-    constructor(apiUrls, $resource) {
+    constructor(apiUrls, $resource, $uibModal) {
         this.apiUrls = apiUrls;
         this.$resource = $resource;
+        this.$uibModal = $uibModal;
 
         this.absencesRes = this.$resource(this.apiUrls.absence);
         this.absences = this.absencesRes.query();
@@ -31,6 +35,13 @@ export default class VisualisationAbsenceService {
                 a.actions.push("visualisation");
             }
         })
+    }
 
+    supprimerAbsence() {
+        this.$uibModal.open({
+            template: suppressionAbsenceTemplate,
+            controller: SuppressionAbsenceController,
+            controllerAs: '$ctrl'
+        });
     }
 }
