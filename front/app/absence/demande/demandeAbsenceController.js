@@ -95,21 +95,14 @@ export default class DemandeAbsenceCtrl{
     this.dateOptions.minDate = this.inlineOptions.minDate;
   };
 
-  addAbsence(){
-     
-    
-    let absence = { dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
-    
-    this.demandeAbsenceService.confirmeEnvoiAbsence(absence)
-    this.$location.path("/absence");
-    }
+ 
 
     annuler(){
         this.$location.path("/absence");
     }
 
     verrifDateDebutInfDateFin(){
-        if(this.dtDebut< this.dtFin){
+        if(this.dtDebut < this.dtFin){
             return true;
         }else{
             return false;
@@ -118,7 +111,7 @@ export default class DemandeAbsenceCtrl{
 
     verrifDateDuJour(){
         
-        if(this.dtDebut.getDay() === this.today.getDay() && this.dtDebut.getMonth() === this.today.getMonth() && this.dtDebut.getFullYear() === this.today.getFullYear() ){
+        if(this.dtDebut.getDate() === this.today.getDate() && this.dtDebut.getMonth() === this.today.getMonth() && this.dtDebut.getFullYear() === this.today.getFullYear() ){
            
             return true;
         }else{
@@ -138,4 +131,17 @@ export default class DemandeAbsenceCtrl{
 
     }
 
+
+
+
+
+
+ addAbsence(){
+     
+    
+    let absence = { dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
+    
+    this.demandeAbsenceService.confirmeEnvoiAbsence(absence)
+    this.$location.path("/absence");
+    }
 }

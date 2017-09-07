@@ -47,4 +47,9 @@ export default class VisualisationAbsenceService {
             }
         });
     }
+
+
+     modification(idAbsence){
+       this.idModif = idAbsence;
+    }
 }

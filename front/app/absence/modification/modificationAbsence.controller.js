@@ -1,9 +1,13 @@
 export default class ModifAbsenceCtrl{
-    constructor(modifAbsenceService,connexionService){ 
-
+    
+    constructor(modifAbsenceService,connexionService, $location, visualisationAbsenceService ){ 
+        this.visualService = visualisationAbsenceService;
+        //tout = 
         this.modifAbsenceService = modifAbsenceService;
         this.connexionService = connexionService;
-
+        this.$location = $location;
+        this.today = new Date();
+        this.id = this.visualService.idModif;
 
         this.inlineOptions = {
             customClass: getDayClass,
@@ -94,12 +98,54 @@ export default class ModifAbsenceCtrl{
     this.dateOptions.minDate = this.inlineOptions.minDate;
   };
 
-  addAbsence(){
+  
+
+    annuler(){
+        this.$location.path("/absence");
+    }
+
+    verrifDateDebutInfDateFin(){
+        if(this.dtDebut < this.dtFin){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    verrifDateDuJour(){
+        
+        if(this.dtDebut.getDate() === this.today.getDate() && this.dtDebut.getMonth() === this.today.getMonth() && this.dtDebut.getFullYear() === this.today.getFullYear() ){
+           
+            return true;
+        }else{
+            
+            return false;
+        }
+    }
+
+    motifPourCongeSansSolde(){
+        
+        if(this.type === "CONGES_SANS_SOLDE" && this.motif == undefined){
+           
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    //call to the modif Absence service
+
+addAbsence(){
+     
      
     //console.log(this.dtDebut,this.dtFin,this.type, this.motif)
-    let absence = { dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
-    
+    let absence = {id: this.id, dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
     this.modifAbsenceService.confirmeEnvoiAbsence(absence)
+    this.$location.path("/absence");
     }
 
 }
+
+
+
