@@ -118,7 +118,7 @@ export default class DemandeAbsenceCtrl{
 
     verrifDateDuJour(){
         
-        if(this.dtDebut.getDay() === this.today.getDay() && this.dtDebut.getMonth() === this.today.getMonth() && this.dtDebut.getFullYear() === this.today.getFullYear() ){
+        if(this.dtDebut.getDate() === this.today.getDate() && this.dtDebut.getMonth() === this.today.getMonth() && this.dtDebut.getFullYear() === this.today.getFullYear() ){
            
             return true;
         }else{
