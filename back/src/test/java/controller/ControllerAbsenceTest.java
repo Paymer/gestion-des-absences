@@ -43,6 +43,26 @@ public class ControllerAbsenceTest {
 		 
 	}
 	
+	
+	
+	@Test
+	public void listerAbsenceTest(){
+
+		ctrlAbsence.listerAbsences();
+		verify(mockRepositoryAbsence).findAll();
+			
+	}
+	
+	@Test
+	public void findAbsenceParMatriculeEmployeTest(){
+
+		ctrlAbsence.findAbsenceParMatriculeEmploye("M1");
+		verify(mockRepositoryAbsence).findByMatriculeEmploye("M1");
+			
+	}
+	
+	
+	
 	/**
 	 * Test du method POST
 	 */
