@@ -1,6 +1,6 @@
 
-import suppressionAbsenceTemplate from "./suppressionAbsence.html"
-import SuppressionAbsenceController from "./suppressionAbsence.controller"
+import suppressionAbsenceTemplate from "./suppression/suppressionAbsence.html"
+import SuppressionAbsenceController from "./suppression/suppressionAbsence.controller"
 
 export default class VisualisationAbsenceService {
     constructor(apiUrls, $resource, $uibModal) {

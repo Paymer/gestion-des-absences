@@ -21,7 +21,7 @@ import demandeAbsenceService from "./absence/demande/demandeAbsence.service"
 import frontUrls from "./utils/frontUrls.service";
 import connexionService from './connexion/connexion.service';
 import visualisationAbsenceService from "./absence/visualisation/visualisationAbsence.service"
-import suppressionAbsenceService from "./absence/visualisation/suppressionAbsence.service"
+import suppressionAbsenceService from "./absence/visualisation/suppression/suppressionAbsence.service"
 import modifAbsenceService from "./absence/modification/modificationAbsence.service"
 
 //Modules
@@ -46,7 +46,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .component('connexionComponent', ConnexionComponent)
     .component("visualisationAbsenceComponent", visualisationAbsenceComponent)
     .component('modifAbsenceComponent',modifAbsenceComponent)
-    
+
     //manage connections and routes
     .config(route)
     .run(['$rootScope', '$location', 'connexionService', function ($rootScope, $location, connexionService) {
