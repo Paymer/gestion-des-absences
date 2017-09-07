@@ -22,7 +22,7 @@ import demandeAbsenceService from "./absence/demande/demandeAbsence.service"
 import frontUrls from "./utils/frontUrls.service"
 import connexionService from './connexion/connexion.service'
 import visualisationAbsenceService from "./absence/visualisation/visualisationAbsence.service"
-import suppressionAbsenceService from "./absence/visualisation/suppressionAbsence.service"
+import suppressionAbsenceService from "./absence/visualisation/suppression/suppressionAbsence.service"
 import modifAbsenceService from "./absence/modification/modificationAbsence.service"
 import validationAbsenceService from "./absence/validation/validationAbsence.service"
 
@@ -50,18 +50,13 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .component("visualisationAbsenceComponent", visualisationAbsenceComponent)
     .component('modifAbsenceComponent',modifAbsenceComponent)
     .component('validationAbsenceComponent',validationAbsenceComponent)
-    
+
     //manage connections and routes
     .config(route)
     .run(['$rootScope', '$location', 'connexionService', function ($rootScope, $location, connexionService) {
     $rootScope.$on('$routeChangeStart', function (event) {
         if (!connexionService.isConnecte()) {
-            console.log('DENY');
             $location.path('/connexion');
-        }
-        else {
-            console.log('ALLOW');
-           
         }
     });
 }]);
