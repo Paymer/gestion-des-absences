@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import dev.entite.Absence;
 import dev.entite.Absence.Statut;
@@ -49,9 +47,10 @@ public class ControllerAbsence {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
-		newAbsence.setStatut(Statut.INITIALE);
-		System.out.println(serAbsence.conditions(newAbsence));
+		// vérifie que les conditions de l'ajout d'une absence sont correcte
 		if (serAbsence.conditions(newAbsence)) {
+			// création d'une demande le statut est à initiale
+			newAbsence.setStatut(Statut.INITIALE);
 			repoAbsence.save(newAbsence);
 		}
 

@@ -10,14 +10,14 @@ export default class MenuCtrl {
 
 	deconnecter() {
 		this.logService.deconnecter();
-		this.rediger('xx')
+		this.rediriger('xx')
 	}
 
 	isConnected() {
 		return this.logService.isConnecte();
 	}
 
-	rediger(a) {
+	rediriger(a) {
 		if (this.logService.isConnecte()) {
 			switch (a) {
 				case 'absence':
