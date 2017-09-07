@@ -15,4 +15,10 @@ export default class VisualisationAbsenceController {
         this.order = order;
         this.triInverse = !this.triInverse;
     }
+
+    // Partie suppression de l'absence
+
+    supprimerAbsence() {
+        this.visualisationAbsenceService.supprimerAbsence();
+    }
 }

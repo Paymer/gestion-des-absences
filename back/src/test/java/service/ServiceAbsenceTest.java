@@ -132,7 +132,7 @@ public class ServiceAbsenceTest {
 
 	}
 
-	
+
 	@Test
 	public void conditionsTest() {
 		Absence absence = new Absence();
