@@ -40,7 +40,7 @@ public class ControllerAbsence {
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
 		newAbsence.setStatut(Statut.INITIALE);
-
+		System.out.println(serAbsence.conditions(newAbsence));
 		if (serAbsence.conditions(newAbsence)) {
 			repoAbsence.save(newAbsence);
 		}

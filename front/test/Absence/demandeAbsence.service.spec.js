@@ -3,11 +3,21 @@ describe('test demande absence $http Post', () => {
         angular.mock.module('app')
     })
     // injection du mock $httpBackend
-    it('mock du service $http', angular.mock.inject(($httpBackend, demandeAbsenceService,apiUrls)=> {
+    it(`verifie l'envoie d'un Post d'une absence `, angular.mock.inject(($httpBackend, demandeAbsenceService,apiUrls)=> {
+
+        const absence = {"dateDebut":"2017-09-13","dateFin":"2017-09-28","type":"CONGES_SANS_SOLDE","matriculeEmploye":"M002","motif":"La tests motif"};
+
+        const urlPost = `${apiUrls.demandeAbsence}?save=%7B%22method%22:%22POST%22%7D`
         // définition du comportement attendu de $http
-        $httpBackend.whenPOST(apiUrls.demandeAbsence).respond([{"dateDebut":"2017-09-13","dateFin":"2017-09-28","type":"CONGE_SANS_SOLDE","idEmploye":3,"motif":"La tests motif"}]);
+        $httpBackend.whenPOST(urlPost).respond(200,{});
+       
+        demandeAbsenceService.confirmeEnvoiAbsence(absence)
+
+        $httpBackend.expectPOST(urlPost,absence);
         
-        $httpBackend.expectPOST(apiUrls.demandeAbsence,jasmine.objectContaining({"dateDebut":"2017-09-13","dateFin":"2017-09-28","type":"CONGE_SANS_SOLDE","idEmploye":3,"motif":"La tests motif"}));
-     //   $httpBackend.flush(); // déclenche les réponses HTTP
+        $httpBackend.flush(); // déclenche les réponses HTTP
+
+
+
     }))
 })
