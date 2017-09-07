@@ -10,6 +10,9 @@ public class Collaborateur {
 		EMPLOYE, MANAGER, ADMINISTRATEUR;
 	}
 
+	private static final int BASE_CONGES_PAYES = 28;
+	private static final int BASE_RTT = 28;
+
 	private String matricule;
 	private String nom;
 	private String prenom;
@@ -19,8 +22,8 @@ public class Collaborateur {
 	private List<Collaborateur> subalternes = new ArrayList<>();
 	private Departement departement;
 	private Grade grade = Grade.EMPLOYE;
-	private int congesPayes = 28;
-	private int rtt = 11;
+	private int congesPayes = BASE_CONGES_PAYES;
+	private int rtt = BASE_RTT;
 
 	public Collaborateur() {
 		super();

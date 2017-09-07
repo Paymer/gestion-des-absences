@@ -10,6 +10,7 @@ export default class ConnexionController{
 		this.encrypt = jssha
 		
 		this.error = false;
+		this.errorServer = false;
 	}
 	
 	checkConnexion(){
@@ -22,7 +23,8 @@ export default class ConnexionController{
 			this.$http.get(urlCheckConnexion, {})
 			.then(result => {
 				return result.data
-			}).then(user => {
+			},
+			() => this.errorServer = true).then(user => {
 					if(user.matricule){
 						this.connexion.connecter(user.matricule, user.nom, user.prenom, user.grade, user.email, user.departement, user.congesPayes, user.rtt)
 						this.$location.path('/')

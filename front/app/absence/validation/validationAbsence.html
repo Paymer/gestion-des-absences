@@ -1,5 +1,5 @@
 
-<h1 class="text-center">Gestion des absences</h1>
+<h1 class="text-center">Validation des demandes</h1>
 
 <div class="container">
 
@@ -46,9 +46,9 @@
                     </a>
                 </th>
                 <th>
-                    <a href="#" ng-click="$ctrl.updateOrderEtTri('statut')">
-                        Statut
-                        <span ng-if="$ctrl.order == 'statut'">
+                    <a href="#" ng-click="$ctrl.updateOrderEtTri('nom')">
+                        Nom
+                        <span ng-if="$ctrl.order == 'nom'">
                             <span ng-show="$ctrl.triInverse">
                                 <span class="caret"></span>
                             </span>
@@ -74,43 +74,39 @@
             </tr>
         </thead>
         <tbody>
-
             <tr ng-repeat="absence in $ctrl.absences| orderBy:$ctrl.order:$ctrl.triInverse">
-
                 <td>{{absence.dateDebut}}</td>
                 <td>{{absence.dateFin}}</td>
                 <td>{{absence.type}}</td>
-                <td>{{absence.statut}}</td>
+                <td>{{absence.nom}}</td>
                 <td>
-                    <span ng-repeat="action in absence.actions">
-                        <span ng-if="action == 'modification'">
-                            <a ng-click='$ctrl.modification(absence.id)' href="./absence/modification"><span class="glyphicon glyphicon-pencil"></span></a>
-                        </span>
-                        <span ng-if="action == 'suppression'">
-                            <a href="#" ng-click="$ctrl.supprimerAbsence()"><span class="glyphicon glyphicon-trash"></span></a>
-                        </span>
-                        <span ng-if="action == 'visualisation'">
-                            <a href="http://lienVersLApplicationDeGestionDesMissions/visualisation"><span class="glyphicon glyphicon-eye-open"></span></a>
-                        </span>
-                    </span>
+					<a class="col-xs-6"
+					   href="#"
+					   ng-click="$ctrl.setAbsence(absence.id, true)"
+					   style="text-align: center; color: green;">
+						<span class="glyphicon glyphicon-ok"></span>
+					</a>
+					<a class="col-xs-6"
+					   href="#"
+					   ng-click="$ctrl.setAbsence(absence.idAbsence, false)"
+					   style="text-align: center; color: red;">
+						<span class="glyphicon glyphicon-remove"></span>
+					</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <h4 class="text-right">
-        Demander une absence
-        <a href="./absence/demande" type="button" class="btn btn-primary">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </a>
-    </h4>
+	<div class="row" ng-show="$ctrl.errorMaj">
+		<span class="col-xs-12 alert alert-danger">
+			La demande n'a pas pu être mise à jour...
+		</span>
+	</div>
 
-    <br/><br/>
-
-    <p>Soldes des compteurs :</p>
-    <ul>
-        <li>Congés payés : {{$ctrl.connexionService.getCongesPayes()}}</li>
-        <li>RTT : {{$ctrl.connexionService.getRtt()}}</li>
-    </ul>
+	<div class="row" ng-show="$ctrl.errorServeur">
+		<span class="col-xs-12 alert alert-danger">
+			La connexion avec le serveur a échoué !
+		</span>
+	</div>
 
 </div>

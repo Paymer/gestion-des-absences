@@ -8,7 +8,7 @@
         <a ng-click="$ctrl.rediriger('absence')" ><span class = "glyphicon glyphicon-book" style = "color:black"></span></a>
         <a ng-click="$ctrl.rediriger('planningDemande')" ><span class = "glyphicon glyphicon-calendar" style = "color:black"></span></a>
 
-        <a ng-if="$ctrl.grade" ng-click="$ctrl.rediriger('validationDemande')" ><span class = "glyphicon glyphicon-ok-circle" style = "color:black"></span></a>
+        <a ng-if="$ctrl.grade" ng-click="$ctrl.rediriger('validation')" ><span class = "glyphicon glyphicon-ok-circle" style = "color:black"></span></a>
         <a ng-if="$ctrl.grade" ng-click="$ctrl.rediriger('rapport')" ><span class = "glyphicon glyphicon-paperclip" style = "color:black"></span></a>
 
         <a ng-click="$ctrl.rediriger('ferie')"><span class = "glyphicon glyphicon-info-sign" style = "color:black"></span></a>
@@ -25,7 +25,7 @@
         <li><a ng-click="$ctrl.rediriger('absence')"><span class = "glyphicon glyphicon-book"></span> Gestion des absences</a></li>
         <li><a ng-click="$ctrl.rediriger('planningDemande')"><span class = "glyphicon glyphicon-calendar"></span> Planning des absences</a></li>
 
-        <li ng-if="$ctrl.grade"><a ng-click="$ctrl.rediriger('validationDemande')"><span class = "glyphicon glyphicon-ok-circle"></span> Validation demandes</a></li>
+        <li ng-if="$ctrl.grade"><a ng-click="$ctrl.rediriger('validation')"><span class = "glyphicon glyphicon-ok-circle"></span> Validation demandes</a></li>
         <li ng-if="$ctrl.grade"><a ng-click="$ctrl.rediriger('rapport')"><span class = "glyphicon glyphicon-paperclip"></span> Vues synthétiques</a></li>
 
         <li><a ng-click="$ctrl.rediriger('ferie')"><span class = "glyphicon glyphicon-info-sign"></span> Jours feriés</a></li>
