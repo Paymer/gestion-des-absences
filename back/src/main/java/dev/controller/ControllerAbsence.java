@@ -1,5 +1,6 @@
 package dev.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,21 +49,21 @@ public class ControllerAbsence {
 
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, path = "/modification/{idAbsence}")
-	public ModelAndView modifyAbsence(@PathVariable Integer idAbsence, @RequestBody Absence newAbsence) {
-		// TODO transformer la response du formulaire en JSON
+	@RequestMapping(method = RequestMethod.PUT, path = "/modification/", consumes = "application/json;charset=UTF-8")
+	public ModelAndView modifyAbsence(@RequestBody Absence newAbsence) {
+
 
 		// on recupere la absence a modifier
 		Absence absence = new Absence();
 		List<Absence> liste = listerAbsences();
 		for (Absence a : liste) {
-			if (idAbsence.equals(a.getId())) {
+			if (newAbsence.getId().equals(a.getId())) {
 				absence = a;
 			}
 		}
 
 		// on complete la newAbsence pour tester les conditions
-		newAbsence.setId(idAbsence);
+		newAbsence.setId(newAbsence.getId());
 		newAbsence.setMatriculeEmploye(absence.getMatriculeEmploye());
 
 		// check si les conditions se sont correctes pour la modifier
