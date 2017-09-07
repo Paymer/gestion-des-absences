@@ -19,7 +19,7 @@ export function route ($routeProvider, $locationProvider) {
 		template: '<menu-component></menu-component>' + '<modif-absence-component></modif-absence-component>'
 	})
     .otherwise({
-        redirectTo: '/'
+        redirectTo: '/connexion'
     });
 
 }
