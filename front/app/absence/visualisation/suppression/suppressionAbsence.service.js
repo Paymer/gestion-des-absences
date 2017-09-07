@@ -1,8 +1,11 @@
 
 export default class SuppressionAbsenceService {
-    constructor() {
+    constructor($resource) {
+        this.$resource = $resource;
 
     }
 
-    
+    supprimerAbsence(absenceId) {
+
+    }
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import dev.entite.Absence;
 import dev.entite.Absence.Statut;
@@ -48,9 +47,10 @@ public class ControllerAbsence {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
-		newAbsence.setStatut(Statut.INITIALE);
-
+		// vérifie que les conditions de l'ajout d'une absence sont correcte
 		if (serAbsence.conditions(newAbsence)) {
+			// création d'une demande le statut est à initiale
+			newAbsence.setStatut(Statut.INITIALE);
 			repoAbsence.save(newAbsence);
 		}
 
@@ -58,37 +58,18 @@ public class ControllerAbsence {
 
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, path = "/modification/", consumes = "application/json;charset=UTF-8")
-	public ModelAndView modifyAbsence(@RequestBody Absence newAbsence) {
-
-
-		// on recupere la absence a modifier
-		Absence absence = new Absence();
-		List<Absence> liste = listerAbsences();
-		for (Absence a : liste) {
-			if (newAbsence.getId().equals(a.getId())) {
-				absence = a;
-			}
-		}
-
-		// on complete la newAbsence pour tester les conditions
-		newAbsence.setId(newAbsence.getId());
-		newAbsence.setMatriculeEmploye(absence.getMatriculeEmploye());
+	@RequestMapping(method = RequestMethod.PUT, path = "/modification/{id}", consumes = "application/json;charset=UTF-8")
+	public String modifyAbsence(@PathVariable int id,  @RequestBody Absence newAbsence) {
 
 		// check si les conditions se sont correctes pour la modifier
 		if (serAbsence.conditions(newAbsence)) {
-			// on remet les infos de le formulaire
-			absence.setDateDebut(newAbsence.getDateDebut());
-			absence.setDateFin(newAbsence.getDateFin());
-			absence.setType(newAbsence.getType());
-			absence.setMotif(newAbsence.getMotif());
-			absence.setStatut(Statut.INITIALE);
+		
+			newAbsence.setStatut(Statut.INITIALE);
+			// addObject
+			repoAbsence.save(newAbsence);
 		}
-		// addObject?
-		repoAbsence.save(absence);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/absence");
-		return mv;
+		
+		return "";
 
 	}
 
