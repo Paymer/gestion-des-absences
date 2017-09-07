@@ -44,4 +44,9 @@ export default class VisualisationAbsenceService {
             controllerAs: '$ctrl'
         });
     }
+
+
+     modification(idAbsence){
+       this.idModif = idAbsence;
+    }
 }

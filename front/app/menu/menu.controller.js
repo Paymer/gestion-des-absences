@@ -5,7 +5,7 @@ export default class MenuCtrl{
         this.logo = {title: "Logo", url: "#"}
         this.frontUrls = frontUrls
         this.grade = (this.logService.getGrade() === 'MANAGER')
-        console.log(this.logService.getGrade())
+        
         
     }
     
@@ -21,9 +21,8 @@ export default class MenuCtrl{
     }
 
 
-    rediger (a){
-        console.log(this.logService.isConnecte())
-        console.log(this.frontUrls.connexion)
+    rediriger (a){
+        
         if (this.logService.isConnecte()){
             switch (a){
                 case 'absence':

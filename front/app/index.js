@@ -52,12 +52,8 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .run(['$rootScope', '$location', 'connexionService', function ($rootScope, $location, connexionService) {
     $rootScope.$on('$routeChangeStart', function (event) {
         if (!connexionService.isConnecte()) {
-            console.log('DENY');
             $location.path('/connexion');
         }
-        else {
-            console.log('ALLOW');
-           
-        }
+       
     });
 }]);
