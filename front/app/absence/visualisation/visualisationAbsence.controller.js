@@ -21,4 +21,9 @@ export default class VisualisationAbsenceController {
     supprimerAbsence() {
         this.visualisationAbsenceService.supprimerAbsence();
     }
+
+    modification(idAbsence){
+       this.visualisationAbsenceService.modification(idAbsence);
+       console.log(idAbsence)
+    }
 }

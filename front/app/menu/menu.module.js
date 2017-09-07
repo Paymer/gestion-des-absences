@@ -9,7 +9,6 @@ const menuModule = angular
     .module('menuModule', [ngRoute])
     .component('menuComponent', menuComponent)
 
-    .value('frontUrl')
     .constant("frontUrls", frontUrls)
 
 export default menuModule

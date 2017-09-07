@@ -4,14 +4,14 @@
     <div class="navbar-header">
      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
     <span class="sr-only">Toggle</span>
-        <a ng-click="$ctrl.rediger('accueil')" ><span class = "glyphicon glyphicon-home" style = "color:black"></span></a>
-        <a ng-click="$ctrl.rediger('absence')" ><span class = "glyphicon glyphicon-book" style = "color:black"></span></a>
-        <a ng-click="$ctrl.rediger('planningDemande')" ><span class = "glyphicon glyphicon-calendar" style = "color:black"></span></a>
+        <a ng-click="$ctrl.rediriger('accueil')" ><span class = "glyphicon glyphicon-home" style = "color:black"></span></a>
+        <a ng-click="$ctrl.rediriger('absence')" ><span class = "glyphicon glyphicon-book" style = "color:black"></span></a>
+        <a ng-click="$ctrl.rediriger('planningDemande')" ><span class = "glyphicon glyphicon-calendar" style = "color:black"></span></a>
 
-        <a ng-if="$ctrl.grade" ng-click="$ctrl.rediger('validationDemande')" ><span class = "glyphicon glyphicon-ok-circle" style = "color:black"></span></a>
-        <a ng-if="$ctrl.grade" ng-click="$ctrl.rediger('rapport')" ><span class = "glyphicon glyphicon-paperclip" style = "color:black"></span></a>
+        <a ng-if="$ctrl.grade" ng-click="$ctrl.rediriger('validation')" ><span class = "glyphicon glyphicon-ok-circle" style = "color:black"></span></a>
+        <a ng-if="$ctrl.grade" ng-click="$ctrl.rediriger('rapport')" ><span class = "glyphicon glyphicon-paperclip" style = "color:black"></span></a>
 
-        <a ng-click="$ctrl.rediger('ferie')"><span class = "glyphicon glyphicon-info-sign" style = "color:black"></span></a>
+        <a ng-click="$ctrl.rediriger('ferie')"><span class = "glyphicon glyphicon-info-sign" style = "color:black"></span></a>
         <a ng-click="$ctrl.deconnecter()"><span class = "glyphicon glyphicon-off" style = "color:red"></span></a>
        </button>
     </div>
@@ -21,14 +21,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" >
       <ul class="nav navbar-nav">
-        <li><a ng-click="$ctrl.rediger('accueil')"><span class = "glyphicon glyphicon-home"></span> Accueil</a></li>
-        <li><a ng-click="$ctrl.rediger('absence')"><span class = "glyphicon glyphicon-book"></span> Gestion des absences</a></li>
-        <li><a ng-click="$ctrl.rediger('planningDemande')"><span class = "glyphicon glyphicon-calendar"></span> Planning des absences</a></li>
+        <li><a ng-click="$ctrl.rediriger('accueil')"><span class = "glyphicon glyphicon-home"></span> Accueil</a></li>
+        <li><a ng-click="$ctrl.rediriger('absence')"><span class = "glyphicon glyphicon-book"></span> Gestion des absences</a></li>
+        <li><a ng-click="$ctrl.rediriger('planningDemande')"><span class = "glyphicon glyphicon-calendar"></span> Planning des absences</a></li>
 
-        <li ng-if="$ctrl.grade"><a ng-click="$ctrl.rediger('validationDemande')"><span class = "glyphicon glyphicon-ok-circle"></span> Validation demandes</a></li>
-        <li ng-if="$ctrl.grade"><a ng-click="$ctrl.rediger('rapport')"><span class = "glyphicon glyphicon-paperclip"></span> Vues synthétiques</a></li>
+        <li ng-if="$ctrl.grade"><a ng-click="$ctrl.rediriger('validation')"><span class = "glyphicon glyphicon-ok-circle"></span> Validation demandes</a></li>
+        <li ng-if="$ctrl.grade"><a ng-click="$ctrl.rediriger('rapport')"><span class = "glyphicon glyphicon-paperclip"></span> Vues synthétiques</a></li>
 
-        <li><a ng-click="$ctrl.rediger('ferie')"><span class = "glyphicon glyphicon-info-sign"></span> Jours feriés</a></li>
+        <li><a ng-click="$ctrl.rediriger('ferie')"><span class = "glyphicon glyphicon-info-sign"></span> Jours feriés</a></li>
         <li><a ng-click="$ctrl.deconnecter()" style = "color:red"><span class = "glyphicon glyphicon-off"></span> Se déconnecter</a></li>
       </ul>
       
