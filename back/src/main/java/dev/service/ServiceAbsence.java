@@ -10,22 +10,34 @@ import org.springframework.stereotype.Service;
 import dev.entite.Absence;
 import dev.entite.Absence.Statut;
 import dev.entite.Absence.TypeAbsence;
+
 import dev.entite.Collaborateur;
 import dev.entite.MessageErreur;
 import dev.repository.RepositoryAbsence;
 import dev.repository.RepositoryMessageErreur;
 
+
 @Service
 public class ServiceAbsence {
 
-	@Autowired
-	private RepositoryAbsence repoAbsence;
+
 	@Autowired
 	private ServiceCollaborateur collabs;
 	@Autowired
 	private RepositoryMessageErreur messages;
 	private String service = "Service des Absences";
+
 	
+	private RepositoryAbsence repoAbsence;
+	
+	
+	@Autowired
+	public ServiceAbsence(RepositoryAbsence repoAbsence) {
+		super();
+		this.repoAbsence = repoAbsence;
+	}
+
+
 	/**method qui va a reviser toutes les conditions pour faire le post*/
 	public boolean conditions (Absence newAbsence){
 		
@@ -52,8 +64,8 @@ public class ServiceAbsence {
 	public boolean verificationChevauche (Absence newAbsence){
 		
 		List<Absence> liste = repoAbsence.findByMatriculeEmploye(newAbsence.getMatriculeEmploye());
+
 		for (Absence a:liste){
-			
 			boolean ch1 = a.getDateFin().isBefore(newAbsence.getDateDebut()); //the period was before
 			boolean ch2 = a.getDateDebut().isAfter(newAbsence.getDateFin()); //the period was after
 			boolean ch3 = a.getId().equals(newAbsence.getId()); // is the same absence
@@ -94,6 +106,7 @@ public class ServiceAbsence {
 			msg.setMessage(msg.getMessage()+"\nabsence is not in ATTENTE_DE_VALIDATION!");
 		}
 		return retour;
+
 	}
 		
 	
