@@ -15,6 +15,9 @@ export function route ($routeProvider, $locationProvider) {
     .when('/connexion', {
 		template: '<connexion-component></connexion-component>'
 	})
+    .when('/absence/modification', {
+		template: '<menu-component></menu-component>' + '<modif-absence-component></modif-absence-component>'
+	})
     .otherwise({
         redirectTo: '/'
     });

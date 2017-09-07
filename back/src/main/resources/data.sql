@@ -5,4 +5,5 @@ INSERT INTO absence (date_debut, date_fin, type, matricule_employe, motif, statu
   ('2017-08-04', '2017-08-15', 'RTT', 'M2', 'Plus d"idée', 'REJETEE'),
   ('2017-09-03', '2017-09-21', 'CONGES_SANS_SOLDE', 'M3', 'La non plus non plus', 'VALIDEE'),
   ('2017-10-04', '2017-10-23', 'CONGES_SANS_SOLDE', 'M3', 'Quelqu"un a une idée ?', 'INITIALE'),
-  ('2017-11-06', '2017-11-24', 'CONGES_PAYES', 'M1', 'Je galère... :-(', 'EN_ATTENTE_VALIDATION');
+  ('2017-11-06', '2017-11-24', 'MISSION', 'M1', 'Je galère... :-(', 'VALIDEE'),
+  ('2017-12-06', '2017-12-24', 'CONGES_PAYES', 'M1', 'Je galère... :-(', 'EN_ATTENTE_VALIDATION');

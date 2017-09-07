@@ -21,16 +21,15 @@ export default class VisualisationAbsenceService {
     ajoutActions() {
         this.absences.forEach(a => {
             a.actions = [];
-            if(a.statut == "INITIALE" && a.type != "Mission") {
+            if(a.statut == "INITIALE" && a.type != "MISSION") {
                 a.actions.push("modification");
             }
-            if(a.type != "Mission") {
+            if(a.type != "MISSION") {
                 a.actions.push("suppression");
             }
-            if(a.type == "Mission") {
+            if(a.type == "MISSION") {
                 a.actions.push("visualisation");
             }
-            console.log(a.actions);
         })
 
     }

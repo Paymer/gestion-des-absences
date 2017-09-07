@@ -1,5 +1,8 @@
 export default class ConnexionController{
 	constructor($http, $location, connexionService, apiUrls, jssha){
+		if(connexionService.isConnecte()){
+			$location.path('/')
+		}
 		this.$http = $http;
 		this.$location = $location
 		this.connexion = connexionService;
