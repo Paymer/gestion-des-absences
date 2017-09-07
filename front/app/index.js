@@ -8,6 +8,7 @@ import { route } from './app.route';
 import ngResource from "angular-resource";
 import jssha  from 'jssha';
 
+// Component
 import { AccueilComponent } from './accueil/accueil.component';
 import ConnexionComponent from './connexion/connexion.component';
 import visualisationAbsenceComponent from "./absence/visualisation/visualisationAbsence.component";
@@ -19,13 +20,13 @@ import demandeAbsenceService from "./absence/demande/demandeAbsence.service"
 import frontUrls from "./utils/frontUrls.service";
 import connexionService from './connexion/connexion.service';
 import visualisationAbsenceService from "./absence/visualisation/visualisationAbsence.service"
-//Modules
+import suppressionAbsenceService from "./absence/visualisation/suppressionAbsence.service"
 
+//Modules
 import menuModule from './menu/menu.module';
 
 
-
-angular.module('app', [RouteModule, ngResource, menuModule.name,uiBootstrap])
+angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
 
     .value('apiUrl', API_URL)
     .value('jssha', jssha)
@@ -34,10 +35,11 @@ angular.module('app', [RouteModule, ngResource, menuModule.name,uiBootstrap])
     .value('frontUrl')
     .constant("frontUrls", frontUrls)
 
-
 	.service('connexionService', connexionService)
     .service("visualisationAbsenceService", visualisationAbsenceService)
-	.service("demandeAbsenceService",demandeAbsenceService)
+    .service("demandeAbsenceService", demandeAbsenceService)
+    .service("suppressionAbsenceService", suppressionAbsenceService)
+
     .component('accueil', AccueilComponent)
     .component('demandeAbsence',DemandeAbsenceComponent)
     .component('connexionComponent', ConnexionComponent)
