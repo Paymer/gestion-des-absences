@@ -101,7 +101,7 @@ export default class DemandeAbsenceCtrl{
     let absence = { dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
     
     this.demandeAbsenceService.confirmeEnvoiAbsence(absence)
-    this.$location.path("/");
+    this.$location.path("/absence");
     }
 
     annuler(){
