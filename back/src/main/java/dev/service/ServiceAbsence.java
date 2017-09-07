@@ -6,16 +6,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dev.controller.ControllerAbsence;
 import dev.entite.Absence;
 import dev.entite.Absence.TypeAbsence;
+import dev.repository.RepositoryAbsence;
 
 @Service
 public class ServiceAbsence {
 
-	@Autowired
-	private ControllerAbsence ca;
 	
+	private RepositoryAbsence repoAbsence;
+	
+	
+	@Autowired
+	public ServiceAbsence(RepositoryAbsence repoAbsence) {
+		super();
+		this.repoAbsence = repoAbsence;
+	}
+
+
 	/**method qui va a reviser toutes les conditions pour faire le post*/
 	public boolean conditions (Absence newAbsence){
 		
@@ -41,21 +49,18 @@ public class ServiceAbsence {
 	//check de la condition chevauche
 	public boolean verificationChevauche (Absence newAbsence){
 		
-		List<Absence> liste = ca.findAbsenceParMatriculeEmploye(newAbsence.getMatriculeEmploye());
+		List<Absence> liste = repoAbsence.findByMatriculeEmploye(newAbsence.getMatriculeEmploye());
+		
 		for (Absence a:liste){
-			
 			boolean ch1 = a.getDateFin().isBefore(newAbsence.getDateDebut()); //the period was before
 			boolean ch2 = a.getDateDebut().isAfter(newAbsence.getDateFin()); //the period was after
 			boolean ch3 = a.getId().equals(newAbsence.getId()); // is the same absence
 		
-			
 			if (!ch1 && !ch2 && !ch3){
 				return false;
 			}
 		
 		}
-		
-		
 		
 		return true;
 	}
