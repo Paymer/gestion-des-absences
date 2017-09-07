@@ -19,8 +19,8 @@ import demandeAbsenceService from "./absence/demande/demandeAbsence.service"
 import frontUrls from "./utils/frontUrls.service";
 import connexionService from './connexion/connexion.service';
 import visualisationAbsenceService from "./absence/visualisation/visualisationAbsence.service"
-//Modules
 
+//Modules
 import menuModule from './menu/menu.module';
 
 
@@ -38,6 +38,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name,uiBootstrap])
 	.service('connexionService', connexionService)
     .service("visualisationAbsenceService", visualisationAbsenceService)
 	.service("demandeAbsenceService",demandeAbsenceService)
+
     .component('accueil', AccueilComponent)
     .component('demandeAbsence',DemandeAbsenceComponent)
     .component('connexionComponent', ConnexionComponent)
