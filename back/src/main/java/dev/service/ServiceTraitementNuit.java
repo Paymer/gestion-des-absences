@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import dev.entite.Absence;
@@ -25,7 +26,8 @@ public class ServiceTraitementNuit {
 	private RepositoryMessageErreur repoMessageErreur;
 	
 	private String service = "Traitement de Nuit";
-
+	
+	@Scheduled(cron = "0 */10 * * * *")
 	public Boolean passerNuit() {
 		List<Absence> listeAbsences = repoAbsences.findAll();
 		listeAbsences.forEach(this::gererAbsence);

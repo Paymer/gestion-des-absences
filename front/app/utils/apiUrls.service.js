@@ -1,5 +1,6 @@
 const apiUrls = {
     absence : API_URL + '/absence',
+    suppressionAbsence : API_URL + '/absence/suppression',
 	validationAbsence : API_URL + '/absence/validation',
     demandeAbsence : API_URL + '/absence/demande',
    

@@ -1,14 +1,13 @@
 
 export default class SuppressionAbsenceController {
-    constructor($uibModalInstance, suppressionAbsenceService, absenceId) {
+    constructor($uibModalInstance, suppressionAbsenceService, idAbsence) {
         this.$uibModalInstance = $uibModalInstance;
         this.suppressionAbsenceService = suppressionAbsenceService;
-        this.absenceId = absenceId;
+        this.idAbsence = idAbsence;
     }
 
     valider() {
-        console.log("A faire : supprimer l'absence d'id :", this.absenceId);
-        this.suppressionAbsenceService.supprimerAbsence(this.absenceId);
+        this.suppressionAbsenceService.supprimerAbsence(this.idAbsence);
         this.$uibModalInstance.close("Suppression de l'absence");
     }
 

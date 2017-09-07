@@ -1,11 +1,11 @@
 
 export default class SuppressionAbsenceService {
-    constructor($resource) {
-        this.$resource = $resource;
-
+    constructor($http, apiUrls) {
+        this.$http = $http;
+        this.apiUrls = apiUrls;
     }
 
-    supprimerAbsence(absenceId) {
-
+    supprimerAbsence(idAbsence) {
+        this.$http.delete(this.apiUrls.suppressionAbsence + "/" + idAbsence)
     }
 }

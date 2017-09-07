@@ -51,6 +51,15 @@ public class ControllerAbsence {
 	public List<Absence> findAbsenceParMatriculeEmploye(@PathVariable String matriculeEmploye) {
 		return this.repoAbsence.findByMatriculeEmploye(matriculeEmploye);
 	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, path = "/suppression/{id}")
+	public String deleteAbsence(@PathVariable Integer id) {
+		
+		// TODO rajouter la vérifications des conditions de suppressions
+		this.repoAbsence.delete(id);
+		
+		return "";
+	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
