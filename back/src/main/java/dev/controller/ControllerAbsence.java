@@ -56,9 +56,10 @@ public class ControllerAbsence {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
-		newAbsence.setStatut(Statut.INITIALE);
-
+		// vérifie que les conditions de l'ajout d'une absence sont correcte
 		if (serAbsence.conditions(newAbsence)) {
+			// création d'une demande le statut est à initiale
+			newAbsence.setStatut(Statut.INITIALE);
 			repoAbsence.save(newAbsence);
 		}
 
