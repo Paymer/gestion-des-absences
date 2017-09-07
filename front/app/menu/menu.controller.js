@@ -4,7 +4,8 @@ export default class MenuCtrl{
         this.$location = $location
         this.logo = {title: "Logo", url: "#"}
         this.frontUrls = frontUrls
-        this.grade = (this.logService.getGrade() === 'Manager')
+        this.grade = (this.logService.getGrade() === 'MANAGER')
+        console.log(this.logService.getGrade())
         
     }
     
