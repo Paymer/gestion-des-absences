@@ -1,9 +1,10 @@
 export default class ModifAbsenceCtrl{
-    constructor(modifAbsenceService,connexionService){ 
+    constructor(modifAbsenceService,connexionService, $location){ 
 
         this.modifAbsenceService = modifAbsenceService;
         this.connexionService = connexionService;
-
+        this.$location = $location;
+        this.today = new Date();
 
         this.inlineOptions = {
             customClass: getDayClass,
@@ -100,6 +101,40 @@ export default class ModifAbsenceCtrl{
     let absence = { dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
     
     this.modifAbsenceService.confirmeEnvoiAbsence(absence)
+    }
+
+    annuler(){
+        this.$location.path("/absence");
+    }
+
+    verrifDateDebutInfDateFin(){
+        if(this.dtDebut < this.dtFin){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    verrifDateDuJour(){
+        
+        if(this.dtDebut.getDay() === this.today.getDay() && this.dtDebut.getMonth() === this.today.getMonth() && this.dtDebut.getFullYear() === this.today.getFullYear() ){
+           
+            return true;
+        }else{
+            
+            return false;
+        }
+    }
+
+    motifPourCongeSansSolde(){
+        
+        if(this.type === "CONGES_SANS_SOLDE" && this.motif == undefined){
+           
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 }
