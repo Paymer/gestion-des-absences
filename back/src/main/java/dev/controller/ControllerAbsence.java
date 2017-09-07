@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import dev.entite.Absence;
 import dev.entite.Absence.Statut;
@@ -45,6 +43,15 @@ public class ControllerAbsence {
 	@GetMapping("/{matriculeEmploye}")
 	public List<Absence> findAbsenceParMatriculeEmploye(@PathVariable String matriculeEmploye) {
 		return this.repoAbsence.findByMatriculeEmploye(matriculeEmploye);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, path = "/suppression/{id}")
+	public String deleteAbsence(@PathVariable Integer id) {
+		
+		// TODO rajouter la vérifications des conditions de suppressions
+		this.repoAbsence.delete(id);
+		
+		return "";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
