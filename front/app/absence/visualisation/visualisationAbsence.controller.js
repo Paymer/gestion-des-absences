@@ -6,9 +6,11 @@ export default class VisualisationAbsenceController {
     }
 
     $onInit() {
-        this.absences = this.visualisationAbsenceService.findAll();
+        this.visualisationAbsenceService.findAll().then(result => this.absences = result);
         this.order = "dateDebut";
         this.triInverse = false;
+        this.congesPayes = this.connexionService.getCongesPayes();
+        this.rtt = this.connexionService.getRtt();
     }
 
     updateOrderEtTri(order) {
@@ -17,11 +19,11 @@ export default class VisualisationAbsenceController {
     }
 
     // Partie suppression de l'absence
-
-    supprimerAbsence(absenceId) {
-        this.visualisationAbsenceService.supprimerAbsence(absenceId);
+    supprimerAbsence(idAbsence) {
+        this.visualisationAbsenceService.supprimerAbsence(idAbsence);
     }
 
+    // Partie modification de l'absence
     modification(idAbsence){
        this.visualisationAbsenceService.modification(idAbsence);
        console.log(idAbsence)

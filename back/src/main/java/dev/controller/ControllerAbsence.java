@@ -26,13 +26,20 @@ import dev.service.ServiceCollaborateur;
 @RequestMapping("/absence")
 public class ControllerAbsence {
 
-	@Autowired
-	private RepositoryAbsence repoAbsence;
+
+
 
 	@Autowired
-	private ServiceAbsence serAbsence;
+	public ControllerAbsence(ServiceAbsence serAbsence, RepositoryAbsence repoAbsence, ServiceCollaborateur serCollaborateur) {
+		super();
+		this.serAbsence = serAbsence;
+		this.repoAbsence = repoAbsence;
+		this.serCollaborateur = serCollaborateur;
+	}
 	
-	@Autowired
+	
+	private ServiceAbsence serAbsence;
+	private RepositoryAbsence repoAbsence;
 	private ServiceCollaborateur serCollaborateur;
 
 	@GetMapping()
@@ -43,6 +50,15 @@ public class ControllerAbsence {
 	@GetMapping("/{matriculeEmploye}")
 	public List<Absence> findAbsenceParMatriculeEmploye(@PathVariable String matriculeEmploye) {
 		return this.repoAbsence.findByMatriculeEmploye(matriculeEmploye);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, path = "/suppression/{id}")
+	public String deleteAbsence(@PathVariable Integer id) {
+		
+		// TODO rajouter la vérifications des conditions de suppressions
+		this.repoAbsence.delete(id);
+		
+		return "";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
