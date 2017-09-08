@@ -26,13 +26,20 @@ import dev.service.ServiceCollaborateur;
 @RequestMapping("/absence")
 public class ControllerAbsence {
 
-	@Autowired
-	private RepositoryAbsence repoAbsence;
+
+
 
 	@Autowired
-	private ServiceAbsence serAbsence;
+	public ControllerAbsence(ServiceAbsence serAbsence, RepositoryAbsence repoAbsence, ServiceCollaborateur serCollaborateur) {
+		super();
+		this.serAbsence = serAbsence;
+		this.repoAbsence = repoAbsence;
+		this.serCollaborateur = serCollaborateur;
+	}
 	
-	@Autowired
+	
+	private ServiceAbsence serAbsence;
+	private RepositoryAbsence repoAbsence;
 	private ServiceCollaborateur serCollaborateur;
 
 	@GetMapping()

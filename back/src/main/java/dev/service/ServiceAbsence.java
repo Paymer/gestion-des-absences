@@ -27,15 +27,14 @@ public class ServiceAbsence {
 	private RepositoryMessageErreur messages;
 	private String service = "Service des Absences";
 
-	
-	private RepositoryAbsence repoAbsence;
-	
+
 	
 	@Autowired
 	public ServiceAbsence(RepositoryAbsence repoAbsence) {
 		super();
 		this.repoAbsence = repoAbsence;
 	}
+	private RepositoryAbsence repoAbsence;
 
 
 	/**method qui va a reviser toutes les conditions pour faire le post*/
