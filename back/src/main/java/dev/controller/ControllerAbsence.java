@@ -110,7 +110,7 @@ public class ControllerAbsence {
 	}
 
 	@RequestMapping(value = "/validation/{matriculeValidateur}/{idAbsence}/{statut}", method = RequestMethod.PATCH, produces = "application/json")
-	public String findAbsenceParMatriculeEmploye(@PathVariable String matriculeValidateur, @PathVariable Integer idAbsence, @PathVariable boolean statut){
+	public String validerAbsenceParMatriculeEmploye(@PathVariable String matriculeValidateur, @PathVariable Integer idAbsence, @PathVariable boolean statut){
 		JSONObject retour = new JSONObject();
 		retour.put("success", false);
 		Optional<Collaborateur> validateur = serCollaborateur.findCollaborateurParMatricule(matriculeValidateur);
