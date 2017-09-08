@@ -138,10 +138,13 @@ export default class ModifAbsenceCtrl{
     //call to the modif Absence service
 
 addAbsence(){
-     
+    this.info ()
+    let absence = {id: this.id, dateDebut:this.debut,dateFin:this.fin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
+    
+    console.log(absence)
      
     //console.log(this.dtDebut,this.dtFin,this.type, this.motif)
-    let absence = {id: this.id, dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
+   
     this.modifAbsenceService.confirmeEnvoiAbsence(absence)
     .then((reponse) =>{
         if(reponse.succes){
@@ -158,6 +161,35 @@ addAbsence(){
     })
     this.$location.path("/absence");
     }
+
+
+
+    info (){
+        
+                //Debut
+                let yeard = this.dtDebut.getFullYear()
+                let monthd= this.formatdate(this.dtDebut.getMonth()+1)
+                let dayd = this.formatdate(this.dtDebut.getDate())
+        
+                //Fin
+                let yearf = this.dtFin.getFullYear()
+                let monthf= this.formatdate(this.dtFin.getMonth()+1)
+                let dayf = this.formatdate(this.dtFin.getDate())
+        
+        
+                this.debut =  yeard +"-"+monthd+"-"+dayd
+                this.fin =  yearf +"-"+monthf+"-"+dayf
+        
+            }
+        
+            formatdate(number){
+                if (number < 10){
+                    return "0"+number;
+                }
+                else{
+                    return number;
+                }
+            }
 
 }
 
