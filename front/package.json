@@ -42,8 +42,8 @@
     "angular-route": "^1.6.4",
     "angular-ui-bootstrap": "^2.5.0",
     "bootstrap": "^3.3.7",
+    "html-loader": "^0.5.1",
     "jssha": "^2.3.1",
     "lodash": "^4.17.4"
   }
 }
-
