@@ -3,6 +3,11 @@
 </div>
 <div class="modal-body" id="modal-body">
     <h4>Confirmez-vous la suppression de la demande suivante ?</h4>
+    <ul>
+        <li>Date de début : {{$ctrl.absence.dateDebut}}</li>
+        <li>Date de fin : {{$ctrl.absence.dateFin}}</li>
+        <li>Type de congés : {{$ctrl.absence.type}}</li>
+    </ul>
 </div>
 <div class="modal-footer">
     <button class="btn btn-danger" type="button" ng-click="$ctrl.annuler()">Annuler</button>

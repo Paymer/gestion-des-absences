@@ -125,7 +125,7 @@ public class Absence {
 	@Override
 	public String toString() {
 		return "Absence [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", type=" + type
-				+ ", idEmploye=" + matriculeEmploye + ", motif=" + motif + ", statut=" + statut + "]";
+				+ ", matriculeEmploye=" + matriculeEmploye + ", motif=" + motif + ", statut=" + statut + "]";
 	}
 	
 	

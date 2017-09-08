@@ -20,6 +20,9 @@ export default class ValidationAbsenceController {
     }
 
     setAbsence(idAbsence, statut) {
+		this.errorMaj = false
+		this.errorServeur = false;
+		
         this.validation.setStatutDemande(idAbsence, statut)
 		.then((response) => {
 			if(response.success){

@@ -5,6 +5,7 @@ export default class DemandeAbsenceCtrl{
         this.connexionService = connexionService;
         this.$location = $location;
         this.today = new Date();
+		this.titre = "Demande d'absence"
 
         this.inlineOptions = {
             customClass: getDayClass,
@@ -94,7 +95,6 @@ export default class DemandeAbsenceCtrl{
     this.inlineOptions.minDate = this.inlineOptions.minDate ? null : new Date();
     this.dateOptions.minDate = this.inlineOptions.minDate;
   };
-
 
     annuler(){
         this.$location.path("/absence");

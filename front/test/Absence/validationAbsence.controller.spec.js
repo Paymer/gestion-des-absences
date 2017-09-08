@@ -3,9 +3,9 @@ describe('test validation absence controller', () => {
 		angular.mock.module('app')
 	})
 
-	it('test init', angular.mock.inject($componentController => {
+	it('test init', angular.mock.inject(($componentController, $q) => {
 
-		const promess = new Promise(resolve => resolve([
+		const promess = $q(resolve => resolve([
 				{id: 2}
 			]))
 
@@ -23,10 +23,10 @@ describe('test validation absence controller', () => {
 
 	}))
 
-	it('test setAbsence', angular.mock.inject(($componentController) => {
+	it('test setAbsence', angular.mock.inject(($componentController, $q) => {
 
-		const promessStatut = new Promise(resolve => resolve({success: true}))
-		const promessFind = new Promise(resolve => resolve([
+		const promessStatut = $q(resolve => resolve({success: true}))
+		const promessFind = $q(resolve => resolve([
 				{id: 2}
 			]))
 
