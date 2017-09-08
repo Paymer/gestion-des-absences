@@ -1,6 +1,6 @@
 export default class ModifAbsenceService{
 
-constructor(apiUrls,$resource){
+constructor(apiUrls, $resource){
     this.url = apiUrls.modifAbsence;
     this.$resource = $resource;
     this.modifAbsenceRessource = this.$resource(this.url, {absenceId: "@id"}, {
@@ -9,7 +9,7 @@ constructor(apiUrls,$resource){
 }
 
 confirmeEnvoiAbsence(absence){
-    this.modifAbsenceRessource.update(absence);
+    return this.modifAbsenceRessource.update(absence).$promise;
    
 }
 

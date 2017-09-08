@@ -44,8 +44,8 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .service("suppressionAbsenceService", suppressionAbsenceService)
 
     //Components
-    .component('accueil', AccueilComponent)
-    .component('demandeAbsence',DemandeAbsenceComponent)
+    .component('accueilComponent', AccueilComponent)
+    .component('demandeAbsenceComponent',DemandeAbsenceComponent)
     .component('connexionComponent', ConnexionComponent)
     .component("visualisationAbsenceComponent", visualisationAbsenceComponent)
     .component('modifAbsenceComponent',modifAbsenceComponent)

@@ -1,9 +1,9 @@
 package controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
-
-import java.time.LocalDate;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,6 @@ import dev.App;
 import dev.controller.ControllerAbsence;
 import dev.entite.Absence;
 import dev.entite.Absence.Statut;
-import dev.entite.Absence.TypeAbsence;
 import dev.repository.RepositoryAbsence;
 import dev.service.ServiceAbsence;
 import dev.service.ServiceCollaborateur;
@@ -45,6 +44,12 @@ public class ControllerAbsenceTest {
 	
 	
 	
+	/**
+	 * 
+	 * Test liste des absence
+	 * 
+	 */
+
 	@Test
 	public void listerAbsenceTest(){
 
@@ -53,6 +58,12 @@ public class ControllerAbsenceTest {
 			
 	}
 	
+	/**
+	 * 
+	 * Test find absence par matricule
+	 * 
+	 */
+
 	@Test
 	public void findAbsenceParMatriculeEmployeTest(){
 
@@ -67,24 +78,25 @@ public class ControllerAbsenceTest {
 	 * Test du method POST
 	 */
 	@Test
-	public void ajoutAbsenceTest(){
+	public void ajoutAbsenceSuccesTest() {
 		Absence absence = new Absence();
-		
-		absence.setId(1);
-		absence.setStatut(Statut.VALIDEE);
-		absence.setDateDebut(LocalDate.of(2017, 5, 6));
-		absence.setDateFin(LocalDate.of(2017, 6, 9));
-		absence.setMatriculeEmploye("M011");
-		absence.setMotif(null);
-		absence.setType(TypeAbsence.RTT);
 		when(mockServiceAbsence.conditions(absence)).thenReturn(true);
-		//call method PUT
-		ctrlAbsence.ajoutAbsence(absence);
+		// call method POST
+		assertThat(ctrlAbsence.ajoutAbsence(absence)).isEqualTo("{\"succes\" : true}");
 		assertThat(absence.getStatut()).isEqualTo(Statut.INITIALE);
-		
 		verify(mockRepositoryAbsence).save(absence);
+
+	}
+
+	@Test
+	public void ajoutAbsenceFailTest() {
+		Absence absence = new Absence();
+		when(mockServiceAbsence.conditions(absence)).thenReturn(false);
+		// call method POST
+		assertThat(ctrlAbsence.ajoutAbsence(absence)).isEqualTo("{\"succes\" : false}");
+		assertThat(absence.getStatut()).isNull();
 		
-		
+
 	}
 	
 	
@@ -92,23 +104,27 @@ public class ControllerAbsenceTest {
 	 * Test du method PUT
 	 */
 	@Test
-	public void modifyAbsenceTest(){
+	public void modifyAbsenceSuccesTest() {
+
 		Absence absence = new Absence();
-		
-		absence.setId(1);
-		absence.setStatut(Statut.VALIDEE);
-		absence.setDateDebut(LocalDate.of(2017, 5, 6));
-		absence.setDateFin(LocalDate.of(2017, 6, 9));
-		absence.setMatriculeEmploye("M011");
-		absence.setMotif(null);
-		absence.setType(TypeAbsence.RTT);
 		when(mockServiceAbsence.conditions(absence)).thenReturn(true);
 		//call method PUT
-		ctrlAbsence.modifyAbsence(1, absence);
+		assertThat(ctrlAbsence.modifyAbsence(1, absence)).isEqualTo("{\"succes\" : true}");
 		assertThat(absence.getStatut()).isEqualTo(Statut.INITIALE);
 		
 		verify(mockRepositoryAbsence).save(absence);
 		
 		
+	}
+
+	@Test
+	public void modifyAbsenceFailTest() {
+
+		Absence absence = new Absence();
+		when(mockServiceAbsence.conditions(absence)).thenReturn(false);
+		// call method PUT
+		assertThat(ctrlAbsence.modifyAbsence(1, absence)).isEqualTo("{\"succes\" : false}");
+		assertThat(absence.getStatut()).isNull();
+
 	}
 }
