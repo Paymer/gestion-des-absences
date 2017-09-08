@@ -41,13 +41,16 @@ export default class VisualisationAbsenceService {
         })
     }
 
-    supprimerAbsence(idAbsence) {
+    supprimerAbsence(idAbsence, dateDebut, dateFin, type) {
         this.$uibModal.open({
             template: suppressionAbsenceTemplate,
             controller: SuppressionAbsenceController,
             controllerAs: '$ctrl',
             resolve: {
-                idAbsence: idAbsence
+                idAbsence: () => idAbsence,
+                dateDebut: () => dateDebut,
+                dateFin: () => dateFin,
+                type: () => type
             }
         });
     }

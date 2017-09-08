@@ -87,7 +87,7 @@
                             <a ng-click='$ctrl.modification(absence.id)' href="./absence/modification"><span class="glyphicon glyphicon-pencil"></span></a>
                         </span>
                         <span ng-if="action == 'suppression'">
-                            <a href="#" ng-click="$ctrl.supprimerAbsence(absence.id)"><span class="glyphicon glyphicon-trash"></span></a>
+                            <a href="#" ng-click="$ctrl.supprimerAbsence(absence.id, absence.dateDebut, absence.dateFin, absence.type)"><span class="glyphicon glyphicon-trash"></span></a>
                         </span>
                         <span ng-if="action == 'visualisation'">
                             <a href="http://lienVersLApplicationDeGestionDesMissions/visualisation"><span class="glyphicon glyphicon-eye-open"></span></a>
