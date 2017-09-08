@@ -25,18 +25,20 @@ export default class ConnexionController {
 				this.apiUrls.connexion + '/' + this.email + '/' + password
 			this.$http.get(urlCheckConnexion, {})
 				.then(result => {
-					return result.data
-				},
-					() => this.errorServer = true)
-				.then(user => {
+					let user = result.data
 					if (user.matricule) {
 						this.connexion.connecter(user.matricule, user.nom,
-							user.prenom, user.grade, user.email, user.departement, user.congesPayes,
+							user.prenom, user.grade, user.email,
+							user.departement, user.congesPayes,
 							user.rtt)
 						this.$location.path('/')
 					} else {
 						this.error = true
 					}
+				},
+					() => {
+					this.error = false
+					this.errorServer = true
 				})
 		}
 	}
