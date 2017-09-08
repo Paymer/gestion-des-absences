@@ -95,12 +95,6 @@ export default class DemandeAbsenceCtrl{
     this.dateOptions.minDate = this.inlineOptions.minDate;
   };
 
-  addAbsence(){
-
-    this.demandeAbsenceService.confirmeEnvoiAbsence(absence)
-    this.$location.path("/absence");
-    }
-
     annuler(){
         this.$location.path("/absence");
     }

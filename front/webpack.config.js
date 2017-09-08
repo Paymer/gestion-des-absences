@@ -32,7 +32,7 @@ module.exports = {
                 query: {
                     presets: [['env', {
                         modules: false,
-                        targets: { browsers: ["last 2 versions"] }
+                        targets: "ie" 
                     }]]
                 }
             },

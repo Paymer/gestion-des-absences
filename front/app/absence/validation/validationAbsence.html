@@ -2,8 +2,20 @@
 <h1 class="text-center">Validation des demandes</h1>
 
 <div class="container">
+	
+	<div class="row" ng-show="$ctrl.errorMaj">
+		<span class="col-xs-12 alert alert-danger">
+			La demande n'a pas pu être mise à jour...
+		</span>
+	</div>
 
-    <table class="table table-striped table-bordered">
+	<div class="row" ng-show="$ctrl.errorServeur">
+		<span class="col-xs-12 alert alert-danger">
+			La connexion avec le serveur a échoué !
+		</span>
+	</div>
+	
+    <table ng-show="$ctrl.absences" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>
@@ -88,7 +100,7 @@
 					</a>
 					<a class="col-xs-6"
 					   href="#"
-					   ng-click="$ctrl.setAbsence(absence.idAbsence, false)"
+					   ng-click="$ctrl.setAbsence(absence.id, false)"
 					   style="text-align: center; color: red;">
 						<span class="glyphicon glyphicon-remove"></span>
 					</a>
@@ -96,17 +108,5 @@
             </tr>
         </tbody>
     </table>
-
-	<div class="row" ng-show="$ctrl.errorMaj">
-		<span class="col-xs-12 alert alert-danger">
-			La demande n'a pas pu être mise à jour...
-		</span>
-	</div>
-
-	<div class="row" ng-show="$ctrl.errorServeur">
-		<span class="col-xs-12 alert alert-danger">
-			La connexion avec le serveur a échoué !
-		</span>
-	</div>
 
 </div>
