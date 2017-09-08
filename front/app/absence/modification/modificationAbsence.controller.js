@@ -8,6 +8,7 @@ export default class ModifAbsenceCtrl{
         this.$location = $location;
         this.today = new Date();
         this.id = this.visualService.idModif;
+		this.titre = "Modification d'absence"
 
         this.inlineOptions = {
             customClass: getDayClass,

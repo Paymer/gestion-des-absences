@@ -5,6 +5,7 @@ export default class DemandeAbsenceCtrl{
         this.connexionService = connexionService;
         this.$location = $location;
         this.today = new Date();
+		this.titre = "Demande d'absence"
 
         this.inlineOptions = {
             customClass: getDayClass,
