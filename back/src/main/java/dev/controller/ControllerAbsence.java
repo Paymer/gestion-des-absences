@@ -1,6 +1,7 @@
 package dev.controller;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,8 +56,13 @@ public class ControllerAbsence {
 	@RequestMapping(method = RequestMethod.DELETE, path = "/suppression/{id}")
 	public String deleteAbsence(@PathVariable Integer id) {
 		
-		// TODO rajouter la vérifications des conditions de suppressions
-		this.repoAbsence.delete(id);
+		
+		Absence absence = this.repoAbsence.findOne(id);
+		
+		// Si l'absence n'est pas une Mission et que la date de début est après la date d'aujourd'hui
+		if(!absence.getType().equals("MISSION") && absence.getDateDebut().isAfter(LocalDate.now())) {
+			this.repoAbsence.delete(id);
+		}
 		
 		return "";
 	}
