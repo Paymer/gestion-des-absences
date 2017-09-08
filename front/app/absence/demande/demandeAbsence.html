@@ -62,7 +62,13 @@
         </div>
       </div>
     </div>
-    
+    <div  ng-show="$ctrl.notvalid " class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{$ctrl.error}}
+    </div>
+  </div>
+</div>
   </form>
     <!-- Button (Double) -->
     <div class="form-group">
