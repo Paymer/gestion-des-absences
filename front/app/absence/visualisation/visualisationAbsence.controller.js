@@ -20,7 +20,7 @@ export default class VisualisationAbsenceController {
 
     // Partie suppression de l'absence
     supprimerAbsence(idAbsence, dateDebut, dateFin, type) {
-        this.visualisationAbsenceService.supprimerAbsence(idAbsence, dateDebut, dateFin, type);
+        this.visualisationAbsenceService.supprimerAbsence(idAbsence);
     }
 
     // Partie modification de l'absence
