@@ -9,7 +9,7 @@ constructor(apiUrls,$resource){
 }
 
 confirmeEnvoiAbsence(absence){
-    this.modifAbsenceRessource.update(absence);
+    return this.modifAbsenceRessource.update(absence).$promise;
    
 }
 

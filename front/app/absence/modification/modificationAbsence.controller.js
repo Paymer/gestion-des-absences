@@ -18,7 +18,7 @@ export default class ModifAbsenceCtrl{
         this.dateOptions = {
             dateDisabled: disabled,
             formatYear: 'yy',
-            maxDate: new Date(2020, 5, 22),
+            maxDate: new Date(this.today.getFullYear()+ 3, this.today.getMonth(), this.today.getDate()), 
             minDate: new Date(),
             startingDay: 1
         };
@@ -142,6 +142,19 @@ addAbsence(){
     //console.log(this.dtDebut,this.dtFin,this.type, this.motif)
     let absence = {id: this.id, dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
     this.modifAbsenceService.confirmeEnvoiAbsence(absence)
+    .then((reponse) =>{
+        if(reponse.succes){
+            
+            this.$location.path("/absence");
+        }else{
+            this.error ="erreur de l'ajout de l'absence"
+            this.notvalid = true;
+        }
+       
+    },() =>{
+        this.error ="Server Problem"
+        this.notvalid = true; 
+    })
     this.$location.path("/absence");
     }
 

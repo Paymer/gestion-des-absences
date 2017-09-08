@@ -27,7 +27,7 @@ public class ServiceTraitementNuit {
 	
 	private String service = "Traitement de Nuit";
 	
-	@Scheduled(cron = "0 */10 * * * *")
+	@Scheduled(cron = "0 */1 * * * *")
 	public Boolean passerNuit() {
 		List<Absence> listeAbsences = repoAbsences.findAll();
 		listeAbsences.forEach(this::gererAbsence);

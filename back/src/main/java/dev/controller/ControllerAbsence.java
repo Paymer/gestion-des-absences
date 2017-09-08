@@ -66,11 +66,13 @@ public class ControllerAbsence {
 		// vérifie que les conditions de l'ajout d'une absence sont correcte
 		if (serAbsence.conditions(newAbsence)) {
 			// création d'une demande le statut est à initiale
+			System.out.println(newAbsence.toString());
 			newAbsence.setStatut(Statut.INITIALE);
 			repoAbsence.save(newAbsence);
+			return "{\"succes\" : true}";
 		}
 
-		return "";
+		return "{\"succes\" : false}";
 
 	}
 
@@ -83,9 +85,10 @@ public class ControllerAbsence {
 			newAbsence.setStatut(Statut.INITIALE);
 			// addObject
 			repoAbsence.save(newAbsence);
+			return "{\"succes\" : true}";
 		}
-		
-		return "";
+
+		return "{\"succes\" : false}";
 
 	}
 

@@ -1,6 +1,6 @@
 export default class DemandeAbsenceCtrl{
     constructor(demandeAbsenceService,connexionService,$location){ 
-
+        this.notvalid=false
         this.demandeAbsenceService = demandeAbsenceService;
         this.connexionService = connexionService;
         this.$location = $location;
@@ -11,11 +11,11 @@ export default class DemandeAbsenceCtrl{
             minDate: new Date(),
             showWeeks: true
         };
-
+        
         this.dateOptions = {
             dateDisabled: disabled,
             formatYear: 'yy',
-            maxDate: new Date(2020, 5, 22),
+            maxDate: new Date(this.today.getFullYear()+ 3, this.today.getMonth(), this.today.getDate()), 
             minDate: new Date(),
             startingDay: 1
         };
@@ -95,11 +95,6 @@ export default class DemandeAbsenceCtrl{
     this.dateOptions.minDate = this.inlineOptions.minDate;
   };
 
-  addAbsence(){
-
-    this.demandeAbsenceService.confirmeEnvoiAbsence(absence)
-    this.$location.path("/absence");
-    }
 
     annuler(){
         this.$location.path("/absence");
@@ -136,16 +131,27 @@ export default class DemandeAbsenceCtrl{
     }
 
 
-
-
-
-
  addAbsence(){
      
     
     let absence = { dateDebut:this.dtDebut,dateFin:this.dtFin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
+    console.log (this.dtDebut)
+    console.log (this.dtFin)
     
     this.demandeAbsenceService.confirmeEnvoiAbsence(absence)
-    this.$location.path("/absence");
+    .then((reponse) =>{
+        if(reponse.succes){
+            
+            this.$location.path("/absence");
+        }else{
+            this.error ="erreur de l'ajout de l'absence"
+            this.notvalid = true;
+        }
+       
+    },() =>{
+        this.error ="Server Problem"
+        this.notvalid = true; 
+    })
+
     }
 }

@@ -8,7 +8,7 @@ constructor(apiUrls,$resource){
 }
 
 confirmeEnvoiAbsence(absence){
-    this.demandeAbsenceRessource.save(absence);
+   return this.demandeAbsenceRessource.save(absence).$promise;
 }
 
 
