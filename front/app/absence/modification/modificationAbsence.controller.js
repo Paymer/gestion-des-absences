@@ -16,10 +16,7 @@ export default class ModifAbsenceCtrl{
         this.phFin = this.visualService.absenceModifFin;
         this.type = this.visualService.absenceModifType;
         this.phMotif = this.visualService.absenceModifMotif;
-        console.log(this.phInit);
-        console.log(this.phFin);
-        console.log(this.phType);
-        console.log(this.phMotif);
+       
 
 		this.titre = "Modification d'absence"
 

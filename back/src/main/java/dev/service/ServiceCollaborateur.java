@@ -115,6 +115,10 @@ public class ServiceCollaborateur {
 		return this.listeCollaborateurs.stream().filter(c -> c.getMatricule().equals(matricule)).findAny();
 	}
 
+	public Optional<Collaborateur> findCollaborateurParDepartement(String departement) {
+		return this.listeCollaborateurs.stream().filter(c -> c.getDepartement().equals(departement)).findAny();
+	}
+	
 	public Optional<Collaborateur> checkAuth(String email, String password) {
 		return this.listeCollaborateurs.stream()
 				.filter(c -> c.getEmail().equalsIgnoreCase(email)
