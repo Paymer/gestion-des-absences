@@ -1,3 +1,14 @@
+<style>
+	nav.navbar a:hover{
+		cursor: pointer;
+	}
+	
+	nav li div.row{
+		margin-left: 10px;
+		text-align: center;
+	}
+</style>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -29,7 +40,16 @@
         <li ng-if="$ctrl.grade"><a ng-click="$ctrl.rediriger('rapport')"><span class = "glyphicon glyphicon-paperclip"></span> Vues synthétiques</a></li>
 
         <li><a ng-click="$ctrl.rediriger('ferie')"><span class = "glyphicon glyphicon-info-sign"></span> Jours feriés</a></li>
-        <li><a ng-click="$ctrl.deconnecter()" style = "color:red"><span class = "glyphicon glyphicon-off"></span> Se déconnecter</a></li>
+        <li>
+			<div class="row">
+				Bonjour {{$ctrl.logService.getPrenom()}}
+			</div>
+			<div class="row">
+				<a ng-click="$ctrl.deconnecter()" style = "color:red">
+					<span class = "glyphicon glyphicon-off"></span> Se déconnecter
+				</a>
+			</div>
+		</li>
       </ul>
       
     </div><!-- /.navbar-collapse -->
