@@ -48,12 +48,18 @@ export default class VisualisationAbsenceService {
 
     // Transforme les dates du format yyyy-MM-DD au format DD/MM/yyyy
     transformerDate(absences) {
+
+        // Est utile pour le tri du tableau des absences d'un point de vue ihm uniquement
         absences.forEach(a => {
-            // let dateDebut = new Date(a.dateDebut);
-            let dArr = a.dateDebut.split("-");  // ex input "2010-01-18"
-            a.dateDebut = dArr[2]+ "/" +dArr[1]+ "/" +dArr[0]; //ex out: "18/01/10"
-            let dArr2 = a.dateFin.split("-");  // ex input "2010-01-18"
-            a.dateFin = dArr2[2]+ "/" +dArr2[1]+ "/" +dArr2[0]; //ex out: "18/01/10"
+            a.dateDebutOriginal = a.dateDebut;
+            a.dateFinOriginal = a.dateFin;
+        })
+
+        absences.forEach(a => {
+            let dArr = a.dateDebut.split("-"); 
+            a.dateDebut = dArr[2]+ "/" +dArr[1]+ "/" +dArr[0];
+            let dArr2 = a.dateFin.split("-"); 
+            a.dateFin = dArr2[2]+ "/" +dArr2[1]+ "/" +dArr2[0];
         })
     }
 
