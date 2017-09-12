@@ -10,4 +10,17 @@ INSERT INTO absence (date_debut, date_fin, type, matricule_employe, motif, statu
   ('2017-10-04', '2017-10-23', 'CONGES_SANS_SOLDE', 'f26eac86', 'Quelqu"un a une idée ?', 'INITIALE'),
   ('2017-11-06', '2017-11-24', 'MISSION', '740ef3fd', 'Je galère... :-(', 'VALIDEE'),
   ('2017-12-06', '2017-12-24', 'CONGES_PAYES', 'e353c695', 'Je galère... :-(', 'EN_ATTENTE_VALIDATION'),
-  ('2017-12-06', '2017-12-24', 'MISSION', 'bd540e65', 'Je galère... :-(', 'INITIALE');
+  ('2017-12-06', '2017-12-24', 'MISSION', 'bd540e65', 'Je galère... :-(', 'INITIALE'),
+  ('2016-05-01', null, 'JOUR_FERIE', null, 'Fête du travail', 'VALIDEE'),
+  ('2017-07-14', null, 'JOUR_FERIE', null, 'Fête nationale', 'VALIDEE'),
+  ('2017-05-02', null, 'RTT_EMPLOYEUR', null, 'Pont 1', 'INITIALE'),
+  ('2016-07-13', null, 'RTT_EMPLOYEUR', null, 'Pont 2', 'VALIDEE');
+
+INSERT INTO message_erreur (date, service_origine, message) VALUES
+('2015-05-14 00:00:08', "Traitement de nuit", "message 1"),
+('2016-08-30 01:01:01', "Traitement de nuit", "message 2"),
+('2016-12-11 00:00:07', "Traitement de nuit", "message 3"),
+('2017-01-18 00:00:03', "Traitement de nuit", "message 4"),
+('2017-01-01 00:00:02', "Traitement de nuit", "message 5"),
+('2017-03-17 00:00:01', "Traitement de nuit", "message 6"),
+('2017-09-12 01:00:00', "Traitement de nuit", "message 7");
