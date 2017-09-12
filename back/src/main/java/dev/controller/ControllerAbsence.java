@@ -57,21 +57,24 @@ public class ControllerAbsence {
 	public String deleteAbsence(@PathVariable Integer id) {
 		
 		
-		Absence absence = this.repoAbsence.findOne(id);
+		JSONObject retour = new JSONObject();
+		retour.put("success", false);
 		
+		Absence absence = this.repoAbsence.findOne(id);
 		// Si l'absence n'est pas une Mission et que la date de début est après la date d'aujourd'hui
 		if(!absence.getType().equals("MISSION") && absence.getDateDebut().isAfter(LocalDate.now())) {
 			this.repoAbsence.delete(id);
+			retour.put("success", true);
 		}
 		
-		return "";
+		return retour.toString();
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/demande", consumes = "application/json;charset=UTF-8")
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
 		// vérifie que les conditions de l'ajout d'une absence sont correcte
-		System.out.println(serAbsence.conditions(newAbsence));
-		System.out.println(newAbsence.toString());
+
+
 		if (serAbsence.conditions(newAbsence)) {
 			// création d'une demande le statut est à initiale
 

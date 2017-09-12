@@ -1,3 +1,37 @@
 
 
 <h1 class="accueil">{{$ctrl.titre}}</h1>
+<br>
+<div class="container">
+	<div>
+		Afficher les messages des
+		<select ng-model="$ctrl.messageDelai"  ng-change="$ctrl.loadMessages()">
+			
+			
+		
+			<option ng-repeat="n in $ctrl.rangeValues" ng-value="n">{{n}}</option>
+ 
+		</select>
+		dernières semaines
+	</div>
+	<br>
+	<div class="alert alert-info" ng-show="$ctrl.messages.length === 0">
+		Il n'y a aucun message remontant aux {{$ctrl.messageDelai}} dernières semaines !
+	</div>
+	<table class="table table-hover table-bordered" ng-show="$ctrl.messages.length > 0">
+		<thead>
+			<tr style="background-color: #f5f5f5">
+				<td>Date</td>
+				<td>Service</td>
+				<td>Message</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="message in $ctrl.messages">
+				<td>{{message.date}}</td>
+				<td>{{message.service}}</td>
+				<td>{{message.message}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

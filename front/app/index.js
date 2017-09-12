@@ -9,7 +9,7 @@ import ngResource from "angular-resource"
 import jssha  from 'jssha'
 
 //Components
-import { AccueilComponent } from './accueil/accueil.component'
+import AccueilComponent from './accueil/accueil.component'
 import ConnexionComponent from './connexion/connexion.component'
 import visualisationAbsenceComponent from "./absence/visualisation/visualisationAbsence.component"
 import DemandeAbsenceComponent from './absence/demande/demandeAbsence.component'
@@ -25,6 +25,7 @@ import visualisationAbsenceService from "./absence/visualisation/visualisationAb
 import suppressionAbsenceService from "./absence/visualisation/suppression/suppressionAbsence.service"
 import modifAbsenceService from "./absence/modification/modificationAbsence.service"
 import validationAbsenceService from "./absence/validation/validationAbsence.service"
+import messageService from './accueil/message.service'
 
 //Modules
 import menuModule from './menu/menu.module'
@@ -42,6 +43,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .service("modifAbsenceService",modifAbsenceService)
     .service("validationAbsenceService",validationAbsenceService)
     .service("suppressionAbsenceService", suppressionAbsenceService)
+	.service("messageService", messageService)
 
     //Components
     .component('accueilComponent', AccueilComponent)

@@ -7,6 +7,8 @@ const apiUrls = {
 
 	connexion: API_URL + '/connexion',
 	
+    congesEtRtt: API_URL + '/conges-et-rtt',
+	
 	message: API_URL + '/message'
 }
 

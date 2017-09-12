@@ -9,8 +9,13 @@ export default class VisualisationAbsenceController {
         this.visualisationAbsenceService.findAll().then(result => this.absences = result);
         this.order = "dateDebut";
         this.triInverse = false;
-        this.congesPayes = this.connexionService.getCongesPayes();
-        this.rtt = this.connexionService.getRtt();
+
+        this.connexionService.getCongesPayesEtRttFromBase()
+                              .then(result => {
+                                    let res = result.data
+                                    this.congesPayes = res.congesPayes;
+                                    this.rtt = res.rtt;
+                               });
     }
 
     updateOrderEtTri(order) {

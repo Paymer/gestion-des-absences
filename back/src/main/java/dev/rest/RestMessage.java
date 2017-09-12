@@ -19,14 +19,17 @@ public class RestMessage {
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public String getMessages(){
 		JSONArray jsonArrayMessage = new JSONArray();
-		repoMessages.findAll().forEach(currentMessage -> {
-			JSONObject jsonCurrentMessage = new JSONObject();
-			jsonCurrentMessage.put("id", currentMessage.getId())
-				.put("date", currentMessage.getDate())
-				.put("service", currentMessage.getServiceOrigine())
-				.put("message", currentMessage.getMessage());
-			jsonArrayMessage.put(jsonCurrentMessage);
-		});
+		repoMessages.findAll()
+			.stream()
+			.sorted((m1, m2) -> m2.getDate().compareTo(m1.getDate()))
+			.forEach(currentMessage -> {
+				JSONObject jsonCurrentMessage = new JSONObject();
+				jsonCurrentMessage.put("id", currentMessage.getId())
+					.put("date", currentMessage.getDate())
+					.put("service", currentMessage.getServiceOrigine())
+					.put("message", currentMessage.getMessage());
+				jsonArrayMessage.put(jsonCurrentMessage);
+			});
 		return jsonArrayMessage.toString();
 	}
 	
