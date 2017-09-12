@@ -13,8 +13,12 @@ export default class ModifAbsenceCtrl{
 
         //placeholders
         this.phInit =new Date(this.visualService.absenceModifInit);
+        
         this.phFin = new Date(this.visualService.absenceModifFin);
         this.phType = this.visualService.absenceModifType;
+        console.log(this.phInit);
+        console.log(this.phFin);
+        console.log(this.phType);
 
 		this.titre = "Modification d'absence"
 
