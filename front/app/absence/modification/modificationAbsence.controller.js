@@ -106,7 +106,7 @@ export default class ModifAbsenceCtrl{
     }
 
     verrifDateDebutInfDateFin(){
-        if(this.dtDebut < this.dtFin){
+        if(this.dtDebut <= this.dtFin){
             return true;
         }else{
             return false;

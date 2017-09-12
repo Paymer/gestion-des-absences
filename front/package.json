@@ -21,7 +21,6 @@
     "babel-preset-env": "^1.4.0",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.1",
-    "file-loader": "^0.11.1",
     "jasmine-core": "^2.8.0",
     "json-server": "^0.10.0",
     "karma": "^1.7.1",
@@ -44,6 +43,7 @@
     "bootstrap": "^3.3.7",
     "html-loader": "^0.5.1",
     "jssha": "^2.3.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "file-loader": "^0.11.1"
   }
 }
