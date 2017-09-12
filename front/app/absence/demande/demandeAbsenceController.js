@@ -23,7 +23,7 @@ export default class DemandeAbsenceCtrl{
             dateDisabled: disabled,
             formatYear: 'yy',
             maxDate: new Date(this.today.getFullYear()+ 3, this.today.getMonth(), this.today.getDate()), 
-            minDate: new Date(),
+            minDate: new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()+1),
             startingDay: 1
         };
 
@@ -107,7 +107,7 @@ export default class DemandeAbsenceCtrl{
     }
 
     verrifDateDebutInfDateFin(){
-        if(this.dtDebut < this.dtFin){
+        if(this.dtDebut <= this.dtFin){
             return true;
         }else{
             return false;

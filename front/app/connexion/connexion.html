@@ -1,4 +1,8 @@
 <style>
+	
+	div.container{
+		padding: 0;
+	}
 
 	div.connexion-frame{
 		margin-top: 3%;
@@ -8,22 +12,25 @@
 	div.connexion-frame div{
 		text-align: center;
 	}
+	
+	.row.logo img{
+		display: inline-block;
+	}
 
 	.row.logo{
 		border: 1px solid #666;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
+		text-align: center;
 	}
 	
 	form .error{
 		color: red;
 	}
 </style>
-<div class="container-fluid">
-	<div class="connexion-frame col-xs-10 col-xs-offset-1">
+
+<div class="container">
+	<div class="connexion-frame col-sm-10 col-sm-offset-1">
 		<div class="row logo">
-			<img class="img-responsive" ng-src="../../logo.png"/>
+			<img class="img img-responsive" ng-src="/gestion-des-absences/assets/logo.png"/>
 		</div>
 		<div class="row">
 			<h1>GDA</h1>

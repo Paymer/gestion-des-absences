@@ -1,12 +1,13 @@
 export default class ModifAbsenceCtrl{
     
-    constructor(modifAbsenceService,connexionService, $location, visualisationAbsenceService ){ 
+    constructor(modifAbsenceService,connexionService, $location, visualisationAbsenceService, $window){ 
         this.visualService = visualisationAbsenceService;
         //tout = 
         this.modifAbsenceService = modifAbsenceService;
         this.connexionService = connexionService;
         this.$location = $location;
         this.today = new Date();
+        this.$window = $window;
         //identification of the absence to modify
         this.id = this.visualService.absenceModifId;
 
@@ -14,8 +15,6 @@ export default class ModifAbsenceCtrl{
         this.phInit =new Date(this.visualService.absenceModifInit);
         this.phFin = new Date(this.visualService.absenceModifFin);
         this.phType = this.visualService.absenceModifType;
-        
-
 
 		this.titre = "Modification d'absence"
 
@@ -115,7 +114,7 @@ export default class ModifAbsenceCtrl{
     }
 
     verrifDateDebutInfDateFin(){
-        if(this.dtDebut < this.dtFin){
+        if(this.dtDebut <= this.dtFin){
             return true;
         }else{
             return false;
@@ -150,7 +149,7 @@ addAbsence(){
     this.info ()
     let absence = {id: this.id, dateDebut:this.debut,dateFin:this.fin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
     
-    console.log(absence)
+    // console.log(absence)
      
     //console.log(this.dtDebut,this.dtFin,this.type, this.motif)
    
@@ -159,8 +158,9 @@ addAbsence(){
         if(reponse.succes){
             
             this.$location.path("/absence");
+            this.$window.location.reload();
         }else{
-            this.error ="erreur de l'ajout de l'absence"
+            this.error = "erreur de l'ajout de l'absence"
             this.notvalid = true;
         }
        

@@ -1,5 +1,10 @@
 export default class ConnexionService{
 	
+	constructor(apiUrls, $http) {
+		this.apiUrls = apiUrls;
+		this.$http = $http;
+	}
+
 	connecter(matricule, nom, prenom, grade, email, departement, congesPayes, rtt){
 		sessionStorage.setItem('session', true)
 		sessionStorage.setItem('matricule', matricule)
@@ -51,5 +56,22 @@ export default class ConnexionService{
 	
 	getRtt(){
 		return sessionStorage.getItem('rtt')
+	}
+
+	getCongesPayesEtRttFromBase() {
+		if(this.isConnecte()) {
+
+			let matricule = this.getMatricule();
+
+			return this.$http.get(this.apiUrls.congesEtRtt + "/" + matricule, {});
+		}
+	}
+
+	setCongesPayes(congesPayes) {
+		sessionStorage.setItem('congesPayes', congesPayes)
+	}
+
+	setRtt(rtt) {
+		sessionStorage.setItem('rtt', rtt)
 	}
 }

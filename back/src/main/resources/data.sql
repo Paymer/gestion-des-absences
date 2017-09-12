@@ -1,5 +1,8 @@
 INSERT INTO absence (date_debut, date_fin, type, matricule_employe, motif, statut) VALUES
   ('2017-05-01', '2017-05-04', 'RTT', '6c8be60e', 'Maladie youpi', 'INITIALE'),
+  ('2017-10-10', '2017-10-12', 'RTT', '6c8be60e', 'Maladie youpi', 'INITIALE'),
+  ('2017-05-15', '2017-05-19', 'CONGES_PAYES', '6c8be60e', 'Maladie youpi', 'INITIALE'),
+  ('2017-05-25', '2017-05-26', 'MISSION', '6c8be60e', 'Maladie youpi', 'INITIALE'),
   ('2017-06-02', '2017-06-06', 'RTT', '7befca85', 'Un motif', 'EN_ATTENTE_VALIDATION'),
   ('2017-07-03', '2017-07-12', 'CONGES_PAYES', '89dde79f', 'Un autre motif', 'VALIDEE'),
   ('2017-08-04', '2017-08-15', 'RTT', 'a8fc21fc', 'Plus d"idée', 'REJETEE'),

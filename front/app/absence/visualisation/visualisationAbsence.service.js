@@ -18,6 +18,7 @@ export default class VisualisationAbsenceService {
                   })
                   .then(absences => {
                         this.ajoutActions(absences);
+                        this.transformerDate(absences);
                         return absences;
         })
 
@@ -33,11 +34,26 @@ export default class VisualisationAbsenceService {
                 a.actions.push("modification");
             }
             if(a.type != "MISSION") {
-                a.actions.push("suppression");
+                let now = Date.now();
+                let dateDebut = new Date(a.dateDebut);
+                if(dateDebut >= now) {
+                    a.actions.push("suppression");
+                }
             }
             if(a.type == "MISSION") {
                 a.actions.push("visualisation");
             }
+        })
+    }
+
+    // Transforme les dates du format yyyy-MM-DD au format DD/MM/yyyy
+    transformerDate(absences) {
+        absences.forEach(a => {
+            // let dateDebut = new Date(a.dateDebut);
+            let dArr = a.dateDebut.split("-");  // ex input "2010-01-18"
+            a.dateDebut = dArr[2]+ "/" +dArr[1]+ "/" +dArr[0]; //ex out: "18/01/10"
+            let dArr2 = a.dateFin.split("-");  // ex input "2010-01-18"
+            a.dateFin = dArr2[2]+ "/" +dArr2[1]+ "/" +dArr2[0]; //ex out: "18/01/10"
         })
     }
 
