@@ -6,7 +6,7 @@ export default class VisualisationAbsenceController {
     }
 
     $onInit() {
-        this.visualisationAbsenceService.findAll().then(result => this.absences = result);
+        this.visualisationAbsenceService.findAll().then(absences => this.absences = absences);
         this.order = "dateDebutOriginal";
         this.triInverse = false;
 

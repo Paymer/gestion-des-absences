@@ -17,12 +17,28 @@ export default class VisualisationAbsenceService {
                       return result.data;
                   })
                   .then(absences => {
-                        this.ajoutActions(absences);
-                        this.transformerDate(absences);
                         return absences;
-        })
-
+                    }).then(absences => {
+                        return this.$http.get(this.apiUrls.mission + "/" + matriculeEmploye, {})
+                            .then(result => {
+                                this.ajoutMissions(absences, result.data)
+                                this.ajoutActions(absences);
+                                this.transformerDate(absences);
+                                return absences;
+                            })
+                    })
         return this.absences;
+    }
+
+    ajoutMissions(absences, missions) {
+        missions.forEach(m => {
+            absences.push({
+                dateDebut: m.dateDebut,
+                dateFin: m.dateFin,
+                statut: m.statut,
+                type: 'MISSION'
+            })
+        })
     }
 
     // Permet de définir quelles actions sont possibles lors de la visualisation des absences
