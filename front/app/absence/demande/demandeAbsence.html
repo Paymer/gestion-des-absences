@@ -5,10 +5,10 @@
     <legend>{{$ctrl.titre}}</legend>
     
     <div class="form-group">
-        <label class="col-md-4 control-label" for="selectbasic">Date de debut</label>
+        <label class="col-md-4 control-label" for="selectbasic">Date de debut </label>
       <div class="col-md-4">
         <p class="input-group">
-          <input type="text"  name="dateDebut" class="form-control" uib-datepicker-popup="dd/MM/yyyy" show-button-bar="false"  ng-model="$ctrl.dtDebut" is-open="$ctrl.popup1.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required />
+          <input type="text" name="dateDebut" class="form-control" ng-value="$ctrl.phInit" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtDebut" is-open="$ctrl.popup1.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="$ctrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -20,7 +20,7 @@
         <label class="col-md-4 control-label" for="selectbasic">Date de fin</label>
       <div class="col-md-4">
         <p class="input-group">
-          <input type="text" name="dateFin" class="form-control"  show-button-bar="false" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtFin" is-open="$ctrl.popup2.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required/>
+          <input type="text" ng-value="$ctrl.phFin" name="dateFin" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtFin" is-open="$ctrl.popup2.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="$ctrl.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -42,7 +42,8 @@
     <div class="form-group">
       <label class="col-md-4 control-label"  for="selectbasic">Type congé</label>
       <div class="col-md-4">
-        <select  ng-model="$ctrl.type" id="selectbasic" ng name="selectbasic" class="form-control" required>
+        <select ng-model="$ctrl.type" id="selectbasic" ng name="selectbasic" class="form-control" required>
+          
           <option value="CONGES_PAYES">Congés payes</option>
           <option value="RTT">RTT</option>
           <option value="CONGES_SANS_SOLDE">Congés sans solde</option>
@@ -54,7 +55,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label"  for="textarea">Motif</label>
       <div class="col-md-4">                     
-        <textarea class="form-control" ng-model='$ctrl.motif' id="textarea" name="textarea"></textarea>
+        <textarea class="form-control" ng-value="$ctrl.phMotif" ng-model='$ctrl.motif' id="textarea" name="textarea"></textarea>
         <div  ng-show="form.selectbasic.$dirty && $ctrl.motifPourCongeSansSolde() " class="alert alert-danger" role="alert">
           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
           <span class="sr-only">Error:</span>

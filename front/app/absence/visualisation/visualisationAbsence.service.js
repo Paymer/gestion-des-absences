@@ -18,6 +18,7 @@ export default class VisualisationAbsenceService {
                   })
                   .then(absences => {
                         this.ajoutActions(absences);
+                        this.transformerDate(absences);
                         return absences;
         })
 
@@ -33,11 +34,32 @@ export default class VisualisationAbsenceService {
                 a.actions.push("modification");
             }
             if(a.type != "MISSION") {
-                a.actions.push("suppression");
+                let now = Date.now();
+                let dateDebut = new Date(a.dateDebut);
+                if(dateDebut >= now) {
+                    a.actions.push("suppression");
+                }
             }
             if(a.type == "MISSION") {
                 a.actions.push("visualisation");
             }
+        })
+    }
+
+    // Transforme les dates du format yyyy-MM-DD au format DD/MM/yyyy
+    transformerDate(absences) {
+
+        // Est utile pour le tri du tableau des absences d'un point de vue ihm uniquement
+        absences.forEach(a => {
+            a.dateDebutOriginal = a.dateDebut;
+            a.dateFinOriginal = a.dateFin;
+        })
+
+        absences.forEach(a => {
+            let dArr = a.dateDebut.split("-"); 
+            a.dateDebut = dArr[2]+ "/" +dArr[1]+ "/" +dArr[0];
+            let dArr2 = a.dateFin.split("-"); 
+            a.dateFin = dArr2[2]+ "/" +dArr2[1]+ "/" +dArr2[0];
         })
     }
 
@@ -56,7 +78,12 @@ export default class VisualisationAbsenceService {
     }
 
 
-     modification(idAbsence){
-       this.idModif = idAbsence;
+     modification(id, dateDebut, dateFin, type, motif){
+       this.absenceModifId = id;
+       this.absenceModifType = type;
+       this.absenceModifInit = dateDebut;
+       this.absenceModifFin = dateFin;
+       this.absenceModifMotif = motif;
+       
     }
 }
