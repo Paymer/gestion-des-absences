@@ -6,7 +6,8 @@ const apiUrls = {
    
     modifAbsence : API_URL + '/absence/modification/:absenceId',
 
-	connexion: API_URL + '/connexion'
+    connexion: API_URL + '/connexion',
+    congesEtRtt: API_URL + '/conges-et-rtt'
 }
 
 export default apiUrls
