@@ -13,10 +13,13 @@ export default class VisualisationAbsenceController {
         this.rtt = this.connexionService.getRtt();
     }
 
+
     updateOrderEtTri(order) {
         this.order = order;
         this.triInverse = !this.triInverse;
     }
+
+    
 
     // Partie suppression de l'absence
     supprimerAbsence(idAbsence, dateDebut, dateFin, type) {
@@ -24,7 +27,7 @@ export default class VisualisationAbsenceController {
     }
 
     // Partie modification de l'absence
-    modification(idAbsence){
-       this.visualisationAbsenceService.modification(idAbsence);
+    modification(id, dateDebut, dateFin, type){
+       this.visualisationAbsenceService.modification(id, dateDebut, dateFin, type);
     }
 }

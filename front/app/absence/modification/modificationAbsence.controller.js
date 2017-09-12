@@ -7,7 +7,16 @@ export default class ModifAbsenceCtrl{
         this.connexionService = connexionService;
         this.$location = $location;
         this.today = new Date();
-        this.id = this.visualService.idModif;
+        //identification of the absence to modify
+        this.id = this.visualService.absenceModifId;
+
+        //placeholders
+        this.phInit =new Date(this.visualService.absenceModifInit);
+        this.phFin = new Date(this.visualService.absenceModifFin);
+        this.phType = this.visualService.absenceModifType;
+        
+
+
 		this.titre = "Modification d'absence"
 
         this.inlineOptions = {
