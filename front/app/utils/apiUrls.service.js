@@ -4,6 +4,11 @@ const apiUrls = {
 	validationAbsence : API_URL + '/absence/validation',
     demandeAbsence : API_URL + '/absence/demande',
     modifAbsence : API_URL + '/absence/modification/:absenceId',
+	
+    ferie : API_URL + '/ferie',
+    suppressionFerie : API_URL + '/ferie/suppression',
+    demandeFerie : API_URL + '/ferie/demande',
+    modifFerie : API_URL + '/ferie/modification/:ferieId',
 
 	connexion: API_URL + '/connexion',
 	

@@ -9,7 +9,11 @@ INSERT INTO absence (date_debut, date_fin, type, matricule_employe, motif, statu
   ('2017-09-03', '2017-09-21', 'CONGES_SANS_SOLDE', 'e300fb12', 'La non plus non plus', 'VALIDEE'),
   ('2017-10-04', '2017-10-23', 'CONGES_SANS_SOLDE', 'f26eac86', 'Quelqu"un a une idée ?', 'INITIALE'),
   ('2017-11-06', '2017-11-24', 'MISSION', '740ef3fd', 'Je galère... :-(', 'VALIDEE'),
-  ('2017-12-06', '2017-12-24', 'CONGES_PAYES', 'e353c695', 'Je galère... :-(', 'EN_ATTENTE_VALIDATION');
+  ('2017-12-06', '2017-12-24', 'CONGES_PAYES', 'e353c695', 'Je galère... :-(', 'EN_ATTENTE_VALIDATION'),
+  ('2016-05-01', null, 'JOUR_FERIE', null, 'Fête du travail', 'VALIDEE'),
+  ('2017-07-14', null, 'JOUR_FERIE', null, 'Fête nationale', 'VALIDEE'),
+  ('2017-05-02', null, 'RTT_EMPLOYEUR', null, 'Pont 1', 'INITIALE'),
+  ('2016-07-13', null, 'RTT_EMPLOYEUR', null, 'Pont 2', 'VALIDEE');
 
 INSERT INTO message_erreur (date, service_origine, message) VALUES
 ('2015-05-14 00:00:08', "Traitement de nuit", "message 1"),

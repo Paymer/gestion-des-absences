@@ -15,6 +15,7 @@ import visualisationAbsenceComponent from "./absence/visualisation/visualisation
 import DemandeAbsenceComponent from './absence/demande/demandeAbsence.component'
 import modifAbsenceComponent from './absence/modification/modificationAbsence.component'
 import validationAbsenceComponent from './absence/validation/validationAbsence.component'
+import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
 
 // Services
 import apiUrls from "./utils/apiUrls.service"
@@ -26,6 +27,7 @@ import suppressionAbsenceService from "./absence/visualisation/suppression/suppr
 import modifAbsenceService from "./absence/modification/modificationAbsence.service"
 import validationAbsenceService from "./absence/validation/validationAbsence.service"
 import messageService from './accueil/message.service'
+import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
 
 //Modules
 import menuModule from './menu/menu.module'
@@ -44,6 +46,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .service("validationAbsenceService",validationAbsenceService)
     .service("suppressionAbsenceService", suppressionAbsenceService)
 	.service("messageService", messageService)
+    .service("visualisationFerieService", visualisationFerieService)
 
     //Components
     .component('accueilComponent', AccueilComponent)
@@ -52,6 +55,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .component("visualisationAbsenceComponent", visualisationAbsenceComponent)
     .component('modifAbsenceComponent',modifAbsenceComponent)
     .component('validationAbsenceComponent',validationAbsenceComponent)
+    .component("visualisationFerieComponent", visualisationFerieComponent)
 
     //manage connections and routes
     .config(route)
