@@ -31,6 +31,15 @@ public class App {
 	
 	@Bean
     public WebMvcConfigurer corsConfigurer() {
+		double a;
+		
+		if(true) {
+			a = 12;
+		}
+		
+		double c = a + 15;
+		
+		
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {

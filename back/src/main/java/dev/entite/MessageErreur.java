@@ -1,6 +1,6 @@
 package dev.entite;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,14 +14,14 @@ public class MessageErreur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private LocalDate date;
+	private LocalDateTime date;
 	@Column(name = "service_origine")
 	private String serviceOrigine;
 	private String message;
 
 	public MessageErreur() {
 		super();
-		this.date = LocalDate.now();
+		this.date = LocalDateTime.now();
 	}
 
 	public Integer getId() {
@@ -48,11 +48,11 @@ public class MessageErreur {
 		this.message = message;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 

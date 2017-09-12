@@ -11,13 +11,14 @@ import 'chart.js/dist/Chart.min.js'
 import 'angular-chart.js/dist/angular-chart.js'
 
 //Components
-import { AccueilComponent } from './accueil/accueil.component'
+import AccueilComponent from './accueil/accueil.component'
 import ConnexionComponent from './connexion/connexion.component'
 import visualisationAbsenceComponent from "./absence/visualisation/visualisationAbsence.component"
 import DemandeAbsenceComponent from './absence/demande/demandeAbsence.component'
 import modifAbsenceComponent from './absence/modification/modificationAbsence.component'
 import validationAbsenceComponent from './absence/validation/validationAbsence.component'
 import histogrammeComponent from './rapport/histogramme/histogramme.component'
+import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
 
 // Services
 import apiUrls from "./utils/apiUrls.service"
@@ -29,6 +30,8 @@ import suppressionAbsenceService from "./absence/visualisation/suppression/suppr
 import modifAbsenceService from "./absence/modification/modificationAbsence.service"
 import validationAbsenceService from "./absence/validation/validationAbsence.service"
 import histogrammeService from './rapport/histogramme/histogramme.service'
+import messageService from './accueil/message.service'
+import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
 
 //Modules
 import menuModule from './menu/menu.module'
@@ -47,6 +50,8 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, 'c
     .service("validationAbsenceService",validationAbsenceService)
     .service("suppressionAbsenceService", suppressionAbsenceService)
     .service("histogrammeService", histogrammeService)
+	.service("messageService", messageService)
+    .service("visualisationFerieService", visualisationFerieService)
 
     //Components
     .component('accueilComponent', AccueilComponent)
@@ -56,6 +61,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, 'c
     .component('modifAbsenceComponent',modifAbsenceComponent)
     .component('validationAbsenceComponent',validationAbsenceComponent)
     .component('histogrammeComponent',histogrammeComponent)
+    .component("visualisationFerieComponent", visualisationFerieComponent)
 
     //manage connections and routes
     .config(route)

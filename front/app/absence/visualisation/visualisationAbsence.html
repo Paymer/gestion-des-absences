@@ -7,9 +7,9 @@
         <thead>
             <tr>
                 <th>
-                    <a href="#" ng-click="$ctrl.updateOrderEtTri('dateDebut')">
+                    <a href="#" ng-click="$ctrl.updateOrderEtTri('dateDebutOriginal')">
                         Date de début
-                        <span ng-if="$ctrl.order == 'dateDebut'">
+                        <span ng-if="$ctrl.order == 'dateDebutOriginal'">
                             <span ng-show="$ctrl.triInverse">
                                 <span class="caret"></span>
                             </span>
@@ -20,9 +20,9 @@
                     </a>
                 </th>
                 <th>
-                    <a href="#" ng-click="$ctrl.updateOrderEtTri('dateFin')">
+                    <a href="#" ng-click="$ctrl.updateOrderEtTri('dateFinOriginal')">
                         Date de fin
-                        <span ng-if="$ctrl.order == 'dateFin'">
+                        <span ng-if="$ctrl.order == 'dateFinOriginal'">
                             <span ng-show="$ctrl.triInverse">
                                 <span class="caret"></span>
                             </span>
@@ -100,11 +100,11 @@
 
     <h4 class="text-right">
         Demander une absence
-        <a href="./absence/demande" type="button" class="btn btn-primary">
+        <a href="./absence/demande" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </a>
     </h4>
-
+    
     <br/><br/>
 
     <p>Soldes des compteurs :</p>

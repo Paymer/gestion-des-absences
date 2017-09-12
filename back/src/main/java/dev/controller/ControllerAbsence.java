@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.entite.Absence;
 import dev.entite.Absence.Statut;
+import dev.entite.Absence.TypeAbsence;
 import dev.entite.Collaborateur;
 import dev.entite.Collaborateur.Grade;
 import dev.repository.RepositoryAbsence;
@@ -62,7 +63,7 @@ public class ControllerAbsence {
 		
 		Absence absence = this.repoAbsence.findOne(id);
 		// Si l'absence n'est pas une Mission et que la date de début est après la date d'aujourd'hui
-		if(!absence.getType().equals("MISSION") && absence.getDateDebut().isAfter(LocalDate.now())) {
+		if(!absence.getType().equals(TypeAbsence.MISSION) && absence.getDateDebut().isAfter(LocalDate.now())) {
 			this.repoAbsence.delete(id);
 			retour.put("success", true);
 		}

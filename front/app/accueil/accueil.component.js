@@ -1,14 +1,10 @@
 import './accueil.component.css';
-import template from './accueil.component.html';
+import template from './accueil.html';
+import controller from './accueil.controller.js';
 
-class controller {
-    constructor () {
-        this.titre = "Bienvenue sur l'application GDA - Gestion Des Absences";
-    }
-}
-
-export let AccueilComponent = {
-    template,
-    controller,
-    bindings: {}
+const AccueilComponent = {
+    template: template,
+    controller: controller
 };
+
+export default AccueilComponent

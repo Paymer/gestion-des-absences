@@ -21,6 +21,9 @@ export function route ($routeProvider, $locationProvider) {
     .when('/rapport/histogramme', {
 		template: '<menu-component></menu-component>' + '<histogramme-component></histogramme-component>'
 	})
+    .when('/ferie', {
+        template: '<menu-component></menu-component>' + '<visualisation-ferie-component></<visualisation-ferie-component>'
+     })
     .when('/connexion', {
 		template: '<connexion-component></connexion-component>'
 	})
