@@ -7,9 +7,21 @@ export default class ModifAbsenceCtrl{
         this.connexionService = connexionService;
         this.$location = $location;
         this.today = new Date();
-        this.id = this.visualService.idModif;
-        this.titre = "Modification d'absence"
         this.$window = $window;
+        //identification of the absence to modify
+        this.id = this.visualService.absenceModifId;
+
+        //placeholders
+        this.phInit =this.visualService.absenceModifInit;
+        this.phFin = this.visualService.absenceModifFin;
+        this.type = this.visualService.absenceModifType;
+        this.phMotif = this.visualService.absenceModifMotif;
+        console.log(this.phInit);
+        console.log(this.phFin);
+        console.log(this.phType);
+        console.log(this.phMotif);
+
+		this.titre = "Modification d'absence"
 
         this.inlineOptions = {
             customClass: getDayClass,

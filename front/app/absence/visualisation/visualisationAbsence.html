@@ -84,7 +84,7 @@
                 <td>
                     <span ng-repeat="action in absence.actions">
                         <span ng-if="action == 'modification'">
-                            <a ng-click='$ctrl.modification(absence.id)' href="./absence/modification"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a ng-click='$ctrl.modification(absence.id, absence.dateDebut, absence.dateFin, absence.type, absence.motif)' href="./absence/modification"><span class="glyphicon glyphicon-pencil"></span></a>
                         </span>
                         <span ng-if="action == 'suppression'">
                             <a href="#" ng-click="$ctrl.supprimerAbsence(absence.id, absence.dateDebut, absence.dateFin, absence.type)"><span class="glyphicon glyphicon-trash"></span></a>

@@ -11,15 +11,16 @@ export default class VisualisationAbsenceController {
         this.triInverse = false;
 
         this.connexionService.getCongesPayesEtRttFromBase()
-                              .then(result => {
-                                    let res = result.data
-                                    this.congesPayes = res.congesPayes;
-                                    this.rtt = res.rtt;
+            .then(result => {
+                let res = result.data
+                this.congesPayes = res.congesPayes;
+                this.rtt = res.rtt;
 
-                                    this.connexionService.setCongesPayes(this.congesPayes);
-                                    this.connexionService.setRtt(this.rtt);
-                               });
+                this.connexionService.setCongesPayes(this.congesPayes);
+                this.connexionService.setRtt(this.rtt);
+            });
     }
+
 
     updateOrderEtTri(order) {
         this.order = order;
@@ -32,7 +33,7 @@ export default class VisualisationAbsenceController {
     }
 
     // Partie modification de l'absence
-    modification(idAbsence){
-       this.visualisationAbsenceService.modification(idAbsence);
+    modification(id, dateDebut, dateFin, type, motif) {
+        this.visualisationAbsenceService.modification(id, dateDebut, dateFin, type, motif);
     }
 }

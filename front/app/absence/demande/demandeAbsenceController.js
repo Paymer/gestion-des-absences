@@ -6,7 +6,11 @@ export default class DemandeAbsenceCtrl{
         this.$location = $location;
         this.today = new Date();
 		this.titre = "Demande d'absence"
-
+        //placeholders
+        this.phInit = "";
+        this.phFin = "";
+        this.type = "";
+        this.phMotif = "";
         
 
         this.inlineOptions = {

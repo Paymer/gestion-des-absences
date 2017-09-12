@@ -44,7 +44,7 @@ public class ServiceAbsence {
 		
 		boolean notMission = (newAbsence.getType()!= TypeAbsence.MISSION);
 		boolean dates = newAbsence.getDateDebut().isBefore(newAbsence.getDateFin());
-		boolean dateInit = !newAbsence.getDateDebut().isBefore(t) &&  !newAbsence.getDateDebut().isEqual(t);
+		boolean dateInit = !newAbsence.getDateDebut().isBefore(t);
 		boolean motif;
 
 
