@@ -9,8 +9,8 @@ export default class DemandeAbsenceCtrl{
         //placeholders
         this.phInit = "";
         this.phFin = "";
-        this.phType = "";
-       
+        this.type = "";
+        this.phMotif = "";
         
 
         this.inlineOptions = {

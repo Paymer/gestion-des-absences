@@ -33,7 +33,7 @@ export default class VisualisationAbsenceController {
     }
 
     // Partie modification de l'absence
-    modification(id, dateDebut, dateFin, type) {
-        this.visualisationAbsenceService.modification(id, dateDebut, dateFin, type);
+    modification(id, dateDebut, dateFin, type, motif) {
+        this.visualisationAbsenceService.modification(id, dateDebut, dateFin, type, motif);
     }
 }

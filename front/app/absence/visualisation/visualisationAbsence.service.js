@@ -72,11 +72,12 @@ export default class VisualisationAbsenceService {
     }
 
 
-     modification(id, dateDebut, dateFin, type){
+     modification(id, dateDebut, dateFin, type, motif){
        this.absenceModifId = id;
        this.absenceModifType = type;
        this.absenceModifInit = dateDebut;
        this.absenceModifFin = dateFin;
+       this.absenceModifMotif = motif;
        
     }
 }
