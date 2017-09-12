@@ -1,6 +1,6 @@
 export default class ModifAbsenceCtrl{
     
-    constructor(modifAbsenceService,connexionService, $location, visualisationAbsenceService ){ 
+    constructor(modifAbsenceService,connexionService, $location, visualisationAbsenceService, $window){ 
         this.visualService = visualisationAbsenceService;
         //tout = 
         this.modifAbsenceService = modifAbsenceService;
@@ -8,7 +8,8 @@ export default class ModifAbsenceCtrl{
         this.$location = $location;
         this.today = new Date();
         this.id = this.visualService.idModif;
-		this.titre = "Modification d'absence"
+        this.titre = "Modification d'absence"
+        this.$window = $window;
 
         this.inlineOptions = {
             customClass: getDayClass,
@@ -141,7 +142,7 @@ addAbsence(){
     this.info ()
     let absence = {id: this.id, dateDebut:this.debut,dateFin:this.fin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
     
-    console.log(absence)
+    // console.log(absence)
      
     //console.log(this.dtDebut,this.dtFin,this.type, this.motif)
    
@@ -150,8 +151,9 @@ addAbsence(){
         if(reponse.succes){
             
             this.$location.path("/absence");
+            this.$window.location.reload();
         }else{
-            this.error ="erreur de l'ajout de l'absence"
+            this.error = "erreur de l'ajout de l'absence"
             this.notvalid = true;
         }
        

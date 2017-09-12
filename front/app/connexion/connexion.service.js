@@ -66,4 +66,12 @@ export default class ConnexionService{
 			return this.$http.get(this.apiUrls.congesEtRtt + "/" + matricule, {});
 		}
 	}
+
+	setCongesPayes(congesPayes) {
+		sessionStorage.setItem('congesPayes', congesPayes)
+	}
+
+	setRtt(rtt) {
+		sessionStorage.setItem('rtt', rtt)
+	}
 }
