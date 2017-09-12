@@ -8,7 +8,7 @@
         <label class="col-md-4 control-label" for="selectbasic">Date de debut</label>
       <div class="col-md-4">
         <p class="input-group">
-          <input type="text" name="dateDebut" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtDebut" is-open="$ctrl.popup1.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required />
+          <input type="text"  name="dateDebut" class="form-control" uib-datepicker-popup="dd/MM/yyyy" show-button-bar="false"  ng-model="$ctrl.dtDebut" is-open="$ctrl.popup1.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="$ctrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -20,7 +20,7 @@
         <label class="col-md-4 control-label" for="selectbasic">Date de fin</label>
       <div class="col-md-4">
         <p class="input-group">
-          <input type="text" name="dateFin" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtFin" is-open="$ctrl.popup2.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required/>
+          <input type="text" name="dateFin" class="form-control"  show-button-bar="false" uib-datepicker-popup="dd/MM/yyyy" ng-model="$ctrl.dtFin" is-open="$ctrl.popup2.opened" datepicker-options="$ctrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="$ctrl.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
