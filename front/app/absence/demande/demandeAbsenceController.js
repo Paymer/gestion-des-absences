@@ -97,11 +97,11 @@ export default class DemandeAbsenceCtrl{
     this.inlineOptions.minDate = this.inlineOptions.minDate ? null : new Date();
     this.dateOptions.minDate = this.inlineOptions.minDate;
   };
-
+  // redirige vers la page visualisation absence
     annuler(){
         this.$location.path("/absence");
     }
-
+    //return true si la date de debut est inférieure à la date de fin
     verrifDateDebutInfDateFin(){
         if(this.dtDebut <= this.dtFin){
             return true;
@@ -109,7 +109,7 @@ export default class DemandeAbsenceCtrl{
             return false;
         }
     }
-
+    //return true si la date selectionée et la date du jour
     verrifDateDuJour(){
         
         if(this.dtDebut.getDate() === this.today.getDate() && this.dtDebut.getMonth() === this.today.getMonth() && this.dtDebut.getFullYear() === this.today.getFullYear() ){
@@ -120,7 +120,7 @@ export default class DemandeAbsenceCtrl{
             return false;
         }
     }
-
+    // return troue si Conges-sans-solde est selectionnée
     motifPourCongeSansSolde(){
         
         if(this.type === "CONGES_SANS_SOLDE" && this.motif == undefined){
@@ -132,7 +132,7 @@ export default class DemandeAbsenceCtrl{
 
     }
 
-
+//permet l'envois d'une absence par la méthode Post
  addAbsence(){
     
     this.info ()
@@ -158,7 +158,7 @@ export default class DemandeAbsenceCtrl{
     }
 
 
-
+    //permet de formater la date debut et date de fin "yyyy-MM-dd"  
      info (){
 
         //Debut
@@ -176,7 +176,7 @@ export default class DemandeAbsenceCtrl{
         this.fin =  yearf +"-"+monthf+"-"+dayf
 
     }
-
+    // formate le chiffre du mois et du jour ex:jour 1 -> jour 01
     formatdate(number){
         if (number < 10){
             return "0"+number;
