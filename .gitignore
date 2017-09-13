@@ -7,3 +7,5 @@ public/fonts
 target/
 *.iml
 .idea
+
+.log
