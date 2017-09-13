@@ -4,10 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,25 +37,16 @@ public class ControllerHistogramme{
 		this.serCollab = serCollab;
 	}
 	
-	@GetMapping()
-	public List<Absence> listerAbsences() {
-		return this.repoAbsence.findAll();
-	}
-	
+/**
+ * this method will create an string for the barchart
+ */
 	@RequestMapping(value = "/{departement}/{year}/{month}", method = RequestMethod.GET, produces = "application/json")
 	public String chartData(@PathVariable String departement, @PathVariable Integer year, @PathVariable Integer month){
 		//JSONObject data = new JSONObject();
 		
-		/**get list of the collab of the department
-		 * make list of all the absences of each of the collab of the depart
-		 * filter that list checking if there is a coincidence between month and year 
-		 * get the list and create the new data for the chart
-		 */
-		
 		//list of the people from departement:
 		List<Collaborateur> listCollab = this.serCollab.findCollaborateurParDepartement(departement);
-		
-		
+	
 		//creer la parti label (liste de jours)
 		String labels = "[";
 		LocalDate date = LocalDate.of (year, month, 01);
@@ -71,27 +59,24 @@ public class ControllerHistogramme{
 			date = date.plusDays(1);
 		}
 			labels = labels + "]";	
-		
-			
+	
 		//creationDataSets
 			String datasets = "[";
 			for (Collaborateur c : listCollab){
 				//TODO Add color
 				datasets = datasets + "{ label: '" + c.getPrenom() +"', backgroundColor:" + "COLOOOR"+ "yAxisId:'bar-y-axis', data: " + creerDates(c, month, year) + "},";
-
-
 			}
-			//on fourni le dataset	
 			datasets = datasets + "]";
-	
-			//creation du char data
-			String charData  = "{ labels: " + labels + ", datasets : " + datasets +"};";
-	
-	
-		return charData;
+			
+		return "{ labels: " + labels + ", datasets : " + datasets +"};";
 	}
 
-	
+	/**
+	 * it will create a list 
+	 * 0->not absence/ferie/weekend
+	 * 1->absence
+	 * for the collaborateur, for all the month
+	 */
 	public String creerDates(Collaborateur c, int year, int month){
 		
 		// on recupere une liste des absences de chaque collaborateur
@@ -114,6 +99,12 @@ public class ControllerHistogramme{
 		return "[" + listJours.toString() + "]";
 	}
 	
+	
+	/**
+	 * it transforms an absence into an array
+	 * the array has the month size
+	 * it places 1 where there is an absence
+	 */
 	// transform an absence into an array
 	public int[] transform (Absence a, int year, int month){
 		LocalDate d = LocalDate.of(year, month, 1);
