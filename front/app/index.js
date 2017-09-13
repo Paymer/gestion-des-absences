@@ -12,13 +12,15 @@ import jssha  from 'jssha'
 
 
 //Components
-import { AccueilComponent } from './accueil/accueil.component'
+import AccueilComponent from './accueil/accueil.component'
 import ConnexionComponent from './connexion/connexion.component'
 import visualisationAbsenceComponent from "./absence/visualisation/visualisationAbsence.component"
 import DemandeAbsenceComponent from './absence/demande/demandeAbsence.component'
 import modifAbsenceComponent from './absence/modification/modificationAbsence.component'
 import validationAbsenceComponent from './absence/validation/validationAbsence.component'
 import planningAbsenceComponent from './absence/planning/planningAbsence.component'
+import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
+import vueDepJourCollabComponent from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.component"
 
 // Services
 import apiUrls from "./utils/apiUrls.service"
@@ -30,6 +32,10 @@ import suppressionAbsenceService from "./absence/visualisation/suppression/suppr
 import modifAbsenceService from "./absence/modification/modificationAbsence.service"
 import validationAbsenceService from "./absence/validation/validationAbsence.service"
 import planningAbsenceService from "./absence/planning/planningAbsence.service"
+import messageService from './accueil/message.service'
+import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
+import vueDepJourCollabService from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.service"
+
 //Modules
 import menuModule from './menu/menu.module'
 
@@ -47,6 +53,10 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap,boo
     .service("validationAbsenceService",validationAbsenceService)
     .service("suppressionAbsenceService", suppressionAbsenceService)
     .service("planningAbsenceService",planningAbsenceService)
+	.service("messageService", messageService)
+    .service("visualisationFerieService", visualisationFerieService)
+    .service("vueDepJourCollabService", vueDepJourCollabService)
+
     //Components
     .component('accueilComponent', AccueilComponent)
     .component('demandeAbsenceComponent',DemandeAbsenceComponent)
@@ -55,6 +65,9 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap,boo
     .component('modifAbsenceComponent',modifAbsenceComponent)
     .component('validationAbsenceComponent',validationAbsenceComponent)
     .component('planningAbsenceComponent',planningAbsenceComponent)
+    .component("visualisationFerieComponent", visualisationFerieComponent)
+    .component("vueDepJourCollabComponent", vueDepJourCollabComponent)
+
     //manage connections and routes
     .config(route)
     .run(['$rootScope', '$location', 'connexionService', function ($rootScope, $location, connexionService) {

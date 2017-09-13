@@ -7,9 +7,9 @@
         <thead>
             <tr>
                 <th>
-                    <a href="#" ng-click="$ctrl.updateOrderEtTri('dateDebut')">
+                    <a href="#" ng-click="$ctrl.updateOrderEtTri('dateDebutOriginal')">
                         Date de début
-                        <span ng-if="$ctrl.order == 'dateDebut'">
+                        <span ng-if="$ctrl.order == 'dateDebutOriginal'">
                             <span ng-show="$ctrl.triInverse">
                                 <span class="caret"></span>
                             </span>
@@ -20,9 +20,9 @@
                     </a>
                 </th>
                 <th>
-                    <a href="#" ng-click="$ctrl.updateOrderEtTri('dateFin')">
+                    <a href="#" ng-click="$ctrl.updateOrderEtTri('dateFinOriginal')">
                         Date de fin
-                        <span ng-if="$ctrl.order == 'dateFin'">
+                        <span ng-if="$ctrl.order == 'dateFinOriginal'">
                             <span ng-show="$ctrl.triInverse">
                                 <span class="caret"></span>
                             </span>
@@ -84,13 +84,13 @@
                 <td>
                     <span ng-repeat="action in absence.actions">
                         <span ng-if="action == 'modification'">
-                            <a ng-click='$ctrl.modification(absence.id)' href="./absence/modification"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a ng-click='$ctrl.modification(absence.id, absence.dateDebut, absence.dateFin, absence.type, absence.motif)' href="./absence/modification"><span class="glyphicon glyphicon-pencil"></span></a>
                         </span>
                         <span ng-if="action == 'suppression'">
                             <a href="#" ng-click="$ctrl.supprimerAbsence(absence.id, absence.dateDebut, absence.dateFin, absence.type)"><span class="glyphicon glyphicon-trash"></span></a>
                         </span>
                         <span ng-if="action == 'visualisation'">
-                            <a href="http://lienVersLApplicationDeGestionDesMissions/visualisation"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a href="https://diginamicformation.github.io/gestion-des-missions/missions/gestion"><span class="glyphicon glyphicon-eye-open"></span></a>
                         </span>
                     </span>
                 </td>
@@ -100,11 +100,11 @@
 
     <h4 class="text-right">
         Demander une absence
-        <a href="./absence/demande" type="button" class="btn btn-primary">
+        <a href="./absence/demande" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </a>
     </h4>
-
+    
     <br/><br/>
 
     <p>Soldes des compteurs :</p>
