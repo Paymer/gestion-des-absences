@@ -1,9 +1,12 @@
 const apiUrls = {
-    absence : API_URL + '/absence',
-    suppressionAbsence : API_URL + '/absence/suppression',
-	validationAbsence : API_URL + '/absence/validation',
-    demandeAbsence : API_URL + '/absence/demande',
-    modifAbsence : API_URL + '/absence/modification/:absenceId',
+    absence: API_URL + '/absence',
+    suppressionAbsence: API_URL + '/absence/suppression',
+	validationAbsence: API_URL + '/absence/validation',
+    demandeAbsence: API_URL + '/absence/demande',
+    modifAbsence: API_URL + '/absence/modification/:absenceId',
+
+    collaborateur: API_URL + '/collaborateur',
+    departement: API_URL + '/departement',
 	
     ferie : API_URL + '/ferie',
     suppressionFerie : API_URL + '/ferie/suppression',
