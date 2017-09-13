@@ -72,7 +72,6 @@ public class ControllerAbsence {
 	public String ajoutAbsence(@RequestBody Absence newAbsence) {
 		// vérifie que les conditions de l'ajout d'une absence sont correcte
 
-
 		if (serAbsence.conditions(newAbsence)) {
 			// création d'une demande le statut est à initiale
 

@@ -3,12 +3,15 @@
 import angular from 'angular'
 import RouteModule from 'angular-route'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css'
 import uiBootstrap from 'angular-ui-bootstrap'
+import bootstrapCalendar from 'angular-bootstrap-calendar'
 import { route } from './app.route'
 import ngResource from "angular-resource"
 import jssha  from 'jssha'
 import 'chart.js/dist/Chart.min.js'
 import 'angular-chart.js/dist/angular-chart.js'
+
 
 //Components
 import AccueilComponent from './accueil/accueil.component'
@@ -18,6 +21,7 @@ import DemandeAbsenceComponent from './absence/demande/demandeAbsence.component'
 import modifAbsenceComponent from './absence/modification/modificationAbsence.component'
 import validationAbsenceComponent from './absence/validation/validationAbsence.component'
 import histogrammeComponent from './rapport/histogramme/histogramme.component'
+import planningAbsenceComponent from './absence/planning/planningAbsence.component'
 import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
 import vueDepJourCollabComponent from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.component"
 
@@ -31,6 +35,7 @@ import suppressionAbsenceService from "./absence/visualisation/suppression/suppr
 import modifAbsenceService from "./absence/modification/modificationAbsence.service"
 import validationAbsenceService from "./absence/validation/validationAbsence.service"
 import histogrammeService from './rapport/histogramme/histogramme.service'
+import planningAbsenceService from "./absence/planning/planningAbsence.service"
 import messageService from './accueil/message.service'
 import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
 import vueDepJourCollabService from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.service"
@@ -39,7 +44,7 @@ import vueDepJourCollabService from "./vueSynthetiques/vueDepartementJourCollabo
 import menuModule from './menu/menu.module'
 
 
-angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, 'chart.js'])
+angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, 'chart.js', bootstrapCalendar])
 
     .value('jssha', jssha)
     .constant("apiUrls", apiUrls)
@@ -52,6 +57,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, 'c
     .service("validationAbsenceService",validationAbsenceService)
     .service("suppressionAbsenceService", suppressionAbsenceService)
     .service("histogrammeService", histogrammeService)
+    .service("planningAbsenceService",planningAbsenceService)
 	.service("messageService", messageService)
     .service("visualisationFerieService", visualisationFerieService)
     .service("vueDepJourCollabService", vueDepJourCollabService)
@@ -64,6 +70,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, 'c
     .component('modifAbsenceComponent',modifAbsenceComponent)
     .component('validationAbsenceComponent',validationAbsenceComponent)
     .component('histogrammeComponent',histogrammeComponent)
+    .component('planningAbsenceComponent',planningAbsenceComponent)
     .component("visualisationFerieComponent", visualisationFerieComponent)
     .component("vueDepJourCollabComponent", vueDepJourCollabComponent)
 
