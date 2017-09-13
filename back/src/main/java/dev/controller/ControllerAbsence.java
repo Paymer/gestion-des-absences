@@ -28,9 +28,6 @@ import dev.service.ServiceCollaborateur;
 @RequestMapping("/absence")
 public class ControllerAbsence {
 
-
-
-
 	@Autowired
 	public ControllerAbsence(ServiceAbsence serAbsence, RepositoryAbsence repoAbsence, ServiceCollaborateur serCollaborateur) {
 		super();

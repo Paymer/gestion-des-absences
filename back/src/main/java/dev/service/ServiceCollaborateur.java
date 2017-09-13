@@ -3,6 +3,7 @@ package dev.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -115,8 +116,10 @@ public class ServiceCollaborateur {
 		return this.listeCollaborateurs.stream().filter(c -> c.getMatricule().equals(matricule)).findAny();
 	}
 
-	public Optional<Collaborateur> findCollaborateurParDepartement(String departement) {
-		return this.listeCollaborateurs.stream().filter(c -> c.getDepartement().equals(departement)).findAny();
+	public List<Collaborateur> findCollaborateurParDepartement(String departement) {
+		return this.listeCollaborateurs.stream()
+				.filter(c -> c.getDepartement().getLibelle().equals(departement))
+				.collect(Collectors.toList());
 	}
 	
 	public Optional<Collaborateur> checkAuth(String email, String password) {

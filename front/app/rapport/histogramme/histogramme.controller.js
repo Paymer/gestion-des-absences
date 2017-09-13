@@ -9,10 +9,10 @@ export default class HistogrammeController {
             datasets: [
 
                 {
-                    label: "donations",
+                    label: "Collaborateur 1",
                     backgroundColor: "yellow",
                     yAxisID: "bar-y-axis",
-                    data: [40, 350, 980]
+                    data: [1, 1, 0, 0, 1 ]
                 },
 
                 {
