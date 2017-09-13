@@ -16,6 +16,7 @@ import DemandeAbsenceComponent from './absence/demande/demandeAbsence.component'
 import modifAbsenceComponent from './absence/modification/modificationAbsence.component'
 import validationAbsenceComponent from './absence/validation/validationAbsence.component'
 import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
+import vueDepJourCollabComponent from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.component"
 
 // Services
 import apiUrls from "./utils/apiUrls.service"
@@ -28,6 +29,7 @@ import modifAbsenceService from "./absence/modification/modificationAbsence.serv
 import validationAbsenceService from "./absence/validation/validationAbsence.service"
 import messageService from './accueil/message.service'
 import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
+import vueDepJourCollabService from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.service"
 
 //Modules
 import menuModule from './menu/menu.module'
@@ -47,6 +49,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .service("suppressionAbsenceService", suppressionAbsenceService)
 	.service("messageService", messageService)
     .service("visualisationFerieService", visualisationFerieService)
+    .service("vueDepJourCollabService", vueDepJourCollabService)
 
     //Components
     .component('accueilComponent', AccueilComponent)
@@ -56,6 +59,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .component('modifAbsenceComponent',modifAbsenceComponent)
     .component('validationAbsenceComponent',validationAbsenceComponent)
     .component("visualisationFerieComponent", visualisationFerieComponent)
+    .component("vueDepJourCollabComponent", vueDepJourCollabComponent)
 
     //manage connections and routes
     .config(route)
