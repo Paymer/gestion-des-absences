@@ -41,7 +41,7 @@
         <tbody>
             <tr ng-repeat="sub in $ctrl.subalternes | orderBy:$ctrl.order:$ctrl.triInverse">
                 <td>{{sub.nom}}</td>
-                <td ng-repeat="jour in $ctrl.getJours() track by $index"></td>
+                <td ng-repeat="jour in $ctrl.getJours() track by $index">{{sub.tableauAbsences[$index]}}</td>
             </tr>
         </tbody>
     </table>

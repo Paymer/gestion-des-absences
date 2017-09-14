@@ -57,9 +57,9 @@ export default class VueDepJourCollabService {
                         return this.$http.get(this.apiUrls.mission + "/" + matricule, {})
                             .then(result => {
                                 this.visualisationAbsenceService.ajoutMissions(absences, result.data)
-                                this.visualisationAbsenceService.transformerDate(absences);
+                                // this.visualisationAbsenceService.transformerDate(absences);
                                 return absences;
-                            })
-                    })
-    }
+                            });
+                    });
+    };
 }
