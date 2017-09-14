@@ -37,6 +37,7 @@ import planningAbsenceService from "./absence/planning/planningAbsence.service"
 import messageService from './accueil/message.service'
 import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
 import creationFerieService from "./ferie/creation/creationFerie.service"
+import suppressionFerieService from "./ferie/visualisation/suppression/suppressionFerie.service"
 import vueDepJourCollabService from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.service"
 
 //Modules
@@ -59,6 +60,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, bo
 	.service("messageService", messageService)
     .service("visualisationFerieService", visualisationFerieService)
 	.service("creationFerieService",creationFerieService)
+    .service("suppressionFerieService", suppressionFerieService)
     .service("vueDepJourCollabService", vueDepJourCollabService)
 
     //Components
