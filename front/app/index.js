@@ -26,6 +26,7 @@ import planningAbsenceComponent from './absence/planning/planningAbsence.compone
 import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
 import creationFerieComponent from './ferie/creation/creationFerie.component'
 import vueDepJourCollabComponent from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.component"
+import rapportComponent from "./vueSynthetiques/choixRapports/rapport.component"
 
 // Services
 import apiUrls from "./utils/apiUrls.service"
@@ -41,6 +42,7 @@ import planningAbsenceService from "./absence/planning/planningAbsence.service"
 import messageService from './accueil/message.service'
 import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
 import creationFerieService from "./ferie/creation/creationFerie.service"
+import suppressionFerieService from "./ferie/visualisation/suppression/suppressionFerie.service"
 import vueDepJourCollabService from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.service"
 
 //Modules
@@ -64,6 +66,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, bo
 	.service("messageService", messageService)
     .service("visualisationFerieService", visualisationFerieService)
 	.service("creationFerieService",creationFerieService)
+    .service("suppressionFerieService", suppressionFerieService)
     .service("vueDepJourCollabService", vueDepJourCollabService)
 
     //Components
@@ -78,6 +81,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, bo
     .component("visualisationFerieComponent", visualisationFerieComponent)
     .component("vueDepJourCollabComponent", vueDepJourCollabComponent)
     .component('creationFerieComponent',creationFerieComponent)
+    .component('rapportComponent', rapportComponent)
 
     //manage connections and routes
     .config(route)

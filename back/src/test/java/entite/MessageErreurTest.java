@@ -5,17 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import dev.entite.Collaborateur;
 import dev.entite.MessageErreur;
-import dev.service.ServiceCollaborateur;
-import dev.service.ServiceDepartement;
-import dev.service.ServiceUrls;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes={ Collaborateur.class, ServiceDepartement.class, ServiceCollaborateur.class, ServiceUrls.class })
 public class MessageErreurTest {
 	
 	private MessageErreur me;

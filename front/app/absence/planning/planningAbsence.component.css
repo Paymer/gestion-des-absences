@@ -1,0 +1,16 @@
+mwl-calendar span[data-cal-date]{
+    opacity: 0.9      ;
+}
+.absence {
+    color: white;
+    text-decoration: bold;
+    background-color: #428bca ;
+    text-align: center;
+  }
+
+.jourferie {
+      color: white;
+      text-decoration:bold  ;
+      background-color: #9ACD32;
+      text-align: center;
+    }

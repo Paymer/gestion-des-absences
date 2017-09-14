@@ -12,7 +12,7 @@ public class Collaborateur {
 
 	private static final int BASE_CONGES_PAYES = 28;
 	private static final int BASE_RTT = 11;
-
+	
 	private String matricule;
 	private String nom;
 	private String prenom;

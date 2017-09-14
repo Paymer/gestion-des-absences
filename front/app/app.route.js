@@ -31,6 +31,9 @@ export function route ($routeProvider, $locationProvider) {
     .when('/ferie/creation', {
         template: '<menu-component></menu-component>' + '<creation-ferie-component></<creation-ferie-component>'
      })
+    .when('/rapport', {
+        template: '<menu-component></menu-component>' + '<rapport-component></<rapport-component>'
+     })
     .when('/rapport/vdjc', {
         template: '<menu-component></menu-component>' + '<vue-dep-jour-collab-component></<vue-dep-jour-collab-component>'
      })
