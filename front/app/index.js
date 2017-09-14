@@ -23,6 +23,7 @@ import planningAbsenceComponent from './absence/planning/planningAbsence.compone
 import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
 import creationFerieComponent from './ferie/creation/creationFerie.component'
 import vueDepJourCollabComponent from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.component"
+import rapportComponent from "./vueSynthetiques/choixRapports/rapport.component"
 
 // Services
 import apiUrls from "./utils/apiUrls.service"
@@ -72,6 +73,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, bo
     .component("visualisationFerieComponent", visualisationFerieComponent)
     .component("vueDepJourCollabComponent", vueDepJourCollabComponent)
     .component('creationFerieComponent',creationFerieComponent)
+    .component('rapportComponent', rapportComponent)
 
     //manage connections and routes
     .config(route)
