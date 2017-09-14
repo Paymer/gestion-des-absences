@@ -1,10 +1,13 @@
 package service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,12 +18,11 @@ import dev.entite.Absence.TypeAbsence;
 import dev.repository.RepositoryAbsence;
 import dev.service.ServiceAbsence;
 
-import static org.mockito.Mockito.*;
-
 public class ServiceAbsenceTest {
 
-	
+
 	List<Absence> listeBdd = new ArrayList<>();
+	List<Absence> listeFeriesRttEmployeurs = new ArrayList<>();
 	private ServiceAbsence serviceAbsence;
 
 	private RepositoryAbsence mockRepoAbsence;
@@ -29,8 +31,8 @@ public class ServiceAbsenceTest {
 	public void init() {
 		Absence db = new Absence();
 		db.setMatriculeEmploye("M1");
-		db.setDateDebut(LocalDate.of(2017, 05, 01));
-		db.setDateFin(LocalDate.of(2017, 05, 04));
+		db.setDateDebut(LocalDate.of(2017, 5, 1));
+		db.setDateFin(LocalDate.of(2017, 5, 4));
 		db.setId(1);
 		db.setMotif("Maladie youpi");
 		db.setStatut(Statut.INITIALE);
@@ -42,7 +44,7 @@ public class ServiceAbsenceTest {
 		
 		Absence db2 = new Absence();
 		db2.setMatriculeEmploye("M1");
-		db2.setDateDebut(LocalDate.of(2017, 11, 06));
+		db2.setDateDebut(LocalDate.of(2017, 11, 6));
 		db2.setDateFin(LocalDate.of(2017, 11, 24));
 		db2.setMotif("Je galère... :-(");
 		db2.setId(7);
@@ -51,11 +53,40 @@ public class ServiceAbsenceTest {
 
 		listeBdd.add(db2);
 		
+		Absence db3 = new Absence();
+		db3.setDateDebut(LocalDate.of(2018, 7, 14));
+		db3.setMotif("Fête nationale");
+		db3.setType(TypeAbsence.JOUR_FERIE);
+		db3.setStatut(Statut.VALIDEE);
+		
+		listeFeriesRttEmployeurs.add(db3);
+		
+		Absence db4 = new Absence();
+		db4.setDateDebut(LocalDate.of(2018, 5, 1));
+		db4.setMotif("Fête du travail");
+		db4.setType(TypeAbsence.JOUR_FERIE);
+		db4.setStatut(Statut.VALIDEE);
+		
+		listeFeriesRttEmployeurs.add(db4);
+		
+		Absence db5 = new Absence();
+		db5.setDateDebut(LocalDate.of(2018, 3, 2));
+		db5.setMotif("Pont");
+		db5.setType(TypeAbsence.RTT_EMPLOYEUR);
+		db5.setStatut(Statut.INITIALE);
+		
+		listeFeriesRttEmployeurs.add(db5);
+		
+		Absence db6 = new Absence();
+		db6.setDateDebut(LocalDate.of(2018, 3, 9));
+		db6.setMotif("Pont");
+		db6.setType(TypeAbsence.RTT_EMPLOYEUR);
+		db6.setStatut(Statut.VALIDEE);
+		
+		listeFeriesRttEmployeurs.add(db6);
 		
 		mockRepoAbsence = mock(RepositoryAbsence.class);
 		serviceAbsence = new ServiceAbsence(mockRepoAbsence);
-		
-
 	}
 
 	
@@ -189,6 +220,22 @@ public class ServiceAbsenceTest {
 		result = serviceAbsence.conditions(absence);
 		assertThat(result).isEqualTo(false);
 
+	}
+	
+	@Test
+	public void getJoursFeriesEtRttEmployeursTest(){
+		when(serviceAbsence.getJoursFeriesEtRttEmployeurs()).thenReturn(listeFeriesRttEmployeurs);
+		assertThat(serviceAbsence.getJoursFeriesEtRttEmployeurs().size()).isEqualTo(4);
+		assertThat(serviceAbsence.getJoursFeriesEtRttEmployeurs()
+				.stream()
+				.filter(a -> a.getType()==TypeAbsence.JOUR_FERIE)
+				.collect(Collectors.toList()).size())
+			.isEqualTo(2);
+		assertThat(serviceAbsence.getJoursFeriesEtRttEmployeurs()
+				.stream()
+				.filter(a -> a.getType()==TypeAbsence.RTT_EMPLOYEUR)
+				.collect(Collectors.toList()).size())
+			.isEqualTo(2);
 	}
 	
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import dev.entite.Absence;
 import dev.entite.Absence.Statut;
+import dev.entite.Absence.TypeAbsence;
 import dev.entite.Collaborateur;
 import dev.entite.MessageErreur;
 import dev.repository.RepositoryAbsence;
@@ -29,7 +30,11 @@ public class ServiceTraitementNuit {
 	//@Scheduled(cron = "0 0 0 * * *")
 	public Boolean passerNuit() {
 		List<Absence> listeAbsences = repoAbsences.findAll();
-		listeAbsences.forEach(this::gererAbsence);
+		listeAbsences.forEach(a -> {
+			if(a.getStatut() == Statut.INITIALE){
+				this.gererAbsence(a);
+			}
+		});
 		return true;
 	}
 
@@ -42,6 +47,9 @@ public class ServiceTraitementNuit {
 			int nbJours = (int) (java.time.temporal.ChronoUnit.DAYS.between(absence.getDateDebut(),
 					absence.getDateFin()));
 
+			if(collaborateurCourant.getMatricule().equals("a8fc21fc")){
+				collaborateurCourant.toString();
+			}
 			switch (absence.getType()) {
 			case CONGES_PAYES:
 				if (collaborateurCourant.getCongesPayes() < nbJours) {
@@ -57,17 +65,18 @@ public class ServiceTraitementNuit {
 					collaborateurCourant.setRtt(collaborateurCourant.getRtt() - nbJours);
 				}
 				break;
-			case RTT_EMPLOYEUR:
-				statut = Statut.VALIDEE;
-				this.creerRttEmployeur(nbJours);
-				break;
 			default:
 				break;
 			}
 			absence.setStatut(statut);
 			repoAbsences.save(absence);
+			servCollaborateurs.save(collaborateurCourant);
 
-		} else {
+		} else if(absence.getType()==TypeAbsence.RTT_EMPLOYEUR){
+			this.creerRttEmployeur(1);
+			absence.setStatut(Statut.VALIDEE);
+			repoAbsences.save(absence);
+		}else if(absence.getType()!=TypeAbsence.JOUR_FERIE){
 			String message = "Une absence était invalide : " + absence.getId() + " - Du " + absence.getDateDebut()
 					+ " au " + absence.getDateFin();
 			this.creerMessage(message);
@@ -79,17 +88,19 @@ public class ServiceTraitementNuit {
 		List<Collaborateur> collabsErreur = new ArrayList<>();
 		List<Collaborateur> collaborateurs = servCollaborateurs.findAll();
 		for (Collaborateur c : collaborateurs) {
-			if (c.getRtt() > 0) {
+			if (c.getRtt() >= nbJours) {
 				c.setRtt(c.getRtt() - nbJours);
 			} else {
+				c.setRtt(0);
 				collabsErreur.add(c);
+				servCollaborateurs.save(c);
 			}
 		}
 		if (!collabsErreur.isEmpty()) {
 			StringBuilder message = new StringBuilder();
-			message.append("Un ou plusieurs employé n'avaient plus de RTT disponible :");
+			message.append("RTT employeur - Un ou plusieurs employé n'avaient plus de RTT disponible :");
 			for (Collaborateur c : collabsErreur) {
-				message.append("\n" + c.getMatricule() + " - " + c.getNom() + " " + c.getPrenom());
+				message.append("\n" + c.getNom() + " " + c.getPrenom());
 			}
 			this.creerMessage(message.toString());
 		}

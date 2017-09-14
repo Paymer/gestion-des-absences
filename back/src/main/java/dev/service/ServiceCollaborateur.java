@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import dev.entite.Collaborateur;
 import dev.entite.Collaborateur.Grade;
+import dev.repository.RepositoryCollaborateur;
 import dev.entite.Departement;
 
 @Service
@@ -27,6 +28,8 @@ public class ServiceCollaborateur {
 	private ServiceDepartement serviceDepartements;
 	@Autowired
 	private ServiceUrls urls;
+	@Autowired
+	private RepositoryCollaborateur repoCollaborateurs;
 
 	private static final Logger LOG = LoggerFactory.getLogger(ServiceCollaborateur.class);
 
@@ -43,6 +46,9 @@ public class ServiceCollaborateur {
 			this.createCollaborateurs(objects);
 			this.browseManagers(objects);
 			this.setGrades();
+			for(Collaborateur c : listeCollaborateurs){
+				repoCollaborateurs.save(c);
+			}
 		} catch (JSONException e) {
 			LOG.error("Error while retrieving collaborateurs list : ", e.getMessage());
 		}
@@ -120,6 +126,10 @@ public class ServiceCollaborateur {
 				.filter(c -> c.getEmail().equalsIgnoreCase(email)
 						&& c.getPassword().equals(password))
 				.findAny();
+	}
+
+	public void save(Collaborateur c) {
+		repoCollaborateurs.save(c);
 	}
 
 }

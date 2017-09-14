@@ -25,13 +25,13 @@ public class ServiceAbsence {
 	private RepositoryMessageErreur messages;
 	private String service = "Service des Absences";
 
+	private RepositoryAbsence repoAbsence;
+
 	@Autowired
 	public ServiceAbsence(RepositoryAbsence repoAbsence) {
 		super();
 		this.repoAbsence = repoAbsence;
 	}
-
-	private RepositoryAbsence repoAbsence;
 
 	/** method qui va a reviser toutes les conditions pour faire le post */
 	public boolean conditions(Absence newAbsence) {
@@ -91,8 +91,8 @@ public class ServiceAbsence {
 					repoAbsence.save(a);
 					retour = true;
 				} else {
-					msg.setMessage(msg.getMessage() + "\n" + validateur.getMatricule()
-							+ "\nemployee is not in his team !");
+					msg.setMessage(
+							msg.getMessage() + "\n" + validateur.getMatricule() + "\nemployee is not in his team !");
 					messages.save(msg);
 				}
 
@@ -108,25 +108,39 @@ public class ServiceAbsence {
 	}
 
 	public List<Absence> getAbsencesPourManager(String matriculeManager) {
-		return repoAbsence.findAll().stream()
-			.filter(a -> collabs.findCollaborateurParMatricule(a.getMatriculeEmploye()).orElse(new Collaborateur())
-				.getManager().orElse(new Collaborateur()).getMatricule().equals(matriculeManager)
-				&& a.getStatut() == Statut.EN_ATTENTE_VALIDATION)
-			.collect(Collectors.toList());
+		return this.getAbsencesNormales().stream().filter(a -> {
+			Optional<Collaborateur> oc = collabs.findCollaborateurParMatricule(a.getMatriculeEmploye());
+			if (oc.isPresent()) {
+				Collaborateur c = oc.get();
+				Optional<Collaborateur> ocmanager = c.getManager();
+				if (ocmanager.isPresent() && ocmanager.get().getMatricule().equals(matriculeManager) && a.getStatut()==Statut.EN_ATTENTE_VALIDATION) {
+					return true;
+				}
+			}
+			return false;
+		}).collect(Collectors.toList());
 	}
 
 	public List<Absence> getRttEmployeur() {
-		return repoAbsence.findAll().stream().filter(abs -> abs.getType() == TypeAbsence.RTT_EMPLOYEUR)
+		return this.getJoursFeriesEtRttEmployeurs().stream().filter(abs -> abs.getType() == TypeAbsence.RTT_EMPLOYEUR)
 				.collect(Collectors.toList());
 	}
 
-	public List<Absence> getJoursFeriesEtRttEmployeurs(){
-		return repoAbsence.findAll()
-			.stream()
-			.filter(abs -> abs.getType()==TypeAbsence.RTT_EMPLOYEUR
-				|| abs.getType()==TypeAbsence.JOUR_FERIE)
-			.sorted((a1, a2) -> a2.getDateDebut().compareTo(a1.getDateDebut()))
-			.collect(Collectors.toList());
+	public List<Absence> getAbsencesNormales() {
+		return repoAbsence.findAll().stream()
+				.filter(abs -> abs.getType() != TypeAbsence.RTT_EMPLOYEUR && abs.getType() != TypeAbsence.JOUR_FERIE)
+				.collect(Collectors.toList());
+	}
+
+	public List<Absence> getJoursFeriesEtRttEmployeurs() {
+		return repoAbsence.findAll().stream()
+				.filter(abs -> abs.getType() == TypeAbsence.RTT_EMPLOYEUR || abs.getType() == TypeAbsence.JOUR_FERIE)
+				.sorted((a1, a2) -> a2.getDateDebut().compareTo(a1.getDateDebut())).collect(Collectors.toList());
+	}
+
+	public boolean isJourFerieLibre(LocalDate date) {
+		return !this.getJoursFeriesEtRttEmployeurs().stream().filter(jf -> jf.getDateDebut().isEqual(date)).findAny()
+				.isPresent();
 	}
 
 }
