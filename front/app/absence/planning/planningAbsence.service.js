@@ -15,6 +15,7 @@ export default class PlanningAbsenceService {
             })
             .then(absences => {
                 
+                this.parseType(absences)
                 return absences;
             })
 
@@ -28,13 +29,22 @@ export default class PlanningAbsenceService {
         })
         .then(feries => {
             this.parseType(feries);
-            //this.transformerDate(feries);
+            
             return feries;
         })
     }
-    parseType(feries) {
-		feries.forEach(f => {
+    parseType(absence) {
+		absence.forEach(f => {
 			switch(f.type){
+                case 'CONGES_PAYES':
+                    f.type = 'Congés payés'
+                    break;
+                case 'CONGES_SANS_SOLDE':
+                    f.type = 'Congés sans solde'
+                    break;
+                case 'MISSION':
+                    f.type = 'Mission'
+                    break;
 				case 'RTT_EMPLOYEUR':
 					f.type = 'RTT employeur'
 					break;
