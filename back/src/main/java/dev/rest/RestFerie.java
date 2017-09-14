@@ -79,5 +79,25 @@ public class RestFerie {
 		retour.put("success", valid);
 		return retour.toString();
 	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
+	public String deleteFerie(@RequestBody String ferie) {
+		
+		JSONObject objFerie = new JSONObject(ferie);
+		JSONObject retour = new JSONObject();
+		retour.put("success", false);
+		
+		String matricule = objFerie.getString("matricule");
+		Optional<Collaborateur> oc = serviceCollaborateur.findCollaborateurParMatricule(matricule);
+		if(oc.isPresent() && oc.get().getGrade()==Grade.ADMINISTRATEUR){
+			int idFerie = objFerie.getInt("idFerie");
+			repoAbsence.delete(repoAbsence.findOne(idFerie));
+			retour.put("success", true);
+		}else{
+			retour.put("message", "Vous ne disposez pas des droits nécéssaires pour effectuer cette action !");
+		}
+		
+		return retour.toString();
+	}
 
 }
