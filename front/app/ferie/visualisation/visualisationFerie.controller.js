@@ -11,7 +11,7 @@ export default class VisualisationAbsenceController {
         this.visualisationFerieService.findAllAnnees()
 			.then(result => {
 				this.annees = result
-				this.anneeCourante = this.annees[0]
+				this.anneeCourante = ""+(new Date()).getFullYear()
 				this.filterByAnnee()
 			})
         this.order = "dateOriginal";
