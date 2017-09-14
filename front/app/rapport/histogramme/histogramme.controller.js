@@ -1,52 +1,22 @@
 export default class HistogrammeController {
     constructor(histogrammeService) {
-
+        this.telecharger = false;
         this.histogrameService = histogrammeService;
-       // this.data = this.histogrammeService.data;
+        this.histogrameService.getDepartements()
+            .then(data => this.departements = data);
 
-        this.barChartData = {
-             labels: ["December", "January", "February", "March", "April", "May"],
-            datasets: [
+        }
 
-                {
-                    label: "Collaborateur 1",
-                    backgroundColor: "yellow",
-                    yAxisID: "bar-y-axis",
-                    data: [1, 1, 0, 0, 1 ]
-                },
+ chart (departement, year, month){
 
-                {
-                    label: 'fundraisers',
-                    backgroundColor: "#ff6384",
-                    yAxisID: "bar-y-axis",
-                    data: [3985, 6.4, 1244.5]
-                },
-
-                {
-                    label: 'shop',
-                    backgroundColor: "orange",
-                    yAxisID: "bar-y-axis",
-                    data: [8910, 12, 120, 50]
-                },
-
-                {
-                    label: 'Events',
-                    backgroundColor: "purple",
-                    yAxisID: "bar-y-axis",
-                    data: [1705.44, 12221.2, 40.3, 150]
-                }
-
-
-
-            ]
-        };
-
- 
-            this.ctx = document.getElementById("canvas").getContext("2d");
-            this.window.myBar = new Chart(this.ctx, {
+     this.telecharger = true;
+      this.histogrameService.findData(departement, month, year)
+        .then(barChartData => {
+   this.ctx = document.getElementById("canvas").getContext("2d");
+             new Chart(this.ctx, {
                 responsive: true,
                 type: 'bar',
-                data: this.barChartData,
+                data: barChartData,
                 options: {
                     title: {
                         display: true,
@@ -66,9 +36,9 @@ export default class HistogrammeController {
                     }
                 }
             });
+        })
 
-        }
-
-
+  
+ }
 
     }

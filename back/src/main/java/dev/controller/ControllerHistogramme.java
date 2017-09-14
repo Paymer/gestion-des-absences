@@ -2,6 +2,10 @@ package dev.controller;
 
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +36,9 @@ public class ControllerHistogramme{
 	
 
 	@RequestMapping(value = "/{departement}/{year}/{month}", method = RequestMethod.GET, produces = "application/json")
-	public BarChartData chartData(@PathVariable String departement, @PathVariable Integer year, @PathVariable Integer month){
+	public BarChartData chartData(@PathVariable String departement, @PathVariable Integer year, @PathVariable Integer month) throws UnsupportedEncodingException{
 
-		BarChartData barChartData =serHisto.chartData(departement, year, month);
+		BarChartData barChartData =serHisto.chartData(URLDecoder.decode(departement, "utf-8"), year, month);
 
 			
 		return barChartData;

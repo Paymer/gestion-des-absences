@@ -8,15 +8,12 @@
     <label class="col-md-12 control-label" for="inlineFormCustomSelect">
 
     Département 
-    <select id="Depart" name="selectbasic">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
+    <select ng-model="$ctrl.departement" id="Depart" name="selectbasic" >
+      <option ng-repeat="element in $ctrl.departements" value="{{element.libelle}}">{{element.libelle}}</option>
     </select>
     
-
-    
     Mois
-    <select id="Month" name="selectbasic">
+    <select ng-model="$ctrl.month" id="Month" name="selectbasic">
       <option value="1">Janvier</option>
       <option value="2">Février</option>
       <option value="3">Mars</option>
@@ -32,19 +29,19 @@
     </select>
    
         Année
-    <select id="Year" name="selectbasic" min="2017" max='$ctrl.max' step='1'>
-      <option value="1">2017</option>
-      <option value="2">2018</option>
-      <option value="3">2019</option>
-      <option value="4">2020</option>
+    <select ng-model="$ctrl.year" id="Year" name="selectbasic" min="2017" max='$ctrl.max' step='1'>
+      <option value="2017">2017</option>
+      <option value="2018">2018</option>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
     </select>
 
 
-    <button type="button" class="btn btn-primary">
+    <button type="button" ng-click="$ctrl.chart($ctrl.departement, $ctrl.year, $ctrl.month)" class="btn btn-primary">
             <span class="glyphicon glyphicon-search"></span> Search
         </button>
 
-    <button type="button" class="btn btn-success">
+    <button ng-show ="$ctrl.telecharger" type="button" class="btn btn-success">
         <span class="glyphicon glyphicon-download-alt"></span> Telecharger
     </button>
 
@@ -59,7 +56,7 @@
 
 
 <center><div class="col-md-12">
-  <canvas id="canvas" width="600" height="300">
+  <canvas ng-show = "$ctrl.telecharger" id="canvas" width="600" height="300">
 </div></center>
 
 <div>

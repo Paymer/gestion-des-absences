@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,9 +87,11 @@ public class ServiceHistogramme {
 	public String[] creerLabel (int year, int month){
 		LocalDate date = LocalDate.of (year, month, 01);
 		String[] labels = new String[date.lengthOfMonth()];
+	
 		
-		while (date.getDayOfMonth() <= date.lengthOfMonth()){
+		while (date.getDayOfMonth() <= date.lengthOfMonth() && month == date.getMonthValue()){
 			labels[date.getDayOfMonth()-1] = date.toString();
+			date = date.plusDays(1);
 			
 		}
 		return labels;
@@ -107,9 +109,9 @@ public class ServiceHistogramme {
 		List<Absence> listAbsences = absenceCtrl.findAbsenceParMatriculeEmploye(c.getMatricule());
 		
 		//on filtre la liste pour avoir les absences du periode selectione
-		 return listAbsences.stream()
+		 Optional<int[]> result = listAbsences.stream()
 				.filter(a -> a.getDateDebut().getYear() == year ||  a.getDateFin().getYear() == year) //year
-				.filter(a -> a.getDateDebut().getMonthValue() == month ||  a.getDateFin().getMonthValue() == month)//month
+				//.filter(a -> a.getDateDebut().getMonthValue() == month ||  a.getDateFin().getMonthValue() == month)//month
 				.map(a -> transform(a, year, month))
 				.reduce((tableauPrecedent, tableauActuel) -> {
 					Arrays.setAll(tableauPrecedent, indexTableauPrecedent -> {
@@ -118,7 +120,9 @@ public class ServiceHistogramme {
 						return valeurTableauActuel + valeurTableauPrecedent;
 					});
 					return tableauPrecedent;
-				}).get();
+				});
+		 LocalDate date = LocalDate.of(year, month, 01);
+		 return result.isPresent() ? result.get() : new int[date.lengthOfMonth()];
 	}
 	
 	

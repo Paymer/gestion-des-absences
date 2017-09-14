@@ -7,15 +7,20 @@ constructor(apiUrls, $http, connexionService) {
     }
     
     //trouver la data pour le chart
-    findData(departement, mois, year) {
-        //can I add 3 parameters like that?
-        this.data = this.$http.get(this.apiUrls.histogramme + "/" + departement +'/'+year+'/'+mois, {})
+    findData(departement, month, year) {
+   
+        return this.$http.get(encodeURI(this.apiUrls.histogramme + "/" + departement.split('/').join("%2F") +'/'+year+'/'+month), {})
                   .then(result => {
                       return result.data;
                   })
-                  
-        return this.data;
     }
 
+    
+
+    getDepartements() {
+        return this.$http.get(this.apiUrls.departement, {})
+             .then(result => result.data)
+             
+    }
     
 }
