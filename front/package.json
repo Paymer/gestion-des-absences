@@ -37,13 +37,15 @@
   },
   "dependencies": {
     "angular": "^1.6.4",
+    "angular-bootstrap-calendar": "^0.30.0",
     "angular-resource": "^1.6.6",
     "angular-route": "^1.6.4",
     "angular-ui-bootstrap": "^2.5.0",
     "bootstrap": "^3.3.7",
+    "file-loader": "^0.11.1",
     "html-loader": "^0.5.1",
     "jssha": "^2.3.1",
     "lodash": "^4.17.4",
-    "file-loader": "^0.11.1"
+    "moment": "^2.18.1"
   }
 }
