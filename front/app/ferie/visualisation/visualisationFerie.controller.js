@@ -38,4 +38,8 @@ export default class VisualisationAbsenceController {
         this.visualisationFerieService
 			.modification(idFerie, date, type, motif);
     }
+	
+	isAdmin(){
+		return this.connexionService.getGrade()=='ADMINISTRATEUR';
+	}
 }

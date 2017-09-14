@@ -63,7 +63,7 @@
                         </span>
                     </a>
                 </th>
-                <th>
+                <th ng-if="$ctrl.isAdmin()">
                 </th>
             </tr>
         </thead>
@@ -75,7 +75,7 @@
                 <td>{{ferie.type}}</td>
                 <td>{{ferie.jour}}</td>
                 <td>{{ferie.commentaires}}</td>
-                <td>
+                <td ng-if="$ctrl.isAdmin()">
 					<a class="col-xs-6 text-center" href="#">
 						<span class="glyphicon glyphicon-pencil"></span>
 					</a>
@@ -87,9 +87,9 @@
         </tbody>
     </table>
 
-    <h4 class="text-right">
+    <h4 class="text-right" ng-if="$ctrl.isAdmin()">
         Ajouter un jour férié ou une RTT emp.
-        <a href="#" class="btn btn-primary">
+        <a href="./ferie/creation" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </a>
     </h4>
