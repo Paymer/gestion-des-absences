@@ -1,3 +1,4 @@
+import "./planningAbsence.component.css"
 import planningAbsence from './planningAbsence.html'
 import panningAbsenceCtrl from './planningAbsence.controller.js'
 
