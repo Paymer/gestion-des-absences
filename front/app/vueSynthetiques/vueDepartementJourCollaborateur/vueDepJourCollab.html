@@ -2,14 +2,15 @@
 <h1 class="text-center">Vue par département par jour et par collaborateur</h1>
 
 <div class="container">
+
     <h4 class="text-center">
         Département
         <select ng-model="$ctrl.departementCourant">
 			<option ng-repeat="departement in $ctrl.departements" ng-value="departement">{{departement}}</option>
 		</select>
         Mois
-        <select ng-model="$ctrl.moisCourant">
-            <option ng-repeat="moiss in $ctrl.mois" ng-value="moiss">{{moiss}}</option>
+        <select ng-model="$ctrl.moisCourantLettres">
+            <option ng-repeat="moiss in $ctrl.moisEnLettres" ng-value="moiss">{{moiss}}</option>
         </select>
         Année
         <select ng-model="$ctrl.anneeCourante">
@@ -17,16 +18,31 @@
         </select>
         <button type="submit" class="btn btn-primary glyphicon glyphicon-zoom-in">
     </h4>
-	<br>
+
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>Nom</th>
-                <th ng-repeat="jour in $ctrl.jours">{{jour}}</th>
+                <th>
+                    <a href="#" ng-click="$ctrl.updateTri()">
+                        Nom
+                        <span ng-if="$ctrl.order == 'nom'">
+                            <span ng-show="$ctrl.triInverse">
+                                <span class="caret"></span>
+                            </span>
+                            <span ng-show="!$ctrl.triInverse">
+                                <span class="dropup"><span class="caret"></span></span>
+                            </span>
+                        </span>
+                    </a>
+                </th>
+                <th ng-repeat="jour in $ctrl.getJours() track by $index">{{$index+1}}</th>
             </tr>
         </thead>
         <tbody>
-
+            <tr ng-repeat="sub in $ctrl.subalternes | orderBy:$ctrl.order:$ctrl.triInverse">
+                <td>{{sub.nom}}</td>
+                <td ng-repeat="jour in $ctrl.getJours() track by $index"></td>
+            </tr>
         </tbody>
     </table>
 

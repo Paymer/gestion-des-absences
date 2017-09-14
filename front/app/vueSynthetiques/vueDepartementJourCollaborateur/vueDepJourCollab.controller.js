@@ -1,16 +1,48 @@
 
 export default class VueDepJourCollabController {
-    constructor() {
-        
+    constructor(vueDepJourCollabService) {
+        this.vueDepJourCollabService = vueDepJourCollabService;
     }
 
     $onInit() {
-        this.mois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-        this.moisEnNombre = [1,2,3,4,5,6,7,8,9,10,11,12];
+        this.order = "nom";
+        this.triInverse = false;
+
+        this.moisEnLettres = this.vueDepJourCollabService.getMoisEnLettres();
+        this.moisEnNombre = this.vueDepJourCollabService.getMoisEnNombre();
+        this.moisCourantChiffre = new Date().getMonth(); // Renvoie le mois actuel (entre 0 et 11)
+        this.moisCourantLettres = this.moisEnLettres[this.moisCourantChiffre];
+        this.anneeCourante = new Date().getFullYear(); // Renvoie l'année actuelle
         this.annees = [2016, 2017, 2018]; // Les récupérer en fonction des absences existantes ?
-        /* TODO
-            prendre le mois courant, jour courant ?, années courantes, définir un département de base
-            
-        */
+
+        this.jours = this.vueDepJourCollabService.nombreJoursDuMois(this.moisCourantChiffre+1, this.anneeCourante);
+
+        this.vueDepJourCollabService.getDepartements().then(departements => {
+            this.departements = departements.map(d => d.libelle);
+            this.departementCourant = this.departements[0];
+        });
+
+        this.vueDepJourCollabService.getSubalternes().then(subalternes => {
+            this.subalternes = subalternes;
+
+            // Pour chaque subalterne, récupère ses absences respectives
+            this.subalternes.forEach(s => {
+                this.vueDepJourCollabService.getAbsencesParMatricule(s.matricule)
+                            .then(a => {
+                                s.absences = a
+                                console.log(s.absences);
+                            });
+            });
+        });
+
+        
+    }
+
+    getJours() {
+        return new Array(this.jours);
+    }
+
+    updateTri() {
+        this.triInverse = !this.triInverse;
     }
 }
