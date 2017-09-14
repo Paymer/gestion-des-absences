@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import uiBootstrap from 'angular-ui-bootstrap'
 import { route } from './app.route'
 import ngResource from "angular-resource"
+import i18n from 'angular-i18n/angular-locale_fr-fr'
 import jssha  from 'jssha'
 
 //Components
@@ -16,6 +17,7 @@ import DemandeAbsenceComponent from './absence/demande/demandeAbsence.component'
 import modifAbsenceComponent from './absence/modification/modificationAbsence.component'
 import validationAbsenceComponent from './absence/validation/validationAbsence.component'
 import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
+import creationFerieComponent from './ferie/creation/creationFerie.component'
 import vueDepJourCollabComponent from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.component"
 
 // Services
@@ -29,13 +31,14 @@ import modifAbsenceService from "./absence/modification/modificationAbsence.serv
 import validationAbsenceService from "./absence/validation/validationAbsence.service"
 import messageService from './accueil/message.service'
 import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
+import creationFerieService from "./ferie/creation/creationFerie.service"
 import vueDepJourCollabService from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.service"
 
 //Modules
 import menuModule from './menu/menu.module'
 
 
-angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
+angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, 'ngLocale'])
 
     .value('jssha', jssha)
     .constant("apiUrls", apiUrls)
@@ -49,6 +52,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .service("suppressionAbsenceService", suppressionAbsenceService)
 	.service("messageService", messageService)
     .service("visualisationFerieService", visualisationFerieService)
+	.service("creationFerieService",creationFerieService)
     .service("vueDepJourCollabService", vueDepJourCollabService)
 
     //Components
@@ -60,9 +64,14 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap])
     .component('validationAbsenceComponent',validationAbsenceComponent)
     .component("visualisationFerieComponent", visualisationFerieComponent)
     .component("vueDepJourCollabComponent", vueDepJourCollabComponent)
+    .component('creationFerieComponent',creationFerieComponent)
 
     //manage connections and routes
     .config(route)
+	.config(['uibDatepickerPopupConfig', function (config) {
+		config.showButtonBar = false;
+	}])
+
     .run(['$rootScope', '$location', 'connexionService', function ($rootScope, $location, connexionService) {
     $rootScope.$on('$routeChangeStart', function (event) {
         if (!connexionService.isConnecte()) {

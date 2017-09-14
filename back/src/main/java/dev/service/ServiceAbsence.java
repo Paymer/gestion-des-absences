@@ -25,13 +25,13 @@ public class ServiceAbsence {
 	private RepositoryMessageErreur messages;
 	private String service = "Service des Absences";
 
+	private RepositoryAbsence repoAbsence;
+
 	@Autowired
 	public ServiceAbsence(RepositoryAbsence repoAbsence) {
 		super();
 		this.repoAbsence = repoAbsence;
 	}
-
-	private RepositoryAbsence repoAbsence;
 
 	/** method qui va a reviser toutes les conditions pour faire le post */
 	public boolean conditions(Absence newAbsence) {
@@ -119,6 +119,14 @@ public class ServiceAbsence {
 		return repoAbsence.findAll().stream().filter(abs -> abs.getType() == TypeAbsence.RTT_EMPLOYEUR)
 				.collect(Collectors.toList());
 	}
+	
+	public List<Absence> getAbsencesNormales(){
+		return repoAbsence.findAll()
+				.stream()
+				.filter(abs -> abs.getType()!=TypeAbsence.RTT_EMPLOYEUR
+					&& abs.getType()!=TypeAbsence.JOUR_FERIE)
+				.collect(Collectors.toList());
+	}
 
 	public List<Absence> getJoursFeriesEtRttEmployeurs(){
 		return repoAbsence.findAll()
@@ -127,6 +135,13 @@ public class ServiceAbsence {
 				|| abs.getType()==TypeAbsence.JOUR_FERIE)
 			.sorted((a1, a2) -> a2.getDateDebut().compareTo(a1.getDateDebut()))
 			.collect(Collectors.toList());
+	}
+
+	public boolean isJourFerieLibre(LocalDate date) {
+		return !this.getJoursFeriesEtRttEmployeurs()
+				.stream()
+				.filter(jf -> jf.getDateDebut().isEqual(date))
+				.findAny().isPresent();
 	}
 
 }
