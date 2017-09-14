@@ -16,7 +16,7 @@ import dev.service.ServiceDepartement;
 import dev.service.ServiceUrls;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes={ Collaborateur.class, ServiceDepartement.class, ServiceCollaborateur.class, ServiceUrls.class })
+@SpringBootTest(classes={ ServiceCollaborateur.class, ServiceDepartement.class, ServiceUrls.class })
 public class CollaborateurTest {
 	
 	private Collaborateur c;

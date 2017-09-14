@@ -1,0 +1,88 @@
+<div class="form-horizontal">
+
+	<h1 class="text-center">{{$ctrl.titre}}</h1>
+
+	<div class="form-group">
+		<label class="col-sm-3 col-sm-offset-1 control-label" for="selectbasic">
+			Date
+		</label>
+		<div class="col-sm-7">
+			<p class="input-group">
+				<input
+					readonly
+					type="text"
+					name="date"
+					class="form-control"
+					uib-datepicker-popup="dd/MM/yyyy"
+					ng-model="$ctrl.date"
+					is-open="$ctrl.popup.opened"
+					datepicker-options="$ctrl.dateOptions"
+					ng-required="true"
+					alt-input-formats="altInputFormats"
+					placeholder="JJ/MM/AAAA"
+					ng-click="$ctrl.open()"
+					required/>
+				<span class="input-group-btn">
+					<button
+						type="button"
+						class="btn btn-default"
+						ng-click="$ctrl.open()">
+							<i class="glyphicon glyphicon-calendar"></i>
+					</button>
+				</span>
+			</p>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 col-sm-offset-1 control-label"  for="selectbasic">
+			Type de jour
+		</label>
+		<div class="col-sm-7">
+			<select ng-model="$ctrl.type" id="selectbasic" ng name="selectbasic" class="form-control" required>
+				<option value="">(Type de jour)</option>
+				<option value="JOUR_FERIE">Jour Ferié</option>
+				<option value="RTT_EMPLOYEUR">RTT employeur</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-3 col-sm-offset-1 control-label"  for="textarea">
+			Commentaires
+		</label>
+		<div class="col-sm-7">                     
+			<textarea class="form-control" ng-model='$ctrl.commentaires' id="textarea" name="textarea"></textarea>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1 alert alert-danger" ng-show="$ctrl.error || $ctrl.errorServer || !$ctrl.isCommentaireValide()">
+		<span ng-show="$ctrl.error">
+			Le jour n'a pas pu être ajouté !
+		</span>
+		<span ng-show="$ctrl.errorServer">
+			La connexion avec le serveur a échoué !
+		</span>
+		<span ng-show="!$ctrl.isCommentaireValide()">
+			Merci de donner un commentaire
+		</span>
+	</div>
+</div>
+<div class="row">
+	<div class="text-center">
+        <button
+			id="buttons"
+			ng-disabled="form.$invalid
+					|| !$ctrl.isDateValide()
+					|| !$ctrl.isTypeValide()
+					|| !$ctrl.isCommentaireValide()"
+				name="button1id"
+				ng-click="$ctrl.addFerie()"
+				class="btn btn-success">Valider</button>
+        <button
+			id="button2id"
+			name="button2id"
+			ng-click="$ctrl.annuler()"
+			class="btn btn-danger">Annuler</button>
+	</div>
+</div>
