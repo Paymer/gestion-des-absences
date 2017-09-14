@@ -52,8 +52,6 @@ export default class VueDepJourCollabService {
 
         s.tableauAbsences = new Array(nbJours);
         
-        console.log(s);
-
         let i;
         for(i=0 ; i<s.tableauAbsences.length ; i++) {
             let jour = new Date(anneeCourante, moisCourantChiffre, i+1);
