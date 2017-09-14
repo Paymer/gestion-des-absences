@@ -4,16 +4,16 @@
 
     <div class="col-md-12 text-center">
       <div class="btn-group">
-        <button class="btn btn-primary" mwl-date-modifier date="$ctrl.viewDate" decrement="$ctrl.calendarView"> <  </button>
+        <button class="btn btn-primary" mwl-date-modifier date="$ctrl.viewDate" decrement="$ctrl.calendarView" ><span class="glyphicon glyphicon-chevron-left"></span>   </button>
         <button class="btn btn-default" mwl-date-modifier date="$ctrl.viewDate"  set-to-today>aujourd'hui </button>
-        <button class="btn btn-primary" mwl-date-modifier date="$ctrl.viewDate" increment="$ctrl.calendarView"> > </button>
+        <button class="btn btn-primary" mwl-date-modifier date="$ctrl.viewDate" increment="$ctrl.calendarView"><span class="glyphicon glyphicon-chevron-right"></span></button>
       </div>
       <div class="btn-group">
         <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'year'">Année</label>
         <label class="btn btn-primary" ng-model="$ctrl.calendarView" uib-btn-radio="'month'">Mois</label>
       </div>
     </div>
-
+    <a href="#" class="btn btn-default"> Default text here</a>
   </div>
   <div class="col-md-offset-1 col-md-10 ">
     <mwl-calendar
