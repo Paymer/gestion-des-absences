@@ -46,8 +46,43 @@ public class ControllerHistogramme{
 		
 		//list of the people from departement:
 		List<Collaborateur> listCollab = this.serCollab.findCollaborateurParDepartement(departement);
-	
+
 		//creer la parti label (liste de jours)
+		String labels = creerLabel(year, month);
+	
+		//creationDataSets
+			String datasets = "[";
+			int i = 0;
+			for (Collaborateur c : listCollab){
+				datasets = datasets + "{ label: '" + c.getNom() +"', backgroundColor:" + getColor(i)+ "yAxisId:'bar-y-axis', data: " + creerDates(c, month, year) + "},";
+				i++;
+			}
+			datasets = datasets + "]";
+			
+		return "{ labels: " + labels + ", datasets : " + datasets +"};";
+	}
+	
+	
+	public String getColor (int i){
+		String[] color = {"aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanchedalmond", "blue", "blueviolet", 
+				"brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "cornsilk", "crimson", "cyan", "darkblue", "darkcyan", 
+				"darkgoldenred", "darkgray", "darkgreen", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", 
+				"darkseagreen", "darkslateblue", "darkslategray", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dodgerblue", 
+				"firebrick", "floralwhite", "forestgreen", "fuchsia", "gainsboro", "ghostwhite", "gold", "goldenrod", "gray", "green", "greenyellow", "honeydew",
+				"hotpink", "indianred", "indigo", "ivory", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lightblue", "lightcoral",
+				"lightcyan", "lightgoldenrodyellow", "lightgreen", "lightgrey", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray",
+				"lightsteelblue", "lightyellow", "lime", "limegreen", "linen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple",
+				"mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose",
+				"moccasin", "navajowhite", "navy", "oldlace", "olive", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise",
+				"palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "purple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown",
+				"seagreen", "seashell", "sienna", "silver", "skyblue", "slateblue", "slategray", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato",
+				"turquoise", "violet", "wheat", "whitesmoke", "yellow", "yellowgreen" };
+		
+		return "'"+color[i]+"'";
+	}
+	
+	public String creerLabel (int year, int month){
+		
 		String labels = "[";
 		LocalDate date = LocalDate.of (year, month, 01);
 		while (date.getDayOfMonth() <= date.lengthOfMonth()){
@@ -58,17 +93,9 @@ public class ControllerHistogramme{
 			}
 			date = date.plusDays(1);
 		}
-			labels = labels + "]";	
-	
-		//creationDataSets
-			String datasets = "[";
-			for (Collaborateur c : listCollab){
-				//TODO Add color
-				datasets = datasets + "{ label: '" + c.getPrenom() +"', backgroundColor:" + "COLOOOR"+ "yAxisId:'bar-y-axis', data: " + creerDates(c, month, year) + "},";
-			}
-			datasets = datasets + "]";
-			
-		return "{ labels: " + labels + ", datasets : " + datasets +"};";
+			labels = labels + "]";
+		
+		return labels;
 	}
 
 	/**
@@ -113,8 +140,8 @@ public class ControllerHistogramme{
 			d = a.getDateDebut();
 
 		while (d.isBefore(a.getDateFin()) && d.getMonthValue() == month){
-			//TODO Add the jours feries option
-			if (d.getDayOfWeek().equals(DayOfWeek.SATURDAY) || d.getDayOfWeek().equals(DayOfWeek.SUNDAY)){
+
+			if (d.getDayOfWeek().equals(DayOfWeek.SATURDAY) || d.getDayOfWeek().equals(DayOfWeek.SUNDAY) || isJour(d)){
 				jours[d.getDayOfMonth()-1] = 0;
 			}else{
 				jours[d.getDayOfMonth()-1] = 1;
@@ -123,5 +150,18 @@ public class ControllerHistogramme{
 		return jours; 
 	}
 	
+	//it will check if the day is ferie or rtt employee
+	public boolean isJour(LocalDate d){
+		
+		boolean is = false;
+	/**	ArrayList<Absence> feries = ;//TODO recuperer la liste de jours feries and rtts
+		for (Absence a:feries){
+			if (a.getDateDebut().isEqual(d)){
+				is = true;
+			}
+		}*/
+		
+		return is;
+	}
 
 }
