@@ -1,3 +1,5 @@
+import suppressionFerieTemplate from "./suppression/suppressionFerie.html"
+import suppressionFerieController from "./suppression/suppressionFerie.controller"
 
 export default class VisualisationFerieService {
 	constructor(apiUrls, $http, $uibModal, connexionService) {
@@ -66,5 +68,20 @@ export default class VisualisationFerieService {
 			f.date = dArr[2] + "/" + dArr[1] + "/" + dArr[0];
 		})
 	}
+	
+	
+
+    supprimerFerie(idFerie, date, type) {
+        return this.$uibModal.open({
+            template: suppressionFerieTemplate,
+            controller: suppressionFerieController,
+            controllerAs: '$ctrl',
+            resolve: {
+                idFerie: () => idFerie,
+                date: () => date,
+                type: () => type
+            }
+        });
+    }
 
 }

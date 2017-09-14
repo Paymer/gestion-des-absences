@@ -43,7 +43,7 @@ export default class PlanningAbsenceCtrl{
                 if (cell.date.isBetween(abs.dateDebut,abs.dateFin,'day','[]')  && cell.inMonth && !cell.isWeekend) {
                   
                   cell.cssClass = 'absence';
-                  cell.label = cell.label+"-"+abs.type;
+                  cell.label = cell.label+" "+abs.type;
                 }else{
                   
                   cell.label =  cell.label;
@@ -60,7 +60,7 @@ export default class PlanningAbsenceCtrl{
                 if (cell.date.isSame(f.date)  && cell.inMonth && !cell.isWeekend) {
                   
                   cell.cssClass = 'jourferie';
-                  cell.label = f.date.substring(8,f.date.length)+"-" + f.type;
+                  cell.label = f.date.substring(8,f.date.length)+" " + f.type;
                 }else{
                   
                   cell.label =  cell.label;
