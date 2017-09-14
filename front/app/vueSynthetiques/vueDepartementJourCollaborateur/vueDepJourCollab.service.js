@@ -8,26 +8,7 @@ export default class VueDepJourCollabService {
     }
 
     nombreJoursDuMois(moisCourant, anneeCourante) {
-        switch(moisCourant) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                return 31;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                return 30;
-            case 2:
-                if((anneeCourante % 4) == 0) {
-                    return 29;
-                }
-                return 28;
-        }
+        return new Date(anneeCourante, moisCourant, 0).getDate();
     }
 
     getMoisEnLettres() {
@@ -49,6 +30,10 @@ export default class VueDepJourCollabService {
              .then(result => result.data);
     }
 
+    getMoisEnChiffre(moisEnLettres) {
+        return this.getMoisEnLettres().indexOf(moisEnLettres);
+    }
+
     getAbsencesParMatricule(matricule) {
         return this.$http.get(this.apiUrls.absence + "/" + matricule, {})
                   .then(result => {
@@ -62,4 +47,30 @@ export default class VueDepJourCollabService {
                             });
                     });
     };
+
+    ajoutTableauAbsences(s, nbJours, anneeCourante, moisCourantChiffre) {
+
+        s.tableauAbsences = new Array(nbJours);
+        
+        console.log(s);
+
+        let i;
+        for(i=0 ; i<s.tableauAbsences.length ; i++) {
+            let jour = new Date(anneeCourante, moisCourantChiffre, i+1);
+            s.absences.forEach(a => {
+                let dayOfWeek = jour.getDay();
+                let isWeekend = (dayOfWeek == 6) || (dayOfWeek == 0); 
+                if(moment(jour).isBetween(a.dateDebut, a.dateFin, "day", "[]") && !isWeekend) {
+                    switch(a.type) {
+                        case "CONGES_PAYES": s.tableauAbsences[i] = 'C'; break;
+                        case "RTT": s.tableauAbsences[i] = 'R'; break;
+                        case "CONGES_SANS_SOLDE": s.tableauAbsences[i] = 'S'; break;
+                        case "MISSION": s.tableauAbsences[i] = 'M'; break;
+                        case "RTT_EMPLOYEUR": s.tableauAbsences[i] = 'R'; break;
+                        case "JOUR_FERIE": s.tableauAbsences[i] = 'F'; break;
+                    }
+                }
+            })
+        }
+    }
 }

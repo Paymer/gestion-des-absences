@@ -16,7 +16,7 @@
         <select ng-model="$ctrl.anneeCourante">
             <option ng-repeat="annee in $ctrl.annees" ng-value="annee">{{annee}}</option>
         </select>
-        <button type="submit" class="btn btn-primary glyphicon glyphicon-zoom-in">
+        <button ng-click="$ctrl.changement()" class="btn btn-primary glyphicon glyphicon-zoom-in">
     </h4>
 
     <table class="table table-striped table-bordered">
@@ -45,5 +45,10 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="text-right"><a href="./rapport" class="btn btn-primary">Retour</a></div>
+
+    <p style="margin-top: -35px">C: Congés, F: Ferié, M: Mission, R: RTT, S: Sans solde</p>
+
 
 </div>

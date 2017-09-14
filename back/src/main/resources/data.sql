@@ -15,7 +15,7 @@ INSERT INTO absence (date_debut, date_fin, type, matricule_employe, motif, statu
   ('2017-09-03', '2017-09-08', 'CONGES_PAYES', '37db541d', 'Je galère... :-(', 'INITIALE'),
   ('2017-12-06', '2017-12-10', 'RTT', '37db541d', 'Je galère... :-(', 'INITIALE'),
   ('2017-05-06', '2017-05-12', 'CONGES_PAYES', '478389f2', 'Je galère... :-(', 'INITIALE'),
-  ('2017-09-14', '2017-09-24', 'RTT', '478389f2', 'Je galère... :-(', 'INITIALE'),
+  ('2017-09-14', '2017-09-19', 'RTT', '478389f2', 'Je galère... :-(', 'INITIALE'),
   ('2017-10-04', '2017-10-10', 'CONGES_PAYES', '478389f2', 'Je galère... :-(', 'INITIALE'),
   ('2016-05-01', null, 'JOUR_FERIE', null, 'Fête du travail', 'VALIDEE'),
   ('2017-07-14', null, 'JOUR_FERIE', null, 'Fête nationale', 'VALIDEE'),

@@ -30,45 +30,22 @@ export default class VueDepJourCollabController {
                 this.vueDepJourCollabService.getAbsencesParMatricule(s.matricule)
                             .then(a => {
                                 s.absences = a;
-
-                                s.absences.forEach(a => {
-                                    let partiesDateDebut = a.dateDebut.split("-");
-                                    a.anneeDebut = partiesDateDebut[0];
-                                    a.moisDebut = partiesDateDebut[1];
-                                    a.jourDebut = partiesDateDebut[2];
-
-                                    let partiesDateFin = a.dateFin.split("-");
-                                    a.anneeFin = partiesDateFin[0];
-                                    a.moisFin = partiesDateFin[1];
-                                    a.jourFin = partiesDateFin[2];
-                                })
-
-                                s.tableauAbsences = new Array(this.jours);
-
-                                let i;
-                                for(i=0 ; i<s.tableauAbsences.length ; i++) {
-                                    let jour = new Date(this.anneeCourante, this.moisCourantChiffre, i+1);
-                                    s.absences.forEach(a => {
-                                        let dayOfWeek = jour.getDay();
-                                        let isWeekend = (dayOfWeek == 6) || (dayOfWeek == 0); 
-                                        if(moment(jour).isBetween(a.dateDebut, a.dateFin, "day", "[]") && !isWeekend) {
-                                            switch(a.type) {
-                                                case "CONGES_PAYES": s.tableauAbsences[i] = 'C'; break;
-                                                case "RTT": s.tableauAbsences[i] = 'R'; break;
-                                                case "CONGES_SANS_SOLDE": s.tableauAbsences[i] = 'S'; break;
-                                                case "MISSION": s.tableauAbsences[i] = 'M'; break;
-                                                case "RTT_EMPLOYEUR": s.tableauAbsences[i] = 'R'; break;
-                                                case "JOUR_FERIE": s.tableauAbsences[i] = 'F'; break;
-                                            }
-                                        }
-                                    })
-                                }
-
+                                this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCourante, this.moisCourantChiffre);
                             });
             });
         });
 
         
+    }
+
+    changement() {
+        console.log(this.departementCourant, this.anneeCourante, this.moisCourantLettres);
+
+        this.moisCourantChiffre = this.vueDepJourCollabService.getMoisEnChiffre(this.moisCourantLettres);
+        console.log(this.moisCourantChiffre);
+        console.log(this.subalternes);
+
+        this.vueDepJourCollabService.ajoutTableauAbsences(this.subalternes, this.jours, this.anneeCourante, this.moisCourantChiffre)
     }
 
     getJours() {
