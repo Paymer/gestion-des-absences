@@ -29,8 +29,7 @@ public class ServiceTraitementNuit {
 	
 	//@Scheduled(cron = "0 0 0 * * *")
 	public Boolean passerNuit() {
-		List<Absence> listeAbsences = repoAbsences.findAll();
-		listeAbsences.forEach(a -> {
+		repoAbsences.findAll().forEach(a -> {
 			if(a.getStatut() == Statut.INITIALE){
 				this.gererAbsence(a);
 			}
@@ -70,7 +69,6 @@ public class ServiceTraitementNuit {
 			}
 			absence.setStatut(statut);
 			repoAbsences.save(absence);
-			servCollaborateurs.save(collaborateurCourant);
 
 		} else if(absence.getType()==TypeAbsence.RTT_EMPLOYEUR){
 			this.creerRttEmployeur(1);
@@ -93,7 +91,6 @@ public class ServiceTraitementNuit {
 			} else {
 				c.setRtt(0);
 				collabsErreur.add(c);
-				servCollaborateurs.save(c);
 			}
 		}
 		if (!collabsErreur.isEmpty()) {

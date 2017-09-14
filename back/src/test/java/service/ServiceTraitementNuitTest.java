@@ -53,12 +53,14 @@ public class ServiceTraitementNuitTest {
 	@Test
 	public void gererAbsenceInvalide(){
 		Absence a = new Absence();
+		a.setType(TypeAbsence.RTT);
+		a.setStatut(Statut.INITIALE);
 		a.setMatriculeEmploye("test");
 		ra.save(a);
 		
 		stn.passerNuit();
-		
-		assertThat(rme.findAll().size()).isEqualTo(1);
+		int size = rme.findAll().size();
+		assertThat(size).isEqualTo(1);
 	}
 
 	@Test
@@ -152,7 +154,6 @@ public class ServiceTraitementNuitTest {
 		c.setRtt(11);
 		a.setDateDebut(LocalDate.now());
 		a.setDateFin(LocalDate.now().plusDays(1));
-		a.setMatriculeEmploye(c.getMatricule());
 		a.setMotif("un Motif");
 		a.setType(TypeAbsence.RTT_EMPLOYEUR);
 		a.setStatut(Statut.INITIALE);
@@ -173,7 +174,6 @@ public class ServiceTraitementNuitTest {
 		c.setRtt(0);
 		a.setDateDebut(LocalDate.now());
 		a.setDateFin(LocalDate.now().plusDays(1));
-		a.setMatriculeEmploye(c.getMatricule());
 		a.setMotif("un Motif");
 		a.setType(TypeAbsence.RTT_EMPLOYEUR);
 		a.setStatut(Statut.INITIALE);
