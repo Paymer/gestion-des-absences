@@ -1,0 +1,30 @@
+<style type="text/css">
+    .absence {
+      background-color: Aqua !important;
+    }
+  </style>
+  
+  <h2 class="text-center">{{$ctrl.calendarTitle}}</h2>
+  
+  <div class="row">
+
+    <div class="col-md-6 text-center">
+      <div class="btn-group">
+
+        <button class="btn btn-primary" mwl-date-modifier date="$ctrl.viewDate" decrement="$ctrl.calendarView"> Previous  </button>
+        <button class="btn btn-default" mwl-date-modifier date="$ctrl.viewDate"  set-to-today>Today </button>
+        <button class="btn btn-primary" mwl-date-modifier date="$ctrl.viewDate" increment="$ctrl.calendarView"> Next </button>
+
+      </div>
+    </div>
+
+  </div>
+ 
+    <mwl-calendar
+      view-title="$ctrl.calendarTitle"
+      events="$ctrl.events"
+      view="$ctrl.calendarView"
+      view-date="$ctrl.viewDate"
+      cell-modifier="$ctrl.cellModifier(calendarCell)">
+    </mwl-calendar>
+  
