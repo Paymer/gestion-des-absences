@@ -30,7 +30,7 @@ export default class VueDepJourCollabController {
                 this.vueDepJourCollabService.getAbsencesParMatricule(s.matricule)
                             .then(a => {
                                 s.absences = a;
-                                this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCourante, this.moisCourantChiffre);
+                                this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCourante, this.moisCourantChiffre, this.departements, this.departementCourant);
                             });
             });
         });
@@ -42,7 +42,7 @@ export default class VueDepJourCollabController {
         this.moisCourantChiffre = this.vueDepJourCollabService.getMoisEnChiffre(this.moisCourantLettres);
 
         this.subalternes.forEach(s => {
-            this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCourante, this.moisCourantChiffre)
+            this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCourante, this.moisCourantChiffre, this.departements, this.departementCourant)
         })
 
     }

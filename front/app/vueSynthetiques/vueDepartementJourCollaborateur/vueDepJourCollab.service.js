@@ -42,33 +42,36 @@ export default class VueDepJourCollabService {
                         return this.$http.get(this.apiUrls.mission + "/" + matricule, {})
                             .then(result => {
                                 this.visualisationAbsenceService.ajoutMissions(absences, result.data)
-                                // this.visualisationAbsenceService.transformerDate(absences);
                                 return absences;
                             });
                     });
     };
 
-    ajoutTableauAbsences(s, nbJours, anneeCourante, moisCourantChiffre) {
+    ajoutTableauAbsences(s, nbJours, anneeCourante, moisCourantChiffre, departements, departementCourant) {
 
         s.tableauAbsences = new Array(nbJours);
         
-        let i;
-        for(i=0 ; i<s.tableauAbsences.length ; i++) {
-            let jour = new Date(anneeCourante, moisCourantChiffre, i+1);
-            s.absences.forEach(a => {
-                let dayOfWeek = jour.getDay();
-                let isWeekend = (dayOfWeek == 6) || (dayOfWeek == 0); 
-                if(moment(jour).isBetween(a.dateDebut, a.dateFin, "day", "[]") && !isWeekend) {
-                    switch(a.type) {
-                        case "CONGES_PAYES": s.tableauAbsences[i] = 'C'; break;
-                        case "RTT": s.tableauAbsences[i] = 'R'; break;
-                        case "CONGES_SANS_SOLDE": s.tableauAbsences[i] = 'S'; break;
-                        case "MISSION": s.tableauAbsences[i] = 'M'; break;
-                        case "RTT_EMPLOYEUR": s.tableauAbsences[i] = 'R'; break;
-                        case "JOUR_FERIE": s.tableauAbsences[i] = 'F'; break;
+        let dep = departements.filter(d => d.indexOf(departementCourant) == 0);
+
+        if(dep.includes(s.departement.libelle)) {
+            let i;
+            for(i=0 ; i<s.tableauAbsences.length ; i++) {
+                let jour = new Date(anneeCourante, moisCourantChiffre, i+1);
+                s.absences.forEach(a => {
+                    let dayOfWeek = jour.getDay();
+                    let isWeekend = (dayOfWeek == 6) || (dayOfWeek == 0); 
+                    if(moment(jour).isBetween(a.dateDebut, a.dateFin, "day", "[]") && !isWeekend) {
+                        switch(a.type) {
+                            case "CONGES_PAYES": s.tableauAbsences[i] = 'C'; break;
+                            case "RTT": s.tableauAbsences[i] = 'R'; break;
+                            case "CONGES_SANS_SOLDE": s.tableauAbsences[i] = 'S'; break;
+                            case "MISSION": s.tableauAbsences[i] = 'M'; break;
+                            case "RTT_EMPLOYEUR": s.tableauAbsences[i] = 'R'; break;
+                            case "JOUR_FERIE": s.tableauAbsences[i] = 'F'; break;
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     }
 }
