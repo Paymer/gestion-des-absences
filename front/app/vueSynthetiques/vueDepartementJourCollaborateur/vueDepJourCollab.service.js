@@ -51,14 +51,7 @@ export default class VueDepJourCollabService {
 
         s.tableauAbsences = new Array(nbJours);
         
-        // console.log(departements);
-        console.log(s.departement);
-        console.log(departementCourant);
-
-
         let dep = departements.filter(d => d.indexOf(departementCourant) == 0);
-
-        console.log("dep = ", dep);
 
         if(dep.includes(s.departement.libelle)) {
             let i;
