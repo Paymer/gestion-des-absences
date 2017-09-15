@@ -69,7 +69,12 @@ export default class VisualisationFerieService {
 		})
 	}
 	
-	
+	modifierFerie(ferie){
+		this.modifId = ferie.id
+		this.modifDate = ferie.date
+		this.modifType = ferie.type
+		this.modifCommentaires = ferie.commentaires
+	}
 
     supprimerFerie(idFerie, date, type) {
         return this.$uibModal.open({

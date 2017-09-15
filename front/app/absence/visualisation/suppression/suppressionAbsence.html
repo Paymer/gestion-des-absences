@@ -8,6 +8,11 @@
         <li>Date de fin : {{$ctrl.dateFin}}</li>
         <li>Type de congés : {{$ctrl.type}}</li>
     </ul>
+	<div class="row" ng-show="$ctrl.error">
+		<div class="col-xs-10 col-xs-offset-1 alert alert-danger">
+				L'absence n'a pas pu être supprimée !
+		</div>
+	</div>
 </div>
 <div class="modal-footer">
     <button class="btn btn-danger" type="button" ng-click="$ctrl.annuler()">Annuler</button>

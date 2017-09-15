@@ -10,7 +10,7 @@ const apiUrls = {
 	
     ferie : API_URL + '/ferie',
     suppressionFerie : API_URL + '/ferie/suppression',
-    modifFerie : API_URL + '/ferie/modification/:ferieId',
+    modifFerie : API_URL + '/ferie/modification',
 
     connexion: API_URL + '/connexion',
     congesEtRtt: API_URL + '/conges-et-rtt',

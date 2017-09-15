@@ -1,13 +1,11 @@
 
 export default class SuppressionAbsenceService {
-    constructor($http, apiUrls, $window) {
+    constructor($http, apiUrls) {
         this.$http = $http;
         this.apiUrls = apiUrls;
-        this.$window = $window;
     }
 
     supprimerAbsence(idAbsence) {
-        this.$http.delete(this.apiUrls.suppressionAbsence + "/" + idAbsence)
-        this.$window.location.reload();
+        return this.$http.delete(this.apiUrls.suppressionAbsence + "/" + idAbsence)
     }
 }

@@ -6,10 +6,13 @@ export default class VisualisationAbsenceController {
     }
 
     $onInit() {
-        this.visualisationAbsenceService.findAll().then(absences => this.absences = absences);
         this.order = "dateDebutOriginal";
         this.triInverse = false;
-
+		this.refreshView()
+    }
+	
+	refreshView(){
+        this.visualisationAbsenceService.findAll().then(absences => this.absences = absences);
         this.connexionService.getCongesPayesEtRttFromBase()
             .then(result => {
                 let res = result.data
@@ -19,8 +22,7 @@ export default class VisualisationAbsenceController {
                 this.connexionService.setCongesPayes(this.congesPayes);
                 this.connexionService.setRtt(this.rtt);
             });
-    }
-
+	}
 
     updateOrderEtTri(order) {
         this.order = order;
@@ -29,7 +31,10 @@ export default class VisualisationAbsenceController {
 
     // Partie suppression de l'absence
     supprimerAbsence(idAbsence, dateDebut, dateFin, type) {
-        this.visualisationAbsenceService.supprimerAbsence(idAbsence, dateDebut, dateFin, type);
+        this.visualisationAbsenceService.supprimerAbsence(idAbsence, dateDebut, dateFin, type).result
+			.then(() => {
+				this.refreshView()
+		})
     }
 
     // Partie modification de l'absence

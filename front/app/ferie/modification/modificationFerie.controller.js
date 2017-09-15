@@ -1,12 +1,27 @@
-export default class creationFerieController {
-	constructor($location, creationFerieService, connexionService) {
+export default class modificationFerieController {
+	constructor($location, modifFerieService, connexionService,
+		visualisationFerieService) {
+
+		if (!visualisationFerieService.modifId) {
+			$location.path('/ferie')
+		} else {
+			this.idFerie = visualisationFerieService.modifId
+			this.dateOrigine = visualisationFerieService.modifDate
+			this.date = new Date(this.dateOrigine.split('/')[2],
+				this.dateOrigine.split('/')[1]-1,
+				this.dateOrigine.split('/')[0])
+			this.type = (visualisationFerieService.modifType == "Ferié")
+				? 'JOUR_FERIE' : 'RTT_EMPLOYEUR'
+			this.commentaires = visualisationFerieService.modifCommentaires
+		}
+
 		this.notvalid = false
-		this.creationFerieService = creationFerieService;
-		this.connexionService = connexionService;
-		this.$location = $location;
-		this.tomorrow = new Date();
+		this.modificationFerieService = modifFerieService
+		this.connexionService = connexionService
+		this.$location = $location
+		this.tomorrow = new Date()
 		this.tomorrow.setDate(this.tomorrow.getDate() + 1)
-		this.titre = "Nouveau jour ferié / RTT employeur"
+		this.titre = "Modifier jour ferié / RTT employeur"
 		this.error = false
 		this.errorServer = false
 
@@ -27,10 +42,8 @@ export default class creationFerieController {
 			startingDay: 1
 		}
 
-		this.formats = [
-			'yyyy/MM/dd'
-		]
-		this.format = this.formats[0];
+		this.formats = ['yyyy/MM/dd']
+		this.format = this.formats[0]
 		this.altInputFormats = [
 			'd!/M!/yyyy'
 		]
@@ -58,7 +71,8 @@ export default class creationFerieController {
 			if (mode === 'day') {
 				var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
 				for (var i = 0; i < this.events.length; i++) {
-					var currentDay = new Date(this.events[i].date).setHours(0, 0, 0, 0);
+					var currentDay = new Date(this.events[i].date).setHours(0,
+						0, 0, 0);
 					if (dayToCheck === currentDay) {
 						return this.events[i].status;
 					}
@@ -94,6 +108,7 @@ export default class creationFerieController {
 	}
 
 	isDateValide() {
+		let retour = false
 		if (this.date
 			&& (
 				this.date.getFullYear() > this.tomorrow.getFullYear()
@@ -102,11 +117,11 @@ export default class creationFerieController {
 				|| (this.date.getFullYear() == this.tomorrow.getFullYear()
 					&& this.date.getMonth() == this.tomorrow.getMonth()
 					&& this.date.getDate() > this.tomorrow.getDate())
-			)) {
-			return true
-		} else {
-			return false
+			)
+		) {
+			retour = true
 		}
+		return retour
 	}
 
 	isTypeValide() {
@@ -123,27 +138,26 @@ export default class creationFerieController {
 
 	}
 
-	addFerie() {
-		
+	modifierFerie() {
 		let data = {
 			matricule: this.connexionService.getMatricule(),
-			date: this.date.getFullYear()+'-'+(this.date.getMonth()+1)+'-'+this.date.getDate(),
+			id: this.idFerie,
+			date: this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate(),
 			type: this.type,
 			commentaires: this.commentaires || ""
 		}
-		
 		this.error = false
 		this.errorServer = false
-		
-		this.creationFerieService.confirmeEnvoiFerie(data)
+
+		this.modificationFerieService.confirmeEnvoiFerie(data)
 			.then(result => {
-				if(result){
-					if(result.success){
+				if (result.data) {
+					if (result.data.success) {
 						this.$location.path('/ferie')
-					}else{
+					} else {
 						this.error = true
 					}
-				}else{
+				} else {
 					this.errorServer = true
 				}
 			}, () => {

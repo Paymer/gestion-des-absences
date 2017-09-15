@@ -25,6 +25,7 @@ import histogrammeComponent from './rapport/histogramme/histogramme.component'
 import planningAbsenceComponent from './absence/planning/planningAbsence.component'
 import visualisationFerieComponent from "./ferie/visualisation/visualisationFerie.component"
 import creationFerieComponent from './ferie/creation/creationFerie.component'
+import modifFerieComponent from './ferie/modification/modificationFerie.component'
 import vueDepJourCollabComponent from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.component"
 import rapportComponent from "./vueSynthetiques/choixRapports/rapport.component"
 
@@ -42,6 +43,7 @@ import planningAbsenceService from "./absence/planning/planningAbsence.service"
 import messageService from './accueil/message.service'
 import visualisationFerieService from "./ferie/visualisation/visualisationFerie.service"
 import creationFerieService from "./ferie/creation/creationFerie.service"
+import modifFerieService from "./ferie/modification/modificationFerie.service"
 import suppressionFerieService from "./ferie/visualisation/suppression/suppressionFerie.service"
 import vueDepJourCollabService from "./vueSynthetiques/vueDepartementJourCollaborateur/vueDepJourCollab.service"
 
@@ -66,6 +68,7 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, bo
 	.service("messageService", messageService)
     .service("visualisationFerieService", visualisationFerieService)
 	.service("creationFerieService",creationFerieService)
+    .service("modifFerieService",modifFerieService)
     .service("suppressionFerieService", suppressionFerieService)
     .service("vueDepJourCollabService", vueDepJourCollabService)
 
@@ -79,8 +82,9 @@ angular.module('app', [RouteModule, ngResource, menuModule.name, uiBootstrap, bo
     .component('histogrammeComponent',histogrammeComponent)
     .component('planningAbsenceComponent',planningAbsenceComponent)
     .component("visualisationFerieComponent", visualisationFerieComponent)
-    .component("vueDepJourCollabComponent", vueDepJourCollabComponent)
+    .component('modifFerieComponent',modifFerieComponent)
     .component('creationFerieComponent',creationFerieComponent)
+    .component("vueDepJourCollabComponent", vueDepJourCollabComponent)
     .component('rapportComponent', rapportComponent)
 
     //manage connections and routes

@@ -41,18 +41,27 @@ export default class VisualisationFerieController {
 			this.successMessage = r+" effectuée !"
 			this.timeout(()=> {
 				this.successMessage = null
-				console.log(this.successMessage)
 			}, 3000)
 			this.refreshView()
 		});
 	}
 
-	modification(idFerie, date, type, motif) {
+	modifierFerie(idFerie, date, type, commentaires) {
 		this.visualisationFerieService
-			.modification(idFerie, date, type, motif);
+			.modifierFerie({
+				id: idFerie,
+				date: date,
+				type: type,
+				commentaires: commentaires
+		});
 	}
 
 	isAdmin() {
 		return this.connexionService.getGrade() == 'ADMINISTRATEUR';
+	}
+	
+	isModifiable(date){
+		let dt = new Date(date.split('/')[2], date.split('/')[1], date.split('/')[0])
+		return new Date()<dt
 	}
 }
