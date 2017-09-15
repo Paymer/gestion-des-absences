@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,6 @@ import dev.service.ServiceCollaborateur;
 @RequestMapping("/absence")
 public class ControllerAbsence {
 
-
-
-
 	@Autowired
 	public ControllerAbsence(ServiceAbsence serAbsence, RepositoryAbsence repoAbsence, ServiceCollaborateur serCollaborateur) {
 		super();
@@ -52,6 +50,8 @@ public class ControllerAbsence {
 	@GetMapping("/{matriculeEmploye}")
 	public List<Absence> findAbsenceParMatriculeEmploye(@PathVariable String matriculeEmploye) {
 		return this.repoAbsence.findByMatriculeEmploye(matriculeEmploye);
+		//return this.repoAbsence.findAll().stream().filter(a -> a.getMatriculeEmploye().equals(matriculeEmploye)).collect(Collectors.toList());
+
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, path = "/suppression/{id}")
