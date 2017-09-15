@@ -25,6 +25,10 @@ export default class VisualisationAbsenceService {
                                 this.ajoutActions(absences);
                                 this.transformerDate(absences);
                                 return absences;
+                            }, error => {
+                                this.ajoutActions(absences);
+                                this.transformerDate(absences);
+                                return absences;
                             })
                     })
         return this.absences;
