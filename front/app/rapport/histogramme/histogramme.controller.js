@@ -1,6 +1,8 @@
 export default class HistogrammeController {
-    constructor(histogrammeService) {
+    constructor(histogrammeService, $location, frontUrls) {
         this.telecharger = false;
+        this.$location = $location
+        this.frontUrls = frontUrls
         this.histogrameService = histogrammeService;
         this.histogrameService.getDepartements()
             .then(data => this.departements = data);
@@ -12,8 +14,15 @@ export default class HistogrammeController {
      this.telecharger = true;
       this.histogrameService.findData(departement, month, year)
         .then(barChartData => {
-   this.ctx = document.getElementById("canvas").getContext("2d");
-             new Chart(this.ctx, {
+            const ctx = document.getElementById("canvas").getContext("2d");
+            
+            if(this.chartA) {
+              
+                this.chartA.data.labels = barChartData.labels
+                this.chartA.data.datasets = barChartData.datasets
+                this.chartA.update();
+            } else {
+            this.chartA = new Chart(ctx, {
                 responsive: true,
                 type: 'bar',
                 data: barChartData,
@@ -41,6 +50,9 @@ export default class HistogrammeController {
                     }
                 }
             });
+            }
+            
+           
         })
 
 
@@ -54,5 +66,12 @@ export default class HistogrammeController {
         i=i+1;
       return i;
   }
+
+
+  rediriger(a) {
+		
+			this.$location.path(this.frontUrls.rapport)
+			
+}
 
     }
