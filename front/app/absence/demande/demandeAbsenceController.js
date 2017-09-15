@@ -145,7 +145,6 @@ export default class DemandeAbsenceCtrl{
     
     this.demandeAbsenceService.confirmeEnvoiAbsence(absence)
     .then((reponse) =>{
-        console.log(reponse.succes)
         if(reponse.succes){
             
             this.$location.path("/absence");

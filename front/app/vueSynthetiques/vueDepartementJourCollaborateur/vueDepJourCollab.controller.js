@@ -13,9 +13,10 @@ export default class VueDepJourCollabController {
         this.moisCourantChiffre = new Date().getMonth(); // Renvoie le mois actuel (entre 0 et 11)
         this.moisCourantLettres = this.moisEnLettres[this.moisCourantChiffre];
         this.anneeCourante = new Date().getFullYear(); // Renvoie l'année actuelle
+        this.anneeCouranteChoisie = this.anneeCourante;
         this.annees = [2016, 2017, 2018, 2019, 2020]; // Les récupérer en fonction des absences existantes ?
 
-        this.jours = this.vueDepJourCollabService.nombreJoursDuMois(this.moisCourantChiffre+1, this.anneeCourante);
+        this.jours = this.vueDepJourCollabService.nombreJoursDuMois(this.moisCourantChiffre+1, this.anneeCouranteChoisie);
 
         this.vueDepJourCollabService.getDepartements().then(departements => {
             this.departements = departements.map(d => d.libelle);
@@ -30,7 +31,7 @@ export default class VueDepJourCollabController {
                 this.vueDepJourCollabService.getAbsencesParMatricule(s.matricule)
                             .then(a => {
                                 s.absences = a;
-                                this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCourante, this.moisCourantChiffre, this.departements, this.departementCourant);
+                                this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCouranteChoisie, this.moisCourantChiffre, this.departements, this.departementCourant);
                             });
             });
         });
@@ -40,9 +41,10 @@ export default class VueDepJourCollabController {
 
     changement() {
         this.moisCourantChiffre = this.vueDepJourCollabService.getMoisEnChiffre(this.moisCourantLettres);
+        this.anneeCourante = this.anneeCouranteChoisie;
 
         this.subalternes.forEach(s => {
-            this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCourante, this.moisCourantChiffre, this.departements, this.departementCourant)
+            this.vueDepJourCollabService.ajoutTableauAbsences(s, this.jours, this.anneeCouranteChoisie, this.moisCourantChiffre, this.departements, this.departementCourant)
         })
 
     }
@@ -56,7 +58,7 @@ export default class VueDepJourCollabController {
     }
 
     nomExcel() {
-        return this.moisCourantLettres + "-" + this.anneeCourante + "-" + this.departementCourant
+        return this.moisCourantLettres + "-" + this.anneeCouranteChoisie + "-" + this.departementCourant
     }
     isWeekend(index){
        let date = new Date(this.anneeCourante,this.moisCourantChiffre,index)

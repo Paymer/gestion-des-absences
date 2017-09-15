@@ -14,7 +14,7 @@
             <option ng-repeat="moiss in $ctrl.moisEnLettres" ng-value="moiss">{{moiss}}</option>
         </select>
         Année
-        <select ng-model="$ctrl.anneeCourante">
+        <select ng-model="$ctrl.anneeCouranteChoisie">
             <option ng-repeat="annee in $ctrl.annees" ng-value="annee">{{annee}}</option>
         </select>
         <button ng-click="$ctrl.changement()" class="btn btn-primary glyphicon glyphicon-zoom-in"></button>

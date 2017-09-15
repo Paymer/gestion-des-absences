@@ -16,8 +16,6 @@ export default class ModifAbsenceCtrl{
         this.phFin = this.visualService.absenceModifFin;
         this.type = this.visualService.absenceModifType;
         this.phMotif = this.visualService.absenceModifMotif;
-       
-
 		this.titre = "Modification d'absence"
 
         this.inlineOptions = {
@@ -151,10 +149,7 @@ addAbsence(){
     this.info ()
     let absence = {id: this.id, dateDebut:this.debut,dateFin:this.fin,type:this.type,motif: this.motif,matriculeEmploye:this.connexionService.getMatricule()}
     
-    // console.log(absence)
      
-    //console.log(this.dtDebut,this.dtFin,this.type, this.motif)
-   
     this.modifAbsenceService.confirmeEnvoiAbsence(absence)
     .then((reponse) =>{
         if(reponse.succes){
