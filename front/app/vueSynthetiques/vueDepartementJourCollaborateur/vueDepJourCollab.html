@@ -14,7 +14,7 @@
             <option ng-repeat="moiss in $ctrl.moisEnLettres" ng-value="moiss">{{moiss}}</option>
         </select>
         Année
-        <select ng-model="$ctrl.anneeCourante">
+        <select ng-model="$ctrl.anneeCouranteChoisie">
             <option ng-repeat="annee in $ctrl.annees" ng-value="annee">{{annee}}</option>
         </select>
         <button ng-click="$ctrl.changement()" class="btn btn-primary glyphicon glyphicon-zoom-in"></button>
@@ -39,13 +39,13 @@
                         </span>
                     </a>
                 </th>
-                <th ng-repeat="jour in $ctrl.getJours() track by $index">{{$index+1}}</th>
+                <th  ng-repeat="jour in $ctrl.getJours() track by $index">{{$index+1}}</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="sub in $ctrl.subalternes | orderBy:$ctrl.order:$ctrl.triInverse">
                 <td>{{sub.nom}}</td>
-                <td ng-repeat="jour in $ctrl.getJours() track by $index">{{sub.tableauAbsences[$index]}}</td>
+                <td ng-style="{'background-color':($ctrl.isWeekend($index+1 )?'gray':'white')}" ng-repeat="jour in $ctrl.getJours() track by $index">{{sub.tableauAbsences[$index]}}</td>
             </tr>
         </tbody>
     </table>

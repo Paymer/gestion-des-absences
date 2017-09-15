@@ -17,7 +17,11 @@ export function route ($routeProvider, $locationProvider) {
 	})
     .when('/absence/validation', {
 		template: '<menu-component></menu-component>' + '<validation-absence-component></validation-absence-component>'
-    })
+	})
+    .when('/rapport/histogramme', {
+		template: '<menu-component></menu-component>' + '<histogramme-component></histogramme-component>'
+	})
+   
     .when('/absence/planning',{
         template: '<menu-component></menu-component>' + '<planning-absence-component></planning-absence-component>'
     })

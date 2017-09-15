@@ -1,0 +1,65 @@
+<h1>
+    <center> Histogramme par département et par jour</center>
+</h1>
+<br>
+<center>
+    <div class="form-inline">
+
+    <label class="col-md-12 control-label" for="inlineFormCustomSelect">
+
+    Département 
+    <select ng-model="$ctrl.departement" id="Depart" name="selectbasic" >
+      <option ng-repeat="element in $ctrl.departements" value="{{element.libelle}}">{{element.libelle}}</option>
+    </select>
+    
+    Mois
+    <select ng-model="$ctrl.month" id="Month" name="selectbasic">
+      <option value="1">Janvier</option>
+      <option value="2">Février</option>
+      <option value="3">Mars</option>
+      <option value="4">Avril</option>
+      <option value="5">Mai</option>
+      <option value="6">Juin</option>
+      <option value="7">Juillet</option>
+      <option value="8">Aôut</option>
+      <option value="9">Septembre</option>
+      <option value="10">Octobre</option>
+      <option value="11">Novembre</option>
+      <option value="12">Décembre</option>
+    </select>
+   
+        Année
+    <select ng-model="$ctrl.year" id="Year" name="selectbasic" min="2017" max='$ctrl.max' step='1'>
+      <option value="2017">2017</option>
+      <option value="2018">2018</option>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
+    </select>
+
+
+    <button type="button" ng-click="$ctrl.chart($ctrl.departement, $ctrl.year, $ctrl.month)" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+
+    <button ng-show ="$ctrl.telecharger" type="button" class="btn btn-success">
+        <span class="glyphicon glyphicon-download-alt"></span> Telecharger
+    </button>
+
+
+  </label>
+
+
+    </div>
+</center>
+
+<br>
+
+
+<center><div class="col-md-12">
+  <canvas ng-show = "$ctrl.telecharger" id="canvas" width="600" height="300">
+</div></center>
+
+<div>
+ <button type="button" class="btn btn-info" ng-href="/rapport"  style="float: right">
+ <span class="glyphicon glyphicons-circle-arrow-left"></span>Return</button>
+</div>

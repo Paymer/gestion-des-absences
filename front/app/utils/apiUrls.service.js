@@ -15,6 +15,7 @@ const apiUrls = {
     connexion: API_URL + '/connexion',
     congesEtRtt: API_URL + '/conges-et-rtt',
 
+    histogramme: API_URL + '/histogramme',
     mission: 'https://api-missions.cleverapps.io/missions/lister',
     
 	message: API_URL + '/message'

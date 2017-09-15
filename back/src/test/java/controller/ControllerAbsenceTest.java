@@ -105,8 +105,8 @@ public class ControllerAbsenceTest {
 	@Test
 	public void findAbsenceParMatriculeEmployeTest(){
 
-		ctrlAbsence.findAbsenceParMatriculeEmploye("M1");
-		verify(mockRepositoryAbsence).findByMatriculeEmploye("M1");
+		ctrlAbsence.findAbsenceParMatriculeEmploye("xxx");
+		verify(mockRepositoryAbsence).findByMatriculeEmploye("xxx");
 			
 	}
 	
