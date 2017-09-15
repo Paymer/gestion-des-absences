@@ -58,7 +58,15 @@ export default class VueDepJourCollabController {
     nomExcel() {
         return this.moisCourantLettres + "-" + this.anneeCourante + "-" + this.departementCourant
     }
+    isWeekend(index){
+       let date = new Date(this.anneeCourante,this.moisCourantChiffre,index)
 
+       if(date.getDay()%6==0){
+           return true;
+       }else{
+           return false;
+       }
+    }
     exportExcel() {
         var i, j;
         var csv = "";

@@ -57,7 +57,7 @@ export default class PlanningAbsenceCtrl{
           
               ferier.forEach( f =>{
                 
-                if (cell.date.isSame(f.date)  && cell.inMonth && !cell.isWeekend) {
+                if (cell.date.isSame(f.date)  && cell.inMonth ) {
                   
                   cell.cssClass = 'jourferie';
                   cell.label = f.date.substring(8,f.date.length)+" " + f.type;
