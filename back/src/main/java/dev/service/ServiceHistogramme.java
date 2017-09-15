@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,20 +39,15 @@ public class ServiceHistogramme {
 	 */
 	public BarChartData chartData(String departement, int year, int month ){
 		
-		
 		BarChartData barChartData = new BarChartData();
-		
 		//list of the people from departement:
 		List<Collaborateur> listCollab = this.serCollab.findCollaborateurParDepartement(departement);
-
 		//creer la parti label (liste de jours)
 		barChartData.setLabels(creerLabel(year, month));
 
-	
 		//creationDataSets
-			List<Set> datasets = new ArrayList<Set>();
+			List<Set> datasets = new ArrayList<>();
 			int i = 0;
-			
 			for (Collaborateur c : listCollab){
 				Set set=new Set();
 				set.setLabel(c.getNom());
@@ -60,29 +56,31 @@ public class ServiceHistogramme {
 				datasets.add(set);
 				i++;
 			}
-			
 			barChartData.setDatasets(datasets);
-			
 		return barChartData;
 	}
 	
 	public String getColor (int i){
-		String[] color = {"aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanchedalmond", "blue", "blueviolet", 
+		String[] color = {"darkviolet", "darkturquoise","olive", "plum", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanchedalmond", "blue", "blueviolet", 
 				"brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "cornsilk", "crimson", "cyan", "darkblue", "darkcyan", 
 				"darkgoldenred", "darkgray", "darkgreen", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", 
-				"darkseagreen", "darkslateblue", "darkslategray", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dodgerblue", 
-				"firebrick", "floralwhite", "forestgreen", "fuchsia", "gainsboro", "ghostwhite", "gold", "goldenrod", "gray", "green", "greenyellow", "honeydew",
+				"darkseagreen", "darkslateblue", "darkslategray", "darkturquoise",  "deeppink", "deepskyblue", "dimgray", "dodgerblue", 
+				"firebrick", "floralwhite", "forestgreen", "fuchsia", "gainsboro", "ghostwhite", "gold", "goldenrod", "gray",  "honeydew",
 				"hotpink", "indianred", "indigo", "ivory", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lightblue", "lightcoral",
 				"lightcyan", "lightgoldenrodyellow", "lightgreen", "lightgrey", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray",
 				"lightsteelblue", "lightyellow", "lime", "limegreen", "linen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple",
-				"mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose",
-				"moccasin", "navajowhite", "navy", "oldlace", "olive", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise",
-				"palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "purple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown",
+				"mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise","yellow","greenyellow", "pink","red","green",  "mediumvioletred", "midnightblue", "mintcream", "mistyrose",
+				"moccasin", "navajowhite", "navy", "oldlace",  "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise",
+				"palevioletred", "papayawhip", "peachpuff", "peru",   "powderblue", "purple",  "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown",
 				"seagreen", "seashell", "sienna", "silver", "skyblue", "slateblue", "slategray", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato",
-				"turquoise", "violet", "wheat", "whitesmoke", "yellow", "yellowgreen" };
+				"turquoise", "violet", "wheat", "whitesmoke",  "yellowgreen", "aliceblue" };
 		
-		return "'"+color[i]+"'";
+		return  color[i];
 	}
+	
+	/**
+	*create a list of labels
+	 */
 	
 	public String[] creerLabel (int year, int month){
 		LocalDate date = LocalDate.of (year, month, 01);
@@ -107,11 +105,12 @@ public class ServiceHistogramme {
 		
 		// on recupere une liste des absences de chaque collaborateur
 		List<Absence> listAbsences = absenceCtrl.findAbsenceParMatriculeEmploye(c.getMatricule());
+		//List<Absence> listAbsences = absenceCtrl.listerAbsences().stream().filter(a -> a.getMatriculeEmploye().equals(c.getMatricule())).collect(Collectors.toList());
 		
 		//on filtre la liste pour avoir les absences du periode selectione
 		 Optional<int[]> result = listAbsences.stream()
 				.filter(a -> a.getDateDebut().getYear() == year ||  a.getDateFin().getYear() == year) //year
-				//.filter(a -> a.getDateDebut().getMonthValue() == month ||  a.getDateFin().getMonthValue() == month)//month
+				.filter(a -> a.getDateDebut().getMonthValue() == month ||  a.getDateFin().getMonthValue() == month)//month
 				.map(a -> transform(a, year, month))
 				.reduce((tableauPrecedent, tableauActuel) -> {
 					Arrays.setAll(tableauPrecedent, indexTableauPrecedent -> {

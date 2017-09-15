@@ -18,6 +18,10 @@ export default class HistogrammeController {
                 type: 'bar',
                 data: barChartData,
                 options: {
+                    legend:{
+                        display:true,
+                        label: barChartData.datasets.label
+                    },
                     title: {
                         display: true,
                         text: "Synthèse par jour"
@@ -30,7 +34,8 @@ export default class HistogrammeController {
                             stacked: true,
                             ticks: {
                                 beginAtZero: true,
-                                min: 0
+                                min: 0,
+                                max: this.getNumberMax(barChartData)
                             }
                         }]
                     }
@@ -38,7 +43,16 @@ export default class HistogrammeController {
             });
         })
 
-  
+
  }
+
+  getNumberMax (barChartData){
+      let i = 0;
+    barChartData.datasets.forEach((element) =>{
+        i=i+1;
+    }, this);
+        i=i+1;
+      return i;
+  }
 
     }
