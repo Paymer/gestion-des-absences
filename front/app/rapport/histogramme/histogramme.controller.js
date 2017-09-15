@@ -29,7 +29,8 @@ export default class HistogrammeController {
                 options: {
                     legend:{
                         display:true,
-                        label: barChartData.datasets.label
+                        label: barChartData.datasets.label,
+                        position: 'bottom'
                     },
                     title: {
                         display: true,

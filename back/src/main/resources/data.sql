@@ -21,11 +21,19 @@ INSERT INTO absence (date_debut, date_fin, type, matricule_employe, motif, statu
   ('2017-09-14', '2017-09-19', 'RTT', '478389f2', 'Je galère... :-(', 'INITIALE'),
   ('2017-10-04', '2017-10-10', 'CONGES_PAYES', '478389f2', 'Je galère... :-(', 'INITIALE'),
   
-    ('2017-05-29', '2017-05-31', 'RTT', 'e300fb12', 'Maladie youpi', 'INITIALE'),
-    ('2017-05-29', '2017-05-31', 'RTT', '8dd0b708', 'Maladie youpi', 'INITIALE'),
-    ('2017-05-29', '2017-05-31', 'RTT', 'e353c695', 'Maladie youpi', 'INITIALE'),
-    ('2017-05-29', '2017-05-31', 'RTT', '26a79080', 'Maladie youpi', 'INITIALE'),
-    ('2017-05-29', '2017-05-31', 'RTT', 'ede47266', 'Maladie youpi', 'INITIALE'),
+    ('2017-05-17', '2017-05-23', 'RTT', 'e300fb12', 'Maladie youpi', 'INITIALE'),
+    ('2017-05-17', '2017-05-23', 'RTT', '8dd0b708', 'Maladie youpi', 'INITIALE'),
+    ('2017-05-17', '2017-05-23', 'RTT', 'e353c695', 'Maladie youpi', 'INITIALE'),
+    ('2017-05-17', '2017-05-23', 'RTT', '26a79080', 'Maladie youpi', 'INITIALE'),
+    ('2017-05-17', '2017-05-23', 'RTT', 'ede47266', 'Maladie youpi', 'INITIALE'),
+    
+    ('2017-05-01', '2017-05-15', 'RTT', 'e300fb12', 'Maladie youpi', 'INITIALE'),
+    ('2017-05-01', '2017-05-12', 'RTT', '8dd0b708', 'Maladie youpi', 'INITIALE'),
+    
+    ('2017-05-26', '2017-05-31', 'RTT', 'e353c695', 'Maladie youpi', 'INITIALE'),
+    ('2017-05-26', '2017-05-31', 'RTT', '26a79080', 'Maladie youpi', 'INITIALE'),
+     ('2017-05-26', '2017-05-31', 'RTT', 'ede47266', 'Maladie youpi', 'INITIALE'),
+
   
   ('2016-05-01', null, 'JOUR_FERIE', null, 'Fête du travail', 'VALIDEE'),
   ('2017-07-14', null, 'JOUR_FERIE', null, 'Fête nationale', 'VALIDEE'),
